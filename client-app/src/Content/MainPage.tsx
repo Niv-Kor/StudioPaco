@@ -1,12 +1,14 @@
-import { Logo } from "./MainPage.style";
-import LogoImg from "./title.svg";
+import { FC } from 'react';
+import { Logo } from './MainPage.style';
+import LogoImg from './title.svg';
+import PageWrapper from '../Components/PageWrapper/PageWrapper';
 
-const MainPageContent: React.FC = () => {
+const MainPage: FC = () => {
     return (
-        <Container>
+        <PageWrapper>
             <Logo src={LogoImg} alt={''} />
-        </Container>
+        </PageWrapper>
     );
 }
 
-export default MainPageContent;
+export default MainPage;

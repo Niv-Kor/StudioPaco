@@ -1,15 +1,18 @@
-import { Container } from "./MainPageFooter.style";
-import SocialIcon from "../Social Drawer/Social Icon/SocialIcon";
+import { FC } from 'react';
+import { Container } from "./Footer.style";
+import MenuButton from '../Menu Button/MenuButton';
+import FollowButton from './FollowButton';
 
-const MainPageFooter: React.FC = () => {
+const Footer: FC = () => {
     return (
         <Container>
-            <SocialIcon
-                src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png"}
-                name={"whatsapp"}
+            <FollowButton />
+            <MenuButton
+                text={"contact"}
+                onClick={() => {}}
             />
         </Container>
     );
 }
 
-export default MainPageFooter;
+export default Footer;

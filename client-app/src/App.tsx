@@ -1,5 +1,4 @@
-import MainPage from './Pages/Main/MainPage';
-import { Wrapper } from './App.style';
+import MainPage from './Content/MainPage';
 
 function App() {
   return (

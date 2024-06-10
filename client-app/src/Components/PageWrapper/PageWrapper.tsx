@@ -1,17 +1,18 @@
-import { FC } from 'react';
-import { Wrapper } from './MainPage.style';
-import Content from './Content/MainPageContent';
-import Footer from '../../Components/Footer/Footer';
-import Header from '../../Components/Header/Header';
+import { FC, PropsWithChildren } from 'react';
+import { ContentWrapper, Wrapper } from './PageWrapper.style';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
-const MainPage: FC = () => {
+const PageWrapper: FC<PropsWithChildren<{}>> = ({ children }) => {
     return (
         <Wrapper>
             <Header />
-            <Content />
+            <ContentWrapper>
+                {children}
+            </ContentWrapper>
             <Footer />
         </Wrapper>
     );
 }
 
-export default MainPage;
+export default PageWrapper;
