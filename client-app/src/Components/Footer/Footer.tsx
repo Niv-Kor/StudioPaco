@@ -1,5 +1,5 @@
 import { Container } from "./MainPageFooter.style";
-import SocialIcon from "./SocialIcon/SocialIcon";
+import SocialIcon from "../Social Drawer/Social Icon/SocialIcon";
 
 const MainPageFooter: React.FC = () => {
     return (

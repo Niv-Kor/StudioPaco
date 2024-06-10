@@ -1,11 +1,11 @@
-import { Logo } from "./MainPageContent.style";
+import { Logo } from "./MainPage.style";
 import LogoImg from "./title.svg";
 
 const MainPageContent: React.FC = () => {
     return (
-        <>
+        <Container>
             <Logo src={LogoImg} alt={''} />
-        </>
+        </Container>
     );
 }
 
