@@ -1,18 +1,13 @@
 import { FC } from 'react';
-import MenuButton from '../Menu Button/MenuButton';
+import AboutButton from 'Content/About/Button/AboutButton';
+import ProjectsButton from 'Content/Projects/Button/ProjectsButton';
 import { Container } from './Header.style';
 
 const Header: FC = () => {
     return (
         <Container>
-            <MenuButton
-                text={"about"}
-                onClick={() => {}}
-            />
-            <MenuButton
-                text={"projects"}
-                onClick={() => {}}
-            />
+            <AboutButton />
+            <ProjectsButton />
         </Container>
     );
 }

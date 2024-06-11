@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { AccentColor } from '../../Utils/Theme';
-import { SocialDrawerState } from './types';
+import { AccentColor } from 'Utils/Theme';
+import { SocialDrawerState } from '../types';
 
 export const Drawer = styled.div<{
     state: SocialDrawerState;
+    available: boolean;
 }>`
     position: fixed;
     top: 0;
@@ -12,6 +13,7 @@ export const Drawer = styled.div<{
     height: 100%;
     background-color: ${AccentColor};
     transition: .2s;
+    pointer-events: ${({ available }) => available ? 'all' : 'none'};
     transform: translateX(-${({ state }) => {
         switch (state) {
             case SocialDrawerState.Closed: return 100;
@@ -19,6 +21,15 @@ export const Drawer = styled.div<{
             case SocialDrawerState.Open: return 0;
         }
     }}%);
+`;
+
+export const DrawerList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 60px;
+    left: -40px;
+    gap: 10px;
 `;
 
 export const DrawerNotch = styled.div<{

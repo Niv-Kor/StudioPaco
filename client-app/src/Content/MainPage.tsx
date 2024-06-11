@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Logo } from './MainPage.style';
 import LogoImg from './title.svg';
-import PageWrapper from '../Components/PageWrapper/PageWrapper';
+import PageWrapper from 'Components/Page Wrapper/PageWrapper';
+import { Logo } from './MainPage.style';
 
 const MainPage: FC = () => {
     return (

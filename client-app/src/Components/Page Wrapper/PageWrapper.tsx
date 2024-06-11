@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
+import Footer from 'Components/Footer/Footer';
+import Header from 'Components/Header/Header';
 import { ContentWrapper, Wrapper } from './PageWrapper.style';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
 
 const PageWrapper: FC<PropsWithChildren<{}>> = ({ children }) => {
     return (

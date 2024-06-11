@@ -7,6 +7,6 @@ export const Container = styled.div`
     align-items: center;
     gap: 20px;
     width: 100%;
-    padding: 20px 0 20px 40px;
+    padding: 20px 0 20px 20px;
     box-sizing: border-box;
 `;
