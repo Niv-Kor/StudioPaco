@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { AccentColor } from '../../Utils/Theme';
+import { AccentColor, BackgroundColor } from '../../Utils/Theme';
 
-export const Button = styled.button`
+export const Button = styled.button<{
+    revertMode: boolean;
+}>`
     position: relative;
     min-width: 100px;
     height: 40px;
@@ -27,7 +29,7 @@ export const Button = styled.button`
             transform: translate(-50%, -50%);
             width: 60%; 
             height: 30%;
-            background-color: ${AccentColor};
+            background-color: ${({ revertMode }) => revertMode ? BackgroundColor : AccentColor};
             z-index: -1;
         }
     }

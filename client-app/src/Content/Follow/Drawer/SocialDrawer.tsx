@@ -2,6 +2,7 @@ import { FC, useMemo } from 'react';
 import { SocialDrawerState } from '../types';
 import { SocialMethods } from '../constants';
 import SocialIcon from './Social Icon/SocialIcon';
+import { isRevertMode } from 'Utils/Theme';
 import {
     Drawer,
     DrawerNotch,
@@ -18,6 +19,7 @@ const SocialDrawer: FC<ISocialDrawer> = ({ state }) => {
     return (
         <Drawer
             available={isAvailable}
+            revertMode={isRevertMode()}
             state={state}
         >
             <DrawerList>

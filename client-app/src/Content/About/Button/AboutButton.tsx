@@ -9,6 +9,7 @@ const AboutButton: FC = () => {
         <>
             <MenuButton
                 text={"about"}
+                revertMode={false}
                 onClick={() => setDrawerOpen(prevState => !prevState)}
             />
             <AboutDrawer open={drawerOpen} />

@@ -11,7 +11,7 @@ export const TextContainer = styled.div<{
     height: 100%;
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
-    transition: .2s;
+    transition: .3s;
 `;
 
 export const ProfileImage = styled.div<{
@@ -24,7 +24,7 @@ export const ProfileImage = styled.div<{
     height: 40%;
     background-color: ${NaturalColor};
     transform: translateX(${({ open }) => open ? 0 : 250}%);
-    transition: .2s;
+    transition: .3s;
 
     ${({ open }) => open && `
         transition: transform .7s;

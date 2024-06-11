@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import { AccentColor } from 'Utils/Theme';
+import { AccentColor, BackgroundColor } from 'Utils/Theme';
 import { SocialDrawerState } from '../types';
 
 export const Drawer = styled.div<{
     state: SocialDrawerState;
     available: boolean;
+    revertMode: boolean;
 }>`
     position: fixed;
     top: 0;
     left: 0;
     width: 80px;
     height: 100%;
-    background-color: ${AccentColor};
+    background-color: ${({ revertMode }) => revertMode ? BackgroundColor : AccentColor};
     transition: .2s;
     pointer-events: ${({ available }) => available ? 'all' : 'none'};
     transform: translateX(-${({ state }) => {

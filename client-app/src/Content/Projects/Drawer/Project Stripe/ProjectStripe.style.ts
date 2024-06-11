@@ -2,14 +2,18 @@ import styled from "styled-components";
 import { AccentColor, NaturalColor } from "Utils/Theme";
 import { IProjectStripe } from "./ProjectStripe";
 
-export const Stripe = styled.div<IProjectStripe & {
-    open: boolean;
-}>`
+export const Stripe = styled.div<IProjectStripe>`
     height: 100%;
     width: ${({ width }) => width}px;
     margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;
     background-color: ${({ hovered }) => hovered ? AccentColor : NaturalColor};
-    transition: .4s;
+    transform: translateY(-100%);
+    transition: transform ${({ index }) => (index % 2 === 0) ? .4 : .6}s;
+
+    ${({ enabled }) => enabled && `
+        opacity: 1;
+        transform: translateY(0);
+    `}
 `;
 
 export const Container = styled.div<{

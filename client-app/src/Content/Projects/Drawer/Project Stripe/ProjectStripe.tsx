@@ -5,6 +5,8 @@ import {
 } from "./ProjectStripe.style";
 
 export interface IProjectStripe {
+    enabled: boolean;
+    index: number;
     width: number;
     selected: boolean;
     hovered: boolean;
@@ -27,9 +29,9 @@ const ProjectStripe: FC<IProjectStripe> = props => {
             <Stripe
                 {...props}
                 ref={stripeRef}
-                open={selected}
             />
             <Container
+                className={selected ? 'active-project' : ''}
                 open={selected}
                 rightOffset={rightOffset + width}
             />

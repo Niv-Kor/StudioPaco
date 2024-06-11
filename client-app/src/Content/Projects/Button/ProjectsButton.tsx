@@ -9,6 +9,7 @@ const ProjectsButton: FC = () => {
         <>
             <MenuButton
                 text={"projects"}
+                revertMode={false}
                 onClick={() => setDrawerOpen(prevState => !prevState)}
             />
             <ProjectsDrawer open={drawerOpen} />

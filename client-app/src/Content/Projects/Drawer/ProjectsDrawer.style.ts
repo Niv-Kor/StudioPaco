@@ -11,34 +11,51 @@ export const Wrapper = styled.div`
     height: 100%;
 `;
 
-export const ListWrapper = styled.div`
-    width: 50%;
-    height: 100%;
-`;
-
-export const CategoriesList = styled.ul<{
+export const ListWrapper = styled.div<{
     open: boolean;
 }>`
+    width: 50%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: .3s;
+
+    ${({ open }) => open && `
+        opacity: 1;
+        transform: translateX(0);
+    `}
+`;
+
+export const CategoriesList = styled.ul`
     display: flex;
     flex-direction: column;
     width: fit-content;
     padding-top: 100px;
     gap: 6px;
+
 `;
     
-export const Catergory = styled.span`
+export const Catergory = styled.span<{
+    selected: boolean;
+}>`
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 100;
     transition: .2s;
 
-    &:hover {
+    ${({ selected }) => selected ? `
         transform: translateX(10px);
-    }
+        font-weight: bold;
+        text-shadow: 1px 1px 0 #fff;
+        color: #000;
+    ` : `
+        &:hover {
+            transform: translateX(10px);
+        }
+    `}
 `;
 
 export const StripedContainer = styled.div<{
-    open: boolean;
     width: number;
 }>`
     display: flex;
@@ -46,5 +63,5 @@ export const StripedContainer = styled.div<{
     justify-content: space-around;
     width: ${({ width }) => width}px;
     height: 100%;
-    transition: .2s;
+    transition: .3s;
 `;
