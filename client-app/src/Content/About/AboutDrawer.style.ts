@@ -2,6 +2,20 @@ import styled from "styled-components";
 import { DrawerEnterTime } from "Utils/constants";
 import { AccentColor, NaturalColor } from "Utils/Theme";
 
+export const Wrapper = styled.div<{
+    open: boolean;
+}>`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: ${({ open }) => open ? 'all' : 'none'};
+`
+
 export const TextContainer = styled.div<{
     open: boolean;
 }>`
@@ -15,14 +29,13 @@ export const TextContainer = styled.div<{
     transition: ${DrawerEnterTime}s;
 `;
 
-export const ProfileImage = styled.div<{
+export const ProfileImage = styled.img<{
     open: boolean;
 }>`
     position: fixed;
     left: 0;
-    bottom: 20%;
+    top: 20%;
     width: 40%;
-    height: 40%;
     background-color: ${NaturalColor};
     transform: translateX(${({ open }) => open ? 0 : 250}%);
     transition: ${DrawerEnterTime}s;

@@ -29,7 +29,7 @@ export const DrawerList = styled.ul`
     flex-direction: column;
     position: absolute;
     bottom: 60px;
-    left: -40px;
+    left: -25px;
     gap: 10px;
 `;
 

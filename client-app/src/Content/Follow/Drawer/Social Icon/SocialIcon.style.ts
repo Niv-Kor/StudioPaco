@@ -13,12 +13,13 @@ export const Wrapper = styled.div<{
 `;
 
 export const IconContainer = styled.div`
+    display: flex;
     height: 40px;
     cursor: pointer;
 `;
 
 export const Icon = styled.img`
-    width: 40px;
+    width: 30px;
 `;
 
 export const ValueContainer = styled.div<{
@@ -47,6 +48,6 @@ export const ValueLabel = styled.span`
 `;
 
 export const ClipboardIcon = styled.img`
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 `;

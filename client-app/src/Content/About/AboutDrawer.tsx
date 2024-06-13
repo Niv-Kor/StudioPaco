@@ -1,6 +1,8 @@
 import { FC, useState, useEffect } from 'react';
 import { IDrawer } from 'Utils/types';
+import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
 import {
+    Wrapper,
     TextContainer,
     Content,
     Paragraph,
@@ -22,8 +24,12 @@ const AboutDrawer: FC<IDrawer> = ({
     }, [open]);
 
     return (
-        <>
-            <ProfileImage open={enterState} />
+        <Wrapper open={enterState}>
+            <ProfileImage
+                src={ProfileImgSrc}
+                alt={''}
+                open={enterState}
+            />
             <TextContainer open={enterState}>
                 <Content>
                     <Paragraph>
@@ -43,7 +49,7 @@ const AboutDrawer: FC<IDrawer> = ({
                     </Paragraph>
                 </Content>
             </TextContainer>
-        </>
+        </Wrapper>
     );
 }
 

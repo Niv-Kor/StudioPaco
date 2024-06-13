@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { DrawerEnterTime } from "Utils/constants";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+    open: boolean;
+}>`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -10,6 +12,7 @@ export const Wrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: ${({ open }) => open ? 'all' : 'none'};
 `;
 
 export const ListWrapper = styled.div<{

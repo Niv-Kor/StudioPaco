@@ -35,7 +35,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
     const isHovered = (stripeKey: string): boolean => hoveredCategory === stripeKey;
 
     return (
-        <Wrapper>
+        <Wrapper open={enterState}>
             <ListWrapper open={enterState}>
                 <CategoriesList>
                     {Projects.map(cat => (
