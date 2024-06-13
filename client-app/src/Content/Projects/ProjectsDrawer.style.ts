@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DrawerEnterTime } from "Utils/constants";
 
 export const Wrapper = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ export const ListWrapper = styled.div<{
     height: 100%;
     opacity: 0;
     transform: translateX(-100%);
-    transition: .3s;
+    transition: ${DrawerEnterTime}s;
 
     ${({ open }) => open && `
         opacity: 1;
@@ -41,7 +42,7 @@ export const Catergory = styled.span<{
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 100;
-    transition: .2s;
+    transition: ${DrawerEnterTime}s;
 
     ${({ selected }) => selected ? `
         transform: translateX(10px);
@@ -63,5 +64,5 @@ export const StripedContainer = styled.div<{
     justify-content: space-around;
     width: ${({ width }) => width}px;
     height: 100%;
-    transition: .3s;
+    transition: ${DrawerEnterTime}s;
 `;

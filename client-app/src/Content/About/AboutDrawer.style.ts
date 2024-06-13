@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DrawerEnterTime } from "Utils/constants";
 import { AccentColor, NaturalColor } from "Utils/Theme";
 
 export const TextContainer = styled.div<{
@@ -11,7 +12,7 @@ export const TextContainer = styled.div<{
     height: 100%;
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
-    transition: .3s;
+    transition: ${DrawerEnterTime}s;
 `;
 
 export const ProfileImage = styled.div<{
@@ -24,10 +25,10 @@ export const ProfileImage = styled.div<{
     height: 40%;
     background-color: ${NaturalColor};
     transform: translateX(${({ open }) => open ? 0 : 250}%);
-    transition: .3s;
+    transition: ${DrawerEnterTime}s;
 
     ${({ open }) => open && `
-        transition: transform .7s;
+        transition: transform ${DrawerEnterTime * 2}s;
     `}
 `;
 

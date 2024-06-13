@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
+import { IDrawer } from 'Utils/types';
 import {
     TextContainer,
     Content,
@@ -7,15 +8,23 @@ import {
     ProfileImage
 } from './AboutDrawer.style';
 
-interface IAboutDrawer {
-    open: boolean;
-}
+const AboutDrawer: FC<IDrawer> = ({
+    open,
+    openDelay
+}) => {
+    const [enterState, setEnterState] = useState<boolean>(false);
 
-const AboutDrawer: FC<IAboutDrawer> = ({ open }) => {
+    useEffect(() => {
+        if (open && openDelay > 0) 
+            setTimeout(() => setEnterState(true), openDelay * 1000);
+        else setEnterState(open);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open]);
+
     return (
         <>
-            <ProfileImage open={open} />
-            <TextContainer open={open}>
+            <ProfileImage open={enterState} />
+            <TextContainer open={enterState}>
                 <Content>
                     <Paragraph>
                         The essence of design lies in its timeless quality - Inspired by the beauty of natural and social phenomena.
