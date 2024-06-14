@@ -8,3 +8,6 @@ declare module '*.png' {
   export default content;
 }
   
+interface Window {
+  particlesJS: any;
+}

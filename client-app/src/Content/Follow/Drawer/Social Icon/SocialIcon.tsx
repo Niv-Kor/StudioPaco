@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import { ISocialIconConfig } from '../../types';
+import CopyIcon from 'resources/Graphics/Follow/copy.svg';
 import {
     Wrapper,
     IconContainer,
     Icon,
     ValueContainer,
     ValueLabel,
-    ClipboardIcon
+    ClipboardIcon,
+    ClipboardAck
 } from './SocialIcon.style';
 
 interface ISocialIcon {
@@ -58,11 +60,11 @@ const SocialIcon: FC<ISocialIcon> = ({ config, enabled }) => {
                 {!!clipboardString && (
                     <>
                         <ClipboardIcon
-                            src={'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png'}
+                            src={CopyIcon}
                             alt={'Copy to clipboard'}
                         />
                         {clipboardAck && (
-                            <span>Copied!</span>
+                            <ClipboardAck>Copied!</ClipboardAck>
                         )}
                     </>
                 )}

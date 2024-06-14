@@ -1,39 +1,45 @@
 import { ISocialIconConfig } from './types';
+import FacebookIcon from 'resources/Graphics/Follow/facebook.svg';
+import InstagramIcon from 'resources/Graphics/Follow/instagram.svg';
+import LinkedinIcon from 'resources/Graphics/Follow/linkedin.svg';
+import WhatsappIcon from 'resources/Graphics/Follow/whatsapp.svg';
+import TelephoneIcon from 'resources/Graphics/Follow/phone.svg';
+import EmailIcon from 'resources/Graphics/Follow/email.svg';
 
 export const SocialMethods: Array<ISocialIconConfig> = [
     {
         key: 'Facebook',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
-        value: 'amit.paco',
+        iconSrc: FacebookIcon,
+        value: 'facebook.com/Amit.Paco',
         href: 'https://facebook.com/Amit.Paco',
     },
     {
         key: 'Instagram',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
-        value: 'amitpaco',
+        iconSrc: InstagramIcon,
+        value: 'instagram.com/amitpaco',
         href: `https://instagram.com/amitpaco`,
     },
     {
         key: 'linkedIn',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
-        value: 'amit-korach',
-        href: 'https://linkedin.com/in/Amit-Korach',
+        iconSrc: LinkedinIcon,
+        value: 'linkedin.com/company/studiopaco',
+        href: 'https://linkedin.com/company/studiopaco',
     },
     {
         key: 'Whatsapp',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
+        iconSrc: WhatsappIcon,
         value: '972.0506.7575.81',
         href: `https://wa.me/972506757581`,
     },
     {
         key: 'Telephone',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
+        iconSrc: TelephoneIcon,
         value: '972.0506.7575.81',
         clipboardString: '+972506757581',
     },
     {
         key: 'Email',
-        iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png',
+        iconSrc: EmailIcon,
         value: 'amit@studiopaco.com',
         clipboardString: 'amit@studiopaco.com',
     }
