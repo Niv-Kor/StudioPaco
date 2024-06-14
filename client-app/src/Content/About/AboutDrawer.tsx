@@ -1,13 +1,15 @@
 import { FC, useState, useEffect } from 'react';
 import { IDrawer } from 'Utils/types';
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
+import LogoForegroundImg from 'resources/Graphics/Logo/logo_foreground.svg';
 import {
     Wrapper,
     TextContainer,
     Content,
     Paragraph,
     CenterParagraph,
-    ProfileImage
+    ProfileImage,
+    LogoForeground
 } from './AboutDrawer.style';
 
 const AboutDrawer: FC<IDrawer> = ({
@@ -31,21 +33,22 @@ const AboutDrawer: FC<IDrawer> = ({
                 open={enterState}
             />
             <TextContainer open={enterState}>
+                <LogoForeground src={LogoForegroundImg} alt={''} />
                 <Content>
                     <Paragraph>
-                        The essence of design lies in its timeless quality - Inspired by the beauty of natural and social phenomena.
+                        The essence of design lies in its <b>timeless quality</b> - Inspired by the beauty of natural and social phenomena.
                         Well-designed spaces should feel like a natural extension of their environment, as if they have always been part of the landscape.
                     </Paragraph>
                     <CenterParagraph>
-                        Based in Tel-Aviv, Studio Paco is led by architect Amit Korach, a graduate of Tel Aviv University in 2018.
+                        Based in Tel-Aviv, <b>Studio Paco</b> is led by architect Amit Korach, a graduate of Tel Aviv University in 2018.
                         With expertise spanning residential and commercial architecture, public installations, and product design,
                         the studio shapes how the spaces we inhabit make us feel, dream, and perceive our own essence.
                     </CenterParagraph>
                     <Paragraph>
                         Through a closely collaborative process, the client's vision is woven into every aspect of the
-                        design with dedicated attention to details - ensuring a profound sense of personal connection.
+                        design with dedicated attention to details - ensuring a profound sense of <b>personal connection</b>.
                         From material choices to choreographed spatial flow, the sensory experience of each creation
-                        is composed to inspire an experience of continual discovery.
+                        is composed to inspire an experience of <b>continual discovery</b>.
                     </Paragraph>
                 </Content>
             </TextContainer>

@@ -32,8 +32,8 @@ export const ValueContainer = styled.div<{
     gap: 10px;
     opacity: 0;
     pointer-events: none;
-    transform: translateX(-50%);
-    transition: opacity .1s, transform .2s;
+    transform: translateX(-20%);
+    transition: opacity .2s, transform .2s;
 
     ${({ hovered }) => hovered && `
         opacity: 1;
@@ -45,9 +45,18 @@ export const ValueContainer = styled.div<{
 
 export const ValueLabel = styled.span`
     white-space: nowrap;
+    font-family: 'Futura';
+    font-size: 1.25rem;
+    font-weight: 400;
 `;
 
 export const ClipboardIcon = styled.img`
     width: 24px;
     height: 24px;
+`;
+
+export const ClipboardAck = styled.span`
+    font-family: 'Futura';
+    font-size: 1rem;
+    font-weight: 400;
 `;

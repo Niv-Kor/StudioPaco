@@ -10,20 +10,20 @@ export const SocialMethods: Array<ISocialIconConfig> = [
     {
         key: 'Facebook',
         iconSrc: FacebookIcon,
-        value: 'amit.paco',
+        value: 'facebook.com/Amit.Paco',
         href: 'https://facebook.com/Amit.Paco',
     },
     {
         key: 'Instagram',
         iconSrc: InstagramIcon,
-        value: 'amitpaco',
+        value: 'instagram.com/amitpaco',
         href: `https://instagram.com/amitpaco`,
     },
     {
         key: 'linkedIn',
         iconSrc: LinkedinIcon,
-        value: 'amit-korach',
-        href: 'https://linkedin.com/in/Amit-Korach',
+        value: 'linkedin.com/company/studiopaco',
+        href: 'https://linkedin.com/company/studiopaco',
     },
     {
         key: 'Whatsapp',

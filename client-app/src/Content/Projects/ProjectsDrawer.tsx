@@ -16,6 +16,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
 }) => {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [hoveredCategory, setHoveredCategory] = useState<string>('');
+    const [lastSelectedCategory, setLastSelecctedCategory] = useState<string>('');
     const [enterState, setEnterState] = useState<boolean>(false);
 
     useEffect(() => {
@@ -30,6 +31,10 @@ const ProjectsDrawer: FC<IDrawer> = ({
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
+
+    useEffect(() => {
+        setLastSelecctedCategory(selectedCategory);
+    }, [selectedCategory]);
 
     const isSelected = (stripeKey: string): boolean => selectedCategory === stripeKey;
     const isHovered = (stripeKey: string): boolean => hoveredCategory === stripeKey;
@@ -59,6 +64,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
                         selected={isSelected(project.key)}
                         hovered={isHovered(project.key) || isSelected(project.key) || index === 1}
                         leftMargin={project.leftMargin}
+                        openDelay={!!lastSelectedCategory ? .4 : 0}
                     />
                 ))}
             </StripedContainer>

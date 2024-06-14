@@ -23,6 +23,7 @@ export const ListWrapper = styled.div<{
     opacity: 0;
     transform: translateX(-100%);
     transition: ${DrawerEnterTime}s;
+    z-index: 20;
 
     ${({ open }) => open && `
         opacity: 1;

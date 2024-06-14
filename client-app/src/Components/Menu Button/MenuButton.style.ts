@@ -9,10 +9,12 @@ export const Button = styled.button<{
     height: 40px;
     outline: none;
     border:  none;
+    font-family: 'Futura';
+    font-weight: 400;
     cursor: pointer;
-    font-size: 1.15rem;
+    font-size: 1.5rem;
     background: none;
-    z-index: 10;
+    z-index: 100;
     
     &::before {
         content: '';
@@ -24,7 +26,7 @@ export const Button = styled.button<{
         &::before {
             content: '';
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 60%; 

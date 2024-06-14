@@ -7,7 +7,8 @@ import {
     Icon,
     ValueContainer,
     ValueLabel,
-    ClipboardIcon
+    ClipboardIcon,
+    ClipboardAck
 } from './SocialIcon.style';
 
 interface ISocialIcon {
@@ -63,7 +64,7 @@ const SocialIcon: FC<ISocialIcon> = ({ config, enabled }) => {
                             alt={'Copy to clipboard'}
                         />
                         {clipboardAck && (
-                            <span>Copied!</span>
+                            <ClipboardAck>Copied!</ClipboardAck>
                         )}
                     </>
                 )}

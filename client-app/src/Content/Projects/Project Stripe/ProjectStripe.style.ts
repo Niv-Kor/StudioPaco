@@ -7,12 +7,28 @@ export const Stripe = styled.div<IProjectStripe>`
     width: ${({ width }) => width}px;
     margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;
     background-color: ${({ hovered }) => hovered ? AccentColor : NaturalColor};
-    transform: translateY(-100%);
-    transition: transform ${({ index }) => (index % 2 === 0) ? .4 : .6}s;
+    translate: 0 -100%;
+    transition:
+        translate ${({ index }) => (index % 2 === 0) ? .4 : .6}s,
+        background .2s;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('resources/Graphics/');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.5;
+        z-index: 0;
+        pointer-events: none;
+    }
 
     ${({ enabled }) => enabled && `
-        opacity: 1;
-        transform: translateY(0);
+        translate: 0 0;
     `}
 `;
 
@@ -21,16 +37,15 @@ export const Container = styled.div<{
     rightOffset: number;
 }>`
     position: fixed;
+    right: ${({ rightOffset }) => rightOffset}px;
     width: 0%;
     height: 100%;
-    transition: 0s;
+    z-index: 10;
+    transition: .4s;
 
-    ${({ open, rightOffset }) => open && `
+    ${({ open }) => open && `
         position: fixed;
-        right: ${rightOffset}px;
+        background-color: ${AccentColor}99;
         width: 100%;
-        background-color: ${AccentColor};
-        z-index: -1;
-        transition: .4s;
     `};
 `;
