@@ -2,8 +2,9 @@ import { FC } from 'react';
 import {
     Container,
     List,
-    ListRow,
-    Delimiter
+    Delimiter,
+    ListRowHebrew,
+    ListRowEnglish
 } from './ContactDrawer.style';
 
 interface IContactDrawer {
@@ -14,10 +15,10 @@ const ConntactDrawer: FC<IContactDrawer> = ({ open }) => {
     return (
         <Container open={open}>
             <List>
-                <ListRow>אדריכל . עמית קורח.</ListRow>
-                <ListRow>arch . Amit Korach</ListRow>
-                <ListRow>+972 . 0506.7575.81</ListRow>
-                <ListRow>amit@studiopaco.com</ListRow>
+                <ListRowHebrew>אדריכל . עמית קורח.</ListRowHebrew>
+                <ListRowEnglish>arch . Amit Korach</ListRowEnglish>
+                <ListRowEnglish>+972 . 0506.7575.81</ListRowEnglish>
+                <ListRowEnglish>amit@studiopaco.com</ListRowEnglish>
             </List>
             <Delimiter open={open} />
         </Container>

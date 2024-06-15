@@ -24,7 +24,14 @@ export const List = styled.div`
 export const ListRow = styled.span`
     white-space: nowrap;
     font-size: 1.5rem;
-    font-family: 'ArbelHagildaMenukad';
+`;
+
+export const ListRowHebrew = styled(ListRow)`
+    font-family: 'ArbelHagildaMenukad', 'Futura';
+`;
+
+export const ListRowEnglish = styled(ListRow)`
+    font-family: 'Futura';
 `;
 
 const FadeFromLeft = keyframes`
