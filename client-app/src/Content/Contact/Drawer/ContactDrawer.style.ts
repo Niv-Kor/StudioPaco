@@ -24,6 +24,7 @@ export const List = styled.div`
 export const ListRow = styled.span`
     white-space: nowrap;
     font-size: 1.5rem;
+    font-family: 'ArbelHagildaMenukad';
 `;
 
 const FadeFromLeft = keyframes`
