@@ -1,13 +1,15 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { DefaultStripeSpace, DummyProjects, Projects, StripeWidth } from './constants';
 import ProjectStripe from './Project Stripe/ProjectStripe';
+import { IProjectCategory } from './types';
 import { IDrawer } from 'Utils/types';
 import {
     Wrapper,
     ListWrapper,
     CategoriesList,
-    Catergory,
-    StripedContainer
+    Category,
+    StripesContainer,
+    ListDelimiter
 } from './ProjectsDrawer.style';
 
 const ProjectsDrawer: FC<IDrawer> = ({
@@ -16,8 +18,10 @@ const ProjectsDrawer: FC<IDrawer> = ({
 }) => {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [hoveredCategory, setHoveredCategory] = useState<string>('');
-    const [lastSelectedCategory, setLastSelecctedCategory] = useState<string>('');
+    const [lastSelectedCategory, setLastSelectedCategory] = useState<string>('');
     const [enterState, setEnterState] = useState<boolean>(false);
+    const [stripeHoverCooldown, setStripeHoverCooldown] = useState<boolean>(false);
+    const stripeHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
 
     useEffect(() => {
         if (open) {
@@ -33,7 +37,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
     }, [open]);
 
     useEffect(() => {
-        setLastSelecctedCategory(selectedCategory);
+        setLastSelectedCategory(selectedCategory);
     }, [selectedCategory]);
 
     const isSelected = (stripeKey: string): boolean => selectedCategory === stripeKey;
@@ -44,30 +48,49 @@ const ProjectsDrawer: FC<IDrawer> = ({
             <ListWrapper open={enterState}>
                 <CategoriesList>
                     {Projects.map(cat => (
-                        <Catergory
+                        <Category
                             selected={isSelected(cat.key)}
-                            onMouseEnter={() => setHoveredCategory(cat.key)}
-                            onMouseLeave={() => setHoveredCategory('')}
-                            onClick={() => setSelectedCategory(cat.key)}
+                            onMouseEnter={() => {
+                                setHoveredCategory(cat.key);
+                                clearTimeout(stripeHoverDebouncer.current);
+                                stripeHoverDebouncer.current = undefined;
+                            }}
+                            onMouseLeave={() => {
+                                setHoveredCategory('');
+                                setStripeHoverCooldown(true);
+
+                                stripeHoverDebouncer.current = setTimeout(() => {
+                                    setStripeHoverCooldown(false);
+                                    stripeHoverDebouncer.current = undefined;
+                                }, 200);
+                            }}
+                            onClick={() => {
+                                const nextState = isSelected(cat.key) ? "" : cat.key;
+                                setSelectedCategory(nextState);
+                            }}
                         >
                             {cat.key}
-                        </Catergory>
+                        </Category>
                     ))}
                 </CategoriesList>
+                <ListDelimiter displayed={enterState} />
             </ListWrapper>
-            <StripedContainer width={Projects.length * DefaultStripeSpace}>
-                {DummyProjects.map((project, index) => (
+            <StripesContainer width={Projects.length * DefaultStripeSpace}>
+                {DummyProjects
+                    .toReversed()
+                    .sort((a: IProjectCategory, b: IProjectCategory) => a.stripeIndex - b.stripeIndex)
+                    .map((project: IProjectCategory, index: number) => (
                     <ProjectStripe
                         enabled={enterState}
                         index={index}
                         width={StripeWidth}
                         selected={isSelected(project.key)}
-                        hovered={isHovered(project.key) || isSelected(project.key) || index === 1}
+                        hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripeHoverCooldown)}
                         leftMargin={project.leftMargin}
                         openDelay={!!lastSelectedCategory ? .4 : 0}
                     />
                 ))}
-            </StripedContainer>
+            </StripesContainer>
         </Wrapper>
     );
 }

@@ -11,18 +11,18 @@ interface IContactDrawer {
     open: boolean;
 }
 
-const ConntactDrawer: FC<IContactDrawer> = ({ open }) => {
+const ContactDrawer: FC<IContactDrawer> = ({ open }) => {
     return (
         <Container open={open}>
             <List>
-                <ListRowHebrew>אדריכל . עמית קורח.</ListRowHebrew>
-                <ListRowEnglish>arch . Amit Korach</ListRowEnglish>
-                <ListRowEnglish>+972 . 0506.7575.81</ListRowEnglish>
-                <ListRowEnglish>amit@studiopaco.com</ListRowEnglish>
+                <ListRowHebrew letterSpacing={2.2}>.אדריכל . עמית קורח</ListRowHebrew>
+                <ListRowEnglish letterSpacing={3.6}>arch . Amit Korach</ListRowEnglish>
+                <ListRowEnglish letterSpacing={.9}>+972 . 0506.7575.81</ListRowEnglish>
+                <ListRowEnglish letterSpacing={1.2}>amit@studiopaco.com</ListRowEnglish>
             </List>
             <Delimiter open={open} />
         </Container>
     );
 }
 
-export default ConntactDrawer;
+export default ContactDrawer;

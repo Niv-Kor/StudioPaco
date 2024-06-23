@@ -21,9 +21,12 @@ export const List = styled.div`
     flex-direction: column;
 `;
 
-export const ListRow = styled.span`
+export const ListRow = styled.span<{
+    letterSpacing?: number;
+}>`
     white-space: nowrap;
     font-size: 1.5rem;
+    letter-spacing: ${({ letterSpacing }) => letterSpacing ?? 0}px;
 `;
 
 export const ListRowHebrew = styled(ListRow)`

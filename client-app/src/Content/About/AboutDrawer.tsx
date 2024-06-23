@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { IDrawer } from 'Utils/types';
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
-import LogoForegroundImg from 'resources/Graphics/Logo/logo_foreground.svg';
+import LogoForegroundImg from 'resources/Graphics/Logo/logo_foreground.png';
 import {
     Wrapper,
     TextContainer,

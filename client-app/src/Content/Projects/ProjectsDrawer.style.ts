@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from 'styled-components';
 import { DrawerEnterTime } from "Utils/constants";
+import { Projects } from './constants';
 
 export const Wrapper = styled.div<{
     open: boolean;
@@ -18,11 +19,14 @@ export const Wrapper = styled.div<{
 export const ListWrapper = styled.div<{
     open: boolean;
 }>`
+    display: flex;
+    flex-direction: row;
     width: 50%;
     height: 100%;
     opacity: 0;
+    padding-top: 100px;
     transform: translateX(-100%);
-    transition: ${DrawerEnterTime}s;
+    transition: ${DrawerEnterTime * 2}s;
     z-index: 20;
 
     ${({ open }) => open && `
@@ -35,14 +39,13 @@ export const CategoriesList = styled.ul`
     display: flex;
     flex-direction: column;
     width: fit-content;
-    padding-top: 100px;
     gap: 6px;
-
 `;
     
-export const Catergory = styled.span<{
+export const Category = styled.span<{
     selected: boolean;
 }>`
+    font-family: 'Futura';
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 100;
@@ -50,9 +53,7 @@ export const Catergory = styled.span<{
 
     ${({ selected }) => selected ? `
         transform: translateX(10px);
-        font-weight: bold;
         text-shadow: 1px 1px 0 #fff;
-        color: #000;
     ` : `
         &:hover {
             transform: translateX(10px);
@@ -60,7 +61,31 @@ export const Catergory = styled.span<{
     `}
 `;
 
-export const StripedContainer = styled.div<{
+const delimiterKeyframes = keyframes`
+    from { height: 0; }
+    to { height: ${Projects.length * 34}px; }
+`;
+
+export const ListDelimiter = styled.div<{
+    displayed: boolean;
+}>`
+    width: 1px;
+    background-color: #00000066;
+    margin: 20px 0 0 50px;
+    height: 0;
+    
+    ${({ displayed }) => displayed ? css`
+        animation-name: ${delimiterKeyframes};
+        animation-fill-mode: forwards;
+        animation-duration: .5s;
+        animation-delay: 1s;
+    ` : css`
+        opacity: 0;
+        transition: .5s;
+    `}
+`;
+
+export const StripesContainer = styled.div<{
     width: number;
 }>`
     display: flex;

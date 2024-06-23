@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Container } from './Header.style';
 import { DrawerEnterTime } from 'Utils/constants';
 import { MainDrawer } from 'Utils/types';
@@ -6,8 +6,16 @@ import MainDrawerContainer from 'Components/Main Drawer Container/MainDrawer';
 import AboutDrawer from 'Content/About/AboutDrawer';
 import ProjectsDrawer from 'Content/Projects/ProjectsDrawer';
 
-const Header: FC = () => {
+interface IHeader {
+    onDrawerChange: (drawer: MainDrawer) => void;
+}
+
+const Header: FC<IHeader> = ({ onDrawerChange }) => {
     const [currentOpenDrawer, setCurrentOpenDrawer] = useState<MainDrawer>(MainDrawer.None);
+
+    useEffect(() => {
+        onDrawerChange?.(currentOpenDrawer);
+    }, [currentOpenDrawer]);
 
     return (
         <Container>
