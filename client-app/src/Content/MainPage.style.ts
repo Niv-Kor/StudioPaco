@@ -12,6 +12,7 @@ export const SmallLogo = styled.img<{
     width: 320px;
     opacity: ${({ displayed }) => displayed ? 1 : 0};
     transition: .5s;
+    z-index: 1000;
     
     ${({ displayed }) => !displayed && `
         transform: translateX(50px);

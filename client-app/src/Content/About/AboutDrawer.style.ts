@@ -19,8 +19,19 @@ export const Wrapper = styled.div<{
 
 export const Paragraph = styled.p`
     width: 80%;
-    font-size: 1.2rem;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
     z-index: 20;
+    transition: font-size .2s;
+
+    @media screen and (max-width: 1400px) {
+        font-size: 19.5px;
+    }
+
+    @media screen and (max-width: 900px) {
+        font-size: 16px;
+    }
 
     & > b {
         font-weight: 500;
@@ -28,7 +39,7 @@ export const Paragraph = styled.p`
 `;
 
 export const CenterParagraph = styled(Paragraph)`
-    padding-left: 30%;
+    padding-left: 27%;
     width: 60%;
     z-index: 20;
 `;
@@ -45,11 +56,6 @@ export const TextContainer = styled.div<{
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
     transition: ${DrawerEnterTime}s;
-
-    & ${Paragraph} {
-        font-size: 1.5rem;
-        font-weight: 400;
-    }
 `;
 
 export const ProfileImage = styled.img<{
@@ -71,10 +77,12 @@ export const ProfileImage = styled.img<{
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 14vh 2vw;
+    gap: 20px;
 `;
 
 export const LogoForeground = styled.img`
