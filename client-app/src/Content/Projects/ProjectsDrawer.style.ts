@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import { DrawerEnterTime } from "Utils/constants";
 import { Projects } from './constants';
+import { AccentColor, NaturalColor } from 'Utils/Theme';
 
 export const Wrapper = styled.div<{
     open: boolean;
@@ -21,7 +22,6 @@ export const ListWrapper = styled.div<{
 }>`
     display: flex;
     flex-direction: row;
-    width: 50%;
     height: 100%;
     opacity: 0;
     padding-top: 100px;
@@ -53,12 +53,27 @@ export const Category = styled.span<{
 
     ${({ selected }) => selected ? `
         transform: translateX(10px);
-        text-shadow: 1px 1px 0 #fff;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            margin: 0 5px 2px -10px;
+            background-color: #fff;
+            border: 1px #000 outset;
+            border-radius: 50%;
+            transition: .2s;
+        }
     ` : `
         &:hover {
             transform: translateX(10px);
         }
     `}
+
+    &::before {
+        
+    }
 `;
 
 const delimiterKeyframes = keyframes`

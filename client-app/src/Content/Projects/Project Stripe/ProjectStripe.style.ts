@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { AccentColor, NaturalColor } from "Utils/Theme";
 import { IProjectStripe } from "./ProjectStripe";
+import { IProjectCategory } from "../types";
 
-export const Stripe = styled.div<IProjectStripe>`
+export const Stripe = styled.div<IProjectStripe & IProjectCategory>`
     height: 100%;
     width: ${({ width }) => width}px;
     margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;
@@ -34,4 +35,42 @@ export const Container = styled.div<{
         background-color: ${AccentColor};
         width: 100%;
     `};
+`;
+
+export const ContentWrapper = styled.div<{
+    offset: number;
+}>`
+    --padding: ${({ offset }) => offset + 280}px;
+
+    position: absolute;
+    top: 114px;
+    bottom: 75px;
+    left: var(--padding);
+    width: calc(100% - var(--padding));
+`;
+
+export const Text = styled.p<{
+    displayed: boolean;
+    fullHeight: boolean;
+}>`
+    font-family: 'Futura';
+    margin: 0;
+    width: 80%;
+    height: ${({ fullHeight }) => fullHeight ? 100 : 45}%;
+    opacity: ${({ displayed }) => displayed ? 1 : 0};
+    font-size: 20px;
+    transition: .5s;
+
+    & .category-title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-right: 15px;
+    }
+`;
+
+export const ContentElementContainer = styled.div`
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
 `;

@@ -81,12 +81,12 @@ const ProjectsDrawer: FC<IDrawer> = ({
                     .sort((a: IProjectCategory, b: IProjectCategory) => a.stripeIndex - b.stripeIndex)
                     .map((project: IProjectCategory, index: number) => (
                     <ProjectStripe
+                        category={project}
                         enabled={enterState}
                         index={index}
                         width={StripeWidth}
                         selected={isSelected(project.key)}
                         hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripeHoverCooldown)}
-                        leftMargin={project.leftMargin}
                         openDelay={!!lastSelectedCategory ? .4 : 0}
                     />
                 ))}
