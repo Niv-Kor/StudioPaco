@@ -20,7 +20,7 @@ export const MenuButton: FC<IMenuButton> = ({
     return (
         <Button
             onClick={onClick}
-            revertMode={!!revertMode || isRevertMode()}
+            revertMode={revertMode !== false && (!!revertMode || isRevertMode())}
             onMouseEnter={onHover ?? (() => {})}
             onMouseLeave={onLeave ?? (() => {})}
         >
