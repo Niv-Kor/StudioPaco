@@ -45,3 +45,18 @@ export const LogoForeground = styled.img`
 
 export const LogoText = styled.img`
 `;
+
+export const LogoSubtextContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 65px;
+    left: 3px;
+    font-size: 25px;
+    gap: 16px;
+`;
+
+export const LogoSubtext = styled.span`
+    font-family: 'Futura';
+`;

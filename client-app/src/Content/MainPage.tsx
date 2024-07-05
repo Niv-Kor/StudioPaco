@@ -12,7 +12,9 @@ import {
     LogoBackground,
     LogoForeground,
     LogoText,
-    SmallLogo
+    SmallLogo,
+    LogoSubtextContainer,
+    LogoSubtext
 } from './MainPage.style';
 
 const MainPage: FC = () => {
@@ -35,6 +37,11 @@ const MainPage: FC = () => {
                 <LogoBackground src={LogoBackgroundImg} alt={''} />
                 <LogoForeground src={LogoForegroundImg} alt={''} />
                 <LogoText src={LogoTextImg} alt={''} />
+                <LogoSubtextContainer>
+                    <LogoSubtext>design</LogoSubtext>
+                    <LogoSubtext>.</LogoSubtext>
+                    <LogoSubtext>architecture</LogoSubtext>
+                </LogoSubtextContainer>
             </LogoWrapper>
         </PageWrapper>
     );
