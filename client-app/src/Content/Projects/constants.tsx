@@ -1,4 +1,5 @@
-import { IProjectCategory } from "./types";
+import { IProjectCategory } from './types';
+import ResidentialNav from './Pages/Residential/ResidentialNav';
 
 export const StripeWidth = 30;
 export const DefaultStripeSpace = StripeWidth + 30;
@@ -10,8 +11,9 @@ export const Projects: Array<IProjectCategory> = [
     },
     {
         key: 'residential',
-        text: 'Case studies to bridge conceptual vision and viability for potential projects. Concluding analytical processes, examining legal, regulatory, financial and contextual factors to thoroughly vet new developments.',
-        stripeIndex: 6
+        text: 'Domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
+        stripeIndex: 6,
+        content: <ResidentialNav />
     },
     {
         key: 'hospitality',

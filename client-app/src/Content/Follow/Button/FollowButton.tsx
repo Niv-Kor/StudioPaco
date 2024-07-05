@@ -37,9 +37,7 @@ const FollowButton: FC = () => {
                 onHover={onHover}
                 onLeave={onLeave}
             />
-            <SocialDrawer
-                state={drawerState}
-            />
+            <SocialDrawer state={drawerState} />
         </div>
     );
 }

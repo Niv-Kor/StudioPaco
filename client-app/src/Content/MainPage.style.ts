@@ -29,6 +29,7 @@ export const LogoWrapper = styled.div<{
     width: ${LogoWidth}px;
     height: ${LogoWidth * LogoRatio}px;
     opacity: ${({ displayed }) => displayed ? 1 : 0};
+    z-index: -1;
     transition: .2s;
 
     & > * {

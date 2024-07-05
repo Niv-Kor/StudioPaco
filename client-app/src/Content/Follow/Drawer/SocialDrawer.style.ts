@@ -14,6 +14,7 @@ export const Drawer = styled.div<{
     height: 100%;
     background-color: ${({ revertMode }) => revertMode ? BackgroundColor : AccentColor};
     transition: .2s;
+    z-index: 50;
     pointer-events: ${({ available }) => available ? 'all' : 'none'};
     transform: translateX(-${({ state }) => {
         switch (state) {
