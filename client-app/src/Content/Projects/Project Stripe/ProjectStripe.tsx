@@ -7,6 +7,7 @@ import {
     Text,
     ContentElementContainer
 } from "./ProjectStripe.style";
+import ProjectsTable from '../Table/ProjectsTable';
 
 export interface IProjectStripe {
     category: IProjectCategory;
@@ -84,16 +85,14 @@ const ProjectStripe: FC<IProjectStripe> = props => {
                 <ContentWrapper offset={rightOffset + width}>
                     <Text
                         displayed={isTextDisplayed}
-                        fullHeight={!category.content}
+                        fullHeight={!category.projects.length}
                     >
                         <span className={'category-title'}>{category.key}</span>
                         {category.text}
                     </Text>
-                    {!!category.content && (
-                        <ContentElementContainer>
-                            {category.content}
-                        </ContentElementContainer>
-                    )}
+                    <ContentElementContainer>
+                        <ProjectsTable category={category} />
+                    </ContentElementContainer>
                 </ContentWrapper>
             </Container>
         </>

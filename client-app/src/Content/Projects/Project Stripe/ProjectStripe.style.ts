@@ -25,15 +25,17 @@ export const Container = styled.div<{
 }>`
     position: fixed;
     right: ${({ rightOffset }) => rightOffset}px;
-    width: 0%;
+    width: 0;
     height: 100%;
     z-index: 10;
+    opacity: 0;
     transition: .4s;
 
     ${({ open }) => open && `
         position: fixed;
         background-color: ${AccentColor};
         width: 100%;
+        opacity: 1;
     `};
 `;
 

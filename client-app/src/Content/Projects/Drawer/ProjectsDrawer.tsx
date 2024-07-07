@@ -1,7 +1,8 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { DefaultStripeSpace, DummyProjects, Projects, StripeWidth } from './constants';
-import ProjectStripe from './Project Stripe/ProjectStripe';
-import { IProjectCategory } from './types';
+import { DefaultStripeSpace, StripeWidth } from '../constants';
+import { DummyProjects, Projects } from '../Data';
+import ProjectStripe from '../Project Stripe/ProjectStripe';
+import { IProjectCategory } from '../types';
 import { IDrawer } from 'Utils/types';
 import {
     Wrapper,

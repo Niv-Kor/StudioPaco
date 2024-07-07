@@ -4,7 +4,7 @@ import { DrawerEnterTime } from 'Utils/constants';
 import { MainDrawer } from 'Utils/types';
 import MainDrawerContainer from 'Components/Main Drawer Container/MainDrawer';
 import AboutDrawer from 'Content/About/AboutDrawer';
-import ProjectsDrawer from 'Content/Projects/ProjectsDrawer';
+import ProjectsDrawer from 'Content/Projects/Drawer/ProjectsDrawer';
 
 interface IHeader {
     onDrawerChange: (drawer: MainDrawer) => void;

@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "webpack.client.js"
+    "webpack.client.js",
   ],
 }

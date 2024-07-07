@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { DrawerEnterTime } from "Utils/constants";
-import { Projects } from './constants';
-import { AccentColor, NaturalColor } from 'Utils/Theme';
+import { Projects } from '../Data';
 
 export const Wrapper = styled.div<{
     open: boolean;
@@ -49,31 +48,16 @@ export const Category = styled.span<{
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 100;
-    transition: ${DrawerEnterTime}s;
-
+    transition: transform ${DrawerEnterTime}s;
+    
     ${({ selected }) => selected ? `
         transform: translateX(10px);
-
-        &::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 5px;
-            margin: 0 5px 2px -10px;
-            background-color: #fff;
-            border: 1px #000 outset;
-            border-radius: 50%;
-            transition: .2s;
-        }
+        font-weight: 500;
     ` : `
         &:hover {
             transform: translateX(10px);
         }
     `}
-
-    &::before {
-        
-    }
 `;
 
 const delimiterKeyframes = keyframes`
@@ -84,9 +68,11 @@ const delimiterKeyframes = keyframes`
 export const ListDelimiter = styled.div<{
     displayed: boolean;
 }>`
+    position: absolute;
+    top: 125px;
+    left: 250px;
     width: 1px;
     background-color: #00000066;
-    margin: 20px 0 0 50px;
     height: 0;
     
     ${({ displayed }) => displayed ? css`
