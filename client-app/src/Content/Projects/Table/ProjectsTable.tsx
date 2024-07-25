@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IProjectCategory } from '../types';
+import { IProjectCategory, IProjectData } from '../types';
 import {
     Layout,
     Item,
@@ -11,13 +11,17 @@ import {
 
 interface IProjectsTable {
     category: IProjectCategory;
+    onSelection: (project: IProjectData) => void;
 }
 
-const ProjectsTable: FC<IProjectsTable> = ({ category }) => {
+const ProjectsTable: FC<IProjectsTable> = ({
+    category,
+    onSelection
+}) => {
     return (
         <Layout>
             {category.projects.map(project => (
-                <Item onClick={() => {}}>
+                <Item onClick={() => onSelection(project)}>
                     <Title>.{project.name}</Title>
                     <ThumbnailWrapper>
                         <Thumbnail src={project.thumbnail} alt={project.name} />

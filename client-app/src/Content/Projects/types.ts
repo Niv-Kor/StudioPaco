@@ -8,9 +8,10 @@ export interface IProjectCategory {
 
 export interface IProjectData {
     name: string;
-    thumbnail: string;
     location: string;
     programma: string;
     entity: string;
     year: number;
+    thumbnail: string;
+    images: Array<string>;
 }

@@ -1,5 +1,6 @@
-import { FC, useRef, useMemo, useState, useEffect } from "react";
-import { IProjectCategory } from "../types";
+import { FC, useRef, useMemo, useState, useEffect } from 'react';
+import { IProjectCategory, IProjectData } from '../types';
+import ProjectInfo from '../Project Info/ProjectInfo';
 import ProjectsTable from '../Table/ProjectsTable';
 import {
     Strip,
@@ -7,7 +8,7 @@ import {
     ContentWrapper,
     Text,
     ContentElementContainer
-} from "./ProjectStrip.style";
+} from './ProjectStrip.style';
 
 export interface IProjectStrip {
     category: IProjectCategory;
@@ -17,10 +18,20 @@ export interface IProjectStrip {
     selected: boolean;
     hovered: boolean;
     openDelay?: number;
+    onProjectInspection?: () => void;
+    onProjectDismissal?: () => void;
 }
 
 const ProjectStrip: FC<IProjectStrip> = props => {
-    const { category, selected, width, openDelay } = props;
+    const {
+        category,
+        selected,
+        width,
+        openDelay,
+        onProjectInspection,
+        onProjectDismissal
+    } = props;
+    const [inspectedProject, setInspectedProject] = useState<IProjectData | undefined>();
     const [isOpen, setOpen] = useState<boolean>(false);
     const [isTextDisplayed, setTextDisplayed] = useState<boolean>(false);
     const selectionTimeout = useRef<NodeJS.Timeout | undefined>();
@@ -48,6 +59,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
             }
 
             setOpen(false);
+            setInspectedProject(undefined);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selected]);
@@ -70,6 +82,12 @@ const ProjectStrip: FC<IProjectStrip> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
+    useEffect(() => {
+        if (!!inspectedProject) onProjectInspection?.();
+        else onProjectDismissal?.();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inspectedProject]);
+
     return (
         <>
             <Strip
@@ -79,7 +97,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
             />
             <Container
                 className={selected ? 'active-project' : ''}
-                open={isOpen}
+                open={isOpen && !inspectedProject}
                 rightOffset={rightOffset + width}
             >
                 <ContentWrapper offset={rightOffset + width}>
@@ -91,10 +109,16 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                         {category.text}
                     </Text>
                     <ContentElementContainer>
-                        <ProjectsTable category={category} />
+                        <ProjectsTable
+                            category={category}
+                            onSelection={setInspectedProject}
+                        />
                     </ContentElementContainer>
                 </ContentWrapper>
             </Container>
+            {!!inspectedProject && (
+                <ProjectInfo data={inspectedProject} />
+            )}
         </>
     )
 }

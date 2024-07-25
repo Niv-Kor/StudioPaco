@@ -22,6 +22,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
     const [lastSelectedCategory, setLastSelectedCategory] = useState<string>('');
     const [enterState, setEnterState] = useState<boolean>(false);
     const [stripHoverCooldown, setStripHoverCooldown] = useState<boolean>(false);
+    const [showCategories, setCategoriesFlag] = useState<boolean>(true);
     const stripHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
 
     useEffect(() => {
@@ -46,7 +47,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
 
     return (
         <Wrapper open={enterState}>
-            <ListWrapper open={enterState}>
+            <ListWrapper open={enterState && showCategories}>
                 <CategoriesList>
                     {Projects.map(cat => (
                         <Category
@@ -89,6 +90,8 @@ const ProjectsDrawer: FC<IDrawer> = ({
                         selected={isSelected(project.key)}
                         hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripHoverCooldown)}
                         openDelay={!!lastSelectedCategory ? .4 : 0}
+                        onProjectInspection={() => setCategoriesFlag(false)}
+                        onProjectDismissal={() => setCategoriesFlag(true)}
                     />
                 ))}
             </StripsContainer>
