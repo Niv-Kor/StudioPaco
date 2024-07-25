@@ -86,7 +86,7 @@ export const ListDelimiter = styled.div<{
     `}
 `;
 
-export const StripesContainer = styled.div<{
+export const StripsContainer = styled.div<{
     width: number;
 }>`
     display: flex;

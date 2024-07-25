@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const Layout = styled.div`
-    display: flex;
-    align-items: center;
+    display: grid;
     justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, 140px);
+    grid-template-rows: 1fr;
+    grid-auto-rows: 0;
     gap: 25px;
     height: 100%;
 `;

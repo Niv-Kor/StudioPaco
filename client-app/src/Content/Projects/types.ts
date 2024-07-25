@@ -1,7 +1,7 @@
 export interface IProjectCategory {
     key: string;
     text: string;
-    stripeIndex: number;
+    stripIndex: number;
     leftMargin?: number;
     projects: Array<IProjectData>;
 }
@@ -9,4 +9,8 @@ export interface IProjectCategory {
 export interface IProjectData {
     name: string;
     thumbnail: string;
+    location: string;
+    programma: string;
+    entity: string;
+    year: number;
 }

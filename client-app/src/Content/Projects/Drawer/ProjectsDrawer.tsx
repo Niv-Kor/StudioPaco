@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { DefaultStripeSpace, StripeWidth } from '../constants';
+import { DefaultStripSpace, StripWidth } from '../constants';
 import { DummyProjects, Projects } from '../Data';
-import ProjectStripe from '../Project Stripe/ProjectStripe';
+import ProjectStrip from '../Project Strip/ProjectStrip';
 import { IProjectCategory } from '../types';
 import { IDrawer } from 'Utils/types';
 import {
@@ -9,7 +9,7 @@ import {
     ListWrapper,
     CategoriesList,
     Category,
-    StripesContainer,
+    StripsContainer,
     ListDelimiter
 } from './ProjectsDrawer.style';
 
@@ -21,8 +21,8 @@ const ProjectsDrawer: FC<IDrawer> = ({
     const [hoveredCategory, setHoveredCategory] = useState<string>('');
     const [lastSelectedCategory, setLastSelectedCategory] = useState<string>('');
     const [enterState, setEnterState] = useState<boolean>(false);
-    const [stripeHoverCooldown, setStripeHoverCooldown] = useState<boolean>(false);
-    const stripeHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
+    const [stripHoverCooldown, setStripHoverCooldown] = useState<boolean>(false);
+    const stripHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
 
     useEffect(() => {
         if (open) {
@@ -41,8 +41,8 @@ const ProjectsDrawer: FC<IDrawer> = ({
         setLastSelectedCategory(selectedCategory);
     }, [selectedCategory]);
 
-    const isSelected = (stripeKey: string): boolean => selectedCategory === stripeKey;
-    const isHovered = (stripeKey: string): boolean => hoveredCategory === stripeKey;
+    const isSelected = (stripKey: string): boolean => selectedCategory === stripKey;
+    const isHovered = (stripKey: string): boolean => hoveredCategory === stripKey;
 
     return (
         <Wrapper open={enterState}>
@@ -53,16 +53,16 @@ const ProjectsDrawer: FC<IDrawer> = ({
                             selected={isSelected(cat.key)}
                             onMouseEnter={() => {
                                 setHoveredCategory(cat.key);
-                                clearTimeout(stripeHoverDebouncer.current);
-                                stripeHoverDebouncer.current = undefined;
+                                clearTimeout(stripHoverDebouncer.current);
+                                stripHoverDebouncer.current = undefined;
                             }}
                             onMouseLeave={() => {
                                 setHoveredCategory('');
-                                setStripeHoverCooldown(true);
+                                setStripHoverCooldown(true);
 
-                                stripeHoverDebouncer.current = setTimeout(() => {
-                                    setStripeHoverCooldown(false);
-                                    stripeHoverDebouncer.current = undefined;
+                                stripHoverDebouncer.current = setTimeout(() => {
+                                    setStripHoverCooldown(false);
+                                    stripHoverDebouncer.current = undefined;
                                 }, 200);
                             }}
                             onClick={() => {
@@ -76,22 +76,22 @@ const ProjectsDrawer: FC<IDrawer> = ({
                 </CategoriesList>
                 <ListDelimiter displayed={enterState} />
             </ListWrapper>
-            <StripesContainer width={Projects.length * DefaultStripeSpace}>
+            <StripsContainer width={Projects.length * DefaultStripSpace}>
                 {DummyProjects
                     .toReversed()
-                    .sort((a: IProjectCategory, b: IProjectCategory) => a.stripeIndex - b.stripeIndex)
+                    .sort((a: IProjectCategory, b: IProjectCategory) => a.stripIndex - b.stripIndex)
                     .map((project: IProjectCategory, index: number) => (
-                    <ProjectStripe
+                    <ProjectStrip
                         category={project}
                         enabled={enterState}
                         index={index}
-                        width={StripeWidth}
+                        width={StripWidth}
                         selected={isSelected(project.key)}
-                        hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripeHoverCooldown)}
+                        hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripHoverCooldown)}
                         openDelay={!!lastSelectedCategory ? .4 : 0}
                     />
                 ))}
-            </StripesContainer>
+            </StripsContainer>
         </Wrapper>
     );
 }

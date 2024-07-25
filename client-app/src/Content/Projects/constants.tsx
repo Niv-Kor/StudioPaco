@@ -1,2 +1,2 @@
-export const StripeWidth = 30;
-export const DefaultStripeSpace = StripeWidth + 30;
+export const StripWidth = 30;
+export const DefaultStripSpace = StripWidth + 30;

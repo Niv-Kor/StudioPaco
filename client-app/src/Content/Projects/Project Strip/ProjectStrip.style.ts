@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { AccentColor, NaturalColor } from "Utils/Theme";
-import { IProjectStripe } from "./ProjectStripe";
+import { IProjectStrip } from "./ProjectStrip";
 import { IProjectCategory } from "../types";
 
-export const Stripe = styled.div<IProjectStripe & IProjectCategory>`
+export const Strip = styled.div<IProjectStrip & IProjectCategory>`
     height: 100%;
     width: ${({ width }) => width}px;
     margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;

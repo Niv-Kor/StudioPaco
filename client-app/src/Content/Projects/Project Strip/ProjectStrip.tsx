@@ -1,15 +1,15 @@
 import { FC, useRef, useMemo, useState, useEffect } from "react";
 import { IProjectCategory } from "../types";
+import ProjectsTable from '../Table/ProjectsTable';
 import {
-    Stripe,
+    Strip,
     Container,
     ContentWrapper,
     Text,
     ContentElementContainer
-} from "./ProjectStripe.style";
-import ProjectsTable from '../Table/ProjectsTable';
+} from "./ProjectStrip.style";
 
-export interface IProjectStripe {
+export interface IProjectStrip {
     category: IProjectCategory;
     enabled: boolean;
     index: number;
@@ -19,20 +19,20 @@ export interface IProjectStripe {
     openDelay?: number;
 }
 
-const ProjectStripe: FC<IProjectStripe> = props => {
+const ProjectStrip: FC<IProjectStrip> = props => {
     const { category, selected, width, openDelay } = props;
     const [isOpen, setOpen] = useState<boolean>(false);
     const [isTextDisplayed, setTextDisplayed] = useState<boolean>(false);
     const selectionTimeout = useRef<NodeJS.Timeout | undefined>();
     const textDisplayTimeout = useRef<NodeJS.Timeout | undefined>();
-    const stripeRef = useRef<HTMLDivElement>(null);
+    const stripRef = useRef<HTMLDivElement>(null);
     const rightOffset = useMemo<number>(() => {
-        if (!stripeRef?.current) return 0;
+        if (!stripRef?.current) return 0;
 
-        const rect = stripeRef.current.getBoundingClientRect();
+        const rect = stripRef.current.getBoundingClientRect();
         return window.innerWidth - rect.right;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [stripeRef, stripeRef?.current]);
+    }, [stripRef, stripRef?.current]);
 
     useEffect(() => {
         if (selected) {
@@ -72,10 +72,10 @@ const ProjectStripe: FC<IProjectStripe> = props => {
 
     return (
         <>
-            <Stripe
+            <Strip
                 {...props}
                 {...category}
-                ref={stripeRef}
+                ref={stripRef}
             />
             <Container
                 className={selected ? 'active-project' : ''}
@@ -99,4 +99,4 @@ const ProjectStripe: FC<IProjectStripe> = props => {
     )
 }
 
-export default ProjectStripe;
+export default ProjectStrip;
