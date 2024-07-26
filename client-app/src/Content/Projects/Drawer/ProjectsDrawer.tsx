@@ -1,8 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { DefaultStripSpace, StripWidth } from '../constants';
-import { DummyProjects, Projects } from '../data';
 import ProjectStrip from '../Project Strip/ProjectStrip';
-import { IProjectCategory } from '../types';
+import { IProjectCategory, DummyProjects, Projects } from '../types';
 import { IDrawer } from 'Utils/types';
 import {
     Wrapper,
