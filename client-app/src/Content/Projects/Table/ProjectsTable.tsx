@@ -21,7 +21,10 @@ const ProjectsTable: FC<IProjectsTable> = ({
     return (
         <Layout>
             {category.projects.map(project => (
-                <Item onClick={() => onSelection(project)}>
+                <Item
+                    key={project.name}
+                    onClick={() => onSelection(project)}
+                >
                     <Title>.{project.name}</Title>
                     <ThumbnailWrapper>
                         <Thumbnail src={project.thumbnail} alt={project.name} />

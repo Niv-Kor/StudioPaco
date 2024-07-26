@@ -116,9 +116,13 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                     </ContentElementContainer>
                 </ContentWrapper>
             </Container>
-            {!!inspectedProject && (
-                <ProjectInfo data={inspectedProject} />
-            )}
+            <ProjectInfo
+                open={!!inspectedProject}
+                categoryName={category.key}
+                data={inspectedProject}
+                onClose={() => setInspectedProject(undefined)}
+                offset={rightOffset + width}
+            />
         </>
     )
 }

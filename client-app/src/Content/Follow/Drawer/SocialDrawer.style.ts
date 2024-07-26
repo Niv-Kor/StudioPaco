@@ -34,9 +34,7 @@ export const DrawerList = styled.ul`
     gap: 10px;
 `;
 
-export const DrawerNotch = styled.div<{
-
-}>`
+export const DrawerNotch = styled.div`
     height: 40px;
     transform: translateX(35px);
 `;

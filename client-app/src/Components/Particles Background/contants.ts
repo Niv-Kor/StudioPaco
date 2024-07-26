@@ -1,3 +1,5 @@
+import { BackgroundColor } from 'Utils/Theme';
+
 export const ParticlesConfig = {
     "particles": {
         "number": {
@@ -8,7 +10,7 @@ export const ParticlesConfig = {
             }
         },
         "color": {
-            "value": "#f1f1f1"
+            "value": BackgroundColor
         },
         "shape": {
             "type": "circle",

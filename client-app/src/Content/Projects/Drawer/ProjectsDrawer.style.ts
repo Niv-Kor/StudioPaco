@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
-import { DrawerEnterTime } from "Utils/constants";
-import { Projects } from '../Data';
+import { DrawerEnterTime } from 'Utils/constants';
+import { Projects } from '../data';
 
 export const Wrapper = styled.div<{
     open: boolean;

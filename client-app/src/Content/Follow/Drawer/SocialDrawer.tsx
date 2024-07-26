@@ -24,7 +24,7 @@ const SocialDrawer: FC<ISocialDrawer> = ({ state }) => {
         >
             <DrawerList>
                 {SocialMethods.map(config => (
-                    <DrawerNotch>
+                    <DrawerNotch key={config.key}>
                         <SocialIcon
                             enabled={isAvailable}
                             config={config}
