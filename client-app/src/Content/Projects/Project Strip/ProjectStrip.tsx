@@ -2,6 +2,7 @@ import { FC, useRef, useMemo, useState, useEffect } from 'react';
 import { IProjectCategory, IProjectData } from '../types';
 import ProjectInfo from '../Project Info/ProjectInfo';
 import ProjectsTable from '../Table/ProjectsTable';
+import { ACTIVE_ACCENT_PAGE_CLASS } from 'Utils/Theme';
 import {
     Strip,
     Container,
@@ -96,7 +97,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 ref={stripRef}
             />
             <Container
-                className={selected ? 'active-project' : ''}
+                className={(selected && !inspectedProject) ? ACTIVE_ACCENT_PAGE_CLASS : ''}
                 open={isOpen && !inspectedProject}
                 rightOffset={rightOffset + width}
             >
@@ -121,7 +122,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 categoryName={category.key}
                 data={inspectedProject}
                 onClose={() => setInspectedProject(undefined)}
-                offset={rightOffset + width}
+                offset={rightOffset + width - 1}
             />
         </>
     )

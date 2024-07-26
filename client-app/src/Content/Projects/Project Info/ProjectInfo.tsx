@@ -50,9 +50,9 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
             const target = ev.target as HTMLInputElement;
             const { scrollTop, offsetHeight, scrollHeight } = target;
             const percent = 1 - scrollTop / (scrollHeight - offsetHeight);
+            const pageHeight = document.body.clientHeight;
             
-            console.log((1 - percent) * scrollHeight);
-            setScrollTop((1 - percent) * (document.body.clientHeight - StripWidth));
+            setScrollTop((1 - percent) * (pageHeight - StripWidth));
             setOverscroll(scrollTop > offsetHeight * .6);
             setScrollPercent(percent);
         }
