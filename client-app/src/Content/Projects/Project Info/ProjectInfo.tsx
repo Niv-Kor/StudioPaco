@@ -9,8 +9,10 @@ import {
     BackButtonLabel,
     InfoParagraph,
     ProjectInfoSection,
-    ProjectInfoRow
+    ProjectInfoRow,
+    Scrollbar
 } from './ProjectInfo.style';
+import { StripWidth } from '../constants';
 
 interface IProjectInfo {
     open: boolean;
@@ -38,6 +40,7 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const [scrollPercent, setScrollPercent] = useState<number>(1);
     const [overscroll, setOverscroll] = useState<boolean>(false);
+    const [scrollTop, setScrollTop] = useState<number>(0);
 
     useEffect(() => {
         if (!containerRef?.current) return;
@@ -48,6 +51,8 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
             const { scrollTop, offsetHeight, scrollHeight } = target;
             const percent = 1 - scrollTop / (scrollHeight - offsetHeight);
             
+            console.log((1 - percent) * scrollHeight);
+            setScrollTop((1 - percent) * (document.body.clientHeight - StripWidth));
             setOverscroll(scrollTop > offsetHeight * .6);
             setScrollPercent(percent);
         }
@@ -65,6 +70,11 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
             offset={offset}
             open={open}
         >
+            <Scrollbar
+                width={StripWidth}
+                x={offset - StripWidth}
+                y={scrollTop}
+            />
             <BackButtonWrapper
                 onClick={onClose}
                 overscroll={overscroll}

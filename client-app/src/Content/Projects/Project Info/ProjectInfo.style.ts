@@ -16,6 +16,8 @@ export const Container = styled.div<{
     background: ${BackgroundColor};
     opacity: 1;
     overflow: hidden auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     pointer-events: all;
     transition: .2s;
 
@@ -23,6 +25,10 @@ export const Container = styled.div<{
         opacity: 0;
         pointer-events: none;
     `}
+
+    &::-webkit-scrollbar { 
+        display: none;
+    }
 `;
 
 export const HeaderImage = styled.img<{
@@ -116,4 +122,18 @@ export const ProjectInfoSection = styled.div`
 
 export const ProjectInfoRow = styled.p`
     margin: 0;
+`;
+
+export const Scrollbar = styled.div<{
+    width: number;
+    x: number;
+    y: number;
+}>`
+    position: fixed;
+    width: ${({ width }) => width}px;
+    height: ${({ width }) => width}px;
+    background-color: black;
+    opacity: .2;
+    right: ${({ x }) => x}px;
+    top: ${({ y }) => y}px;
 `;
