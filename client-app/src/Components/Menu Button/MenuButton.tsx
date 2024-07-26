@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button } from './MenuButton.style';
 import { isRevertMode } from 'Utils/Theme';
 
@@ -17,10 +17,17 @@ export const MenuButton: FC<IMenuButton> = ({
     onLeave,
     revertMode
 }) => {
+    const [isThemeReverted, setThemeRevertedFlag] = useState<boolean>(isRevertMode());
+
+    useEffect(() => {
+        setThemeRevertedFlag(isRevertMode());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isRevertMode()])
+
     return (
         <Button
             onClick={onClick}
-            revertMode={revertMode !== false && (!!revertMode || isRevertMode())}
+            revertMode={revertMode !== false && (!!revertMode || isThemeReverted)}
             onMouseEnter={onHover ?? (() => {})}
             onMouseLeave={onLeave ?? (() => {})}
         >
