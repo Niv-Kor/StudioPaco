@@ -88,7 +88,16 @@ const ProjectsDrawer: FC<IDrawer> = ({
                         index={index}
                         width={StripWidth}
                         selected={isSelected(project.key)}
-                        hovered={isHovered(project.key) || isSelected(project.key) || (index === 1 && !hoveredCategory && !stripHoverCooldown)}
+                        hovered={
+                            isHovered(project.key) ||
+                            isSelected(project.key) ||
+                            (
+                                index === 1 &&
+                                !hoveredCategory &&
+                                !selectedCategory &&
+                                !stripHoverCooldown
+                            )
+                        }
                         openDelay={!!lastSelectedCategory ? .4 : 0}
                         onProjectInspection={() => setCategoriesFlag(false)}
                         onProjectDismissal={() => setCategoriesFlag(true)}
