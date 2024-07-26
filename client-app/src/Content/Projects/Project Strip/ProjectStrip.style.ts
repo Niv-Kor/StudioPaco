@@ -36,6 +36,7 @@ export const Container = styled.div<{
         background-color: ${AccentColor};
         width: 100%;
         opacity: 1;
+        transition: .8s;
     `};
 `;
 
