@@ -70,6 +70,10 @@ export const InfoParagraph = styled.div<{
     gap: 40px;
     pointer-events: none;
     transition: .7s;
+
+    @media (max-width: 1400px) {
+        font-size: 1rem;
+    }
 `;
 
 export const BackButtonWrapper = styled.div<{
@@ -91,11 +95,17 @@ export const BackButtonWrapper = styled.div<{
     transition: .7s;
 
     ${({ overscroll }) => overscroll && `
-        left: 25%;
+        left: 35%;
+        transform: translateX(-100%);
     `}
 
     &:hover {
         --label-offset: 10px;
+    }
+
+    @media (max-width: 1400px) {
+        font-size: 1rem;
+        left: 32%;
     }
 `;
 
