@@ -10,12 +10,18 @@ export const SmallLogo = styled.img<{
     top: 20px;
     left: 35px;
     width: 320px;
-    opacity: ${({ displayed }) => displayed ? 1 : 0};
     transition: .5s;
     z-index: 1000;
     
-    ${({ displayed }) => !displayed && `
+    ${({ displayed }) => displayed ? `
         transform: translateX(50px);
+        pointer-events: all;
+        cursor: pointer;
+        opacity: 1;
+    ` : `
+        pointer-events: none;
+        cursor: auto;
+        opacity: 0;
     `};
 `;
 

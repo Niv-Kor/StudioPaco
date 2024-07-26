@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ParticlesBackground from 'Components/Particles Background/ParticlesBackground';
 import LogoBackgroundImg from 'resources/Graphics/Logo/logo_background.svg';
 import LogoForegroundImg from 'resources/Graphics/Logo/logo_foreground.png';
@@ -19,19 +19,29 @@ import {
 
 const MainPage: FC = () => {
     const [openMainDrawer, setOpenMainDrawer] = useState<MainDrawer>(MainDrawer.None);
+    const [forceCloseDrawers, setForceCloseDrawers] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (forceCloseDrawers) setForceCloseDrawers(false);
+    }, [forceCloseDrawers]);
 
     return (
-        <PageWrapper onMainDrawerChange={setOpenMainDrawer}>
+        <PageWrapper
+            onMainDrawerChange={setOpenMainDrawer}
+            forceCloseDrawers={forceCloseDrawers}
+        >
             <ParticlesBackground />
             <SmallLogo
                 displayed={openMainDrawer !== MainDrawer.None}
                 src={SmallLogoImg}
                 alt={''}
+                onClick={() => setForceCloseDrawers(true)}
             />
             <SmallLogo
                 displayed={openMainDrawer === MainDrawer.About}
                 src={SmallLogoTextImg}
                 alt={''}
+                onClick={() => setForceCloseDrawers(true)}
             />
             <LogoWrapper displayed={openMainDrawer === MainDrawer.None}>
                 <LogoBackground src={LogoBackgroundImg} alt={''} />

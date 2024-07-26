@@ -8,10 +8,18 @@ import ProjectsDrawer from 'Content/Projects/Drawer/ProjectsDrawer';
 
 interface IHeader {
     onDrawerChange: (drawer: MainDrawer) => void;
+    forceCloseDrawers: boolean;
 }
 
-const Header: FC<IHeader> = ({ onDrawerChange }) => {
+const Header: FC<IHeader> = ({
+    onDrawerChange,
+    forceCloseDrawers
+}) => {
     const [currentOpenDrawer, setCurrentOpenDrawer] = useState<MainDrawer>(MainDrawer.None);
+
+    useEffect(() => {
+        if (forceCloseDrawers) setCurrentOpenDrawer(MainDrawer.None);
+    }, [forceCloseDrawers])
 
     useEffect(() => {
         onDrawerChange?.(currentOpenDrawer);

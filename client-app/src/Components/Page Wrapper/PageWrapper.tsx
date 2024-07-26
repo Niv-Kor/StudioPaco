@@ -6,15 +6,20 @@ import { ContentWrapper, Wrapper } from './PageWrapper.style';
 
 interface IPageWrapper {
     onMainDrawerChange: (drawer: MainDrawer) => void;
+    forceCloseDrawers: boolean;
 }
 
 const PageWrapper: FC<PropsWithChildren<IPageWrapper>> = ({
     children,
-    onMainDrawerChange
+    onMainDrawerChange,
+    forceCloseDrawers
 }) => {
     return (
         <Wrapper>
-            <Header onDrawerChange={onMainDrawerChange} />
+            <Header
+                onDrawerChange={onMainDrawerChange}
+                forceCloseDrawers={forceCloseDrawers}
+            />
             <ContentWrapper>
                 {children}
             </ContentWrapper>
