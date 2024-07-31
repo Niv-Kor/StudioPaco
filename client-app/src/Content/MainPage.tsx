@@ -13,8 +13,12 @@ import {
     LogoForeground,
     LogoText,
     SmallLogo,
+    SmallTextLogoContainer,
+    SmallTextLogo,
+    LogoSubtextWrapper,
     LogoSubtextContainer,
-    LogoSubtext
+    LogoSubtext,
+    LogoSubtextCursor
 } from './MainPage.style';
 
 const MainPage: FC = () => {
@@ -37,21 +41,39 @@ const MainPage: FC = () => {
                 alt={''}
                 onClick={() => setForceCloseDrawers(true)}
             />
-            <SmallLogo
-                displayed={openMainDrawer === MainDrawer.About}
-                src={SmallLogoTextImg}
-                alt={''}
-                onClick={() => setForceCloseDrawers(true)}
-            />
+            <SmallTextLogoContainer>
+                <LogoSubtextCursor
+                    displayed={openMainDrawer === MainDrawer.About}
+                    startOffset={220}
+                    endOffset={407}
+                    moveDuration={2}
+                    top={75}
+                />
+                <SmallTextLogo
+                    displayed={openMainDrawer === MainDrawer.About}
+                    src={SmallLogoTextImg}
+                    alt={''}
+                    onClick={() => setForceCloseDrawers(true)}
+                />
+            </SmallTextLogoContainer>
             <LogoWrapper displayed={openMainDrawer === MainDrawer.None}>
                 <LogoBackground src={LogoBackgroundImg} alt={''} />
                 <LogoForeground src={LogoForegroundImg} alt={''} />
                 <LogoText src={LogoTextImg} alt={''} />
-                <LogoSubtextContainer>
-                    <LogoSubtext>design</LogoSubtext>
-                    <LogoSubtext>.</LogoSubtext>
-                    <LogoSubtext>architecture</LogoSubtext>
-                </LogoSubtextContainer>
+                <LogoSubtextWrapper>
+                    <LogoSubtextCursor
+                        displayed={openMainDrawer === MainDrawer.None}
+                        startOffset={130}
+                        endOffset={370}
+                        moveDuration={2.5}
+                        top={2}
+                    />
+                    <LogoSubtextContainer displayed={openMainDrawer === MainDrawer.None} >
+                        <LogoSubtext>design</LogoSubtext>
+                        <LogoSubtext>.</LogoSubtext>
+                        <LogoSubtext>architecture</LogoSubtext>
+                    </LogoSubtextContainer>
+                </LogoSubtextWrapper>
             </LogoWrapper>
         </PageWrapper>
     );
