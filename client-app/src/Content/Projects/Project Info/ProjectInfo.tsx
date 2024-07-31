@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { IProjectData } from '../types';
+import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
 import {
     Container,
     HeaderImage,
@@ -79,7 +80,7 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
                 onClick={onClose}
                 overscroll={overscroll}
             >
-                <BackButtonIcon src={""} alt={"back"} />
+                <BackButtonIcon src={BackButton} alt={"back"} />
                 <BackButtonLabel>{categoryName}</BackButtonLabel>
             </BackButtonWrapper>
             <HeaderImage

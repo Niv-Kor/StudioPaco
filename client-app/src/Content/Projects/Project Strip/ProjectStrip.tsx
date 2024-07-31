@@ -107,7 +107,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                         fullHeight={!category.projects.length}
                     >
                         <span className={'category-title'}>{category.key}</span>
-                        {category.text}
+                        <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
                     </Text>
                     <ContentElementContainer>
                         <ProjectsTable

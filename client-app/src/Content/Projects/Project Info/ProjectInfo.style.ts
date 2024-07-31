@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { BackgroundColor } from 'Utils/Theme';
+import { BackgroundColor, NaturalColor } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
     offset: number;
-}>`
+}>` 
     --content-padding: 20px;
     --header-image-size: 53vw;
 
@@ -47,7 +47,7 @@ export const ImagesWrapper = styled.div`
     align-content: flex-end;
     flex-wrap: wrap;
     width: 100%;
-    gap: 30px;
+    gap: 60px;
     transition: .7s;
 
     & > img {
@@ -110,7 +110,8 @@ export const BackButtonWrapper = styled.div<{
 `;
 
 export const BackButtonIcon = styled.img`
-
+    width: 16px;
+    margin-top: 4px;
 `;
 
 export const BackButtonLabel = styled.span`
