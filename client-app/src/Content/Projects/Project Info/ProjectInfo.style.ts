@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BackgroundColor, NaturalColor } from 'Utils/Theme';
+import { BackgroundColor } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
