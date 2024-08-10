@@ -56,7 +56,7 @@ export const ParticlesConfig = {
         },
         "move": {
             "enable": true,
-            "speed": 12,
+            "speed": 1,
             "direction": "none",
             "random": false,
             "straight": false,
