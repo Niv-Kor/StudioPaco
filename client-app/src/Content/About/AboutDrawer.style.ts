@@ -33,6 +33,7 @@ export const Paragraph = styled.p`
 
 export const CenterParagraph = styled(Paragraph)`
     padding-left: 300px;
+    margin: 120px 0 80px;
     width: 660px;
     z-index: 20;
 `;
@@ -80,9 +81,10 @@ export const Content = styled.div<{
 }>`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     position: absolute;
     left: 0;
+    bottom: 14%;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -94,14 +96,13 @@ export const Content = styled.div<{
         const scale = scaleAtMinWidth + (adjustedWidth - minScreenWidth) / (referenceWidth - minScreenWidth) * (1 - scaleAtMinWidth);
         return scale;
     }});
-    transform-origin: left;
-    padding: 14vh 2vw;
-    gap: 20px;
+    transform-origin: bottom left;
+    padding-left: 2%;
 `;
 
 export const LogoForeground = styled.img`
     position: absolute;
-    top: 30%;
+    bottom: 16%;
     left: 0;
     width: 500px;
 `;
