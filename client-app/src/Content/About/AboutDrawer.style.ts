@@ -50,8 +50,8 @@ export const TextContainer = styled.div<{
     transform: translateX(${({ open }) => open ? 0 : 100}%);
     transition: ${DrawerEnterTime}s;
 
-    @media (max-width: 1300px) {
-        min-width: 806px;
+    @media (max-width: 1400px) {
+        min-width: 868px;
     }
 `;
 
@@ -69,6 +69,10 @@ export const ProfileImage = styled.img<{
         left: 0;
         transition: left ${DrawerEnterTime * 2}s;
     `}
+
+    @media (max-width: 1400px) {
+        min-width: 532px;
+    }
 `;
 
 export const Content = styled.div<{
