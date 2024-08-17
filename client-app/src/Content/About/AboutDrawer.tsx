@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useRef } from 'react';
 import { IDrawer } from 'Utils/types';
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
 import LogoForegroundImg from 'resources/Graphics/Logo/logo_foreground.png';
@@ -16,11 +16,18 @@ const AboutDrawer: FC<IDrawer> = ({
     open,
     openDelay
 }) => {
+    const initialized = useRef<number>(0);
     const [enterState, setEnterState] = useState<boolean>(false);
-    const [screenWidth, setScreenWidth] = useState<number>(0);
+    const [closingFlag, setClosingFlag] = useState<boolean>(false);
+    const [textCloseState, setTextCloseState] = useState<boolean>(false);
+    const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
     useEffect(() => {
-        const adjustWidth = () => setScreenWidth(document.body.clientWidth);
+        const adjustWidth = () => setScreenSize({
+            width: document.body.clientWidth,
+            height: document.body.clientHeight
+        });
+
         window.addEventListener("resize", adjustWidth);
         adjustWidth();
 
@@ -30,11 +37,25 @@ const AboutDrawer: FC<IDrawer> = ({
     }, []);
 
     useEffect(() => {
-        if (open && openDelay > 0) 
-            setTimeout(() => setEnterState(true), openDelay * 1000);
+        if (open && openDelay > 0) setTimeout(() => setEnterState(true), openDelay * 1000);
         else setEnterState(open);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
+
+    useEffect(() => {
+        if (initialized.current >= 2) {
+            if (enterState) setTextCloseState(false);
+            else {
+                setClosingFlag(true);
+                setTimeout(() => {
+                    setClosingFlag(false);
+                    setTextCloseState(true);
+                }, 150);
+            }
+        }
+        else initialized.current++;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [enterState]);
 
     return (
         <Wrapper open={enterState}>
@@ -43,8 +64,8 @@ const AboutDrawer: FC<IDrawer> = ({
                 alt={''}
                 open={enterState}
             />
-            <TextContainer open={enterState}>
-                <Content screenWidth={screenWidth}>
+            <TextContainer open={enterState || closingFlag} closing={textCloseState}>
+                <Content screenWidth={screenSize.width} screenHeight={screenSize.height}>
                     <LogoForeground src={LogoForegroundImg} alt={''} />
                     <Paragraph>
                         The essence of design lies in its <b>timeless quality</b> - Inspired by the beauty of natural and social phenomena.

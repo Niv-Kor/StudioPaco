@@ -40,6 +40,7 @@ export const CenterParagraph = styled(Paragraph)`
 
 export const TextContainer = styled.div<{
     open: boolean;
+    closing: boolean;
 }>`
     position: fixed;
     top: 0;
@@ -50,6 +51,10 @@ export const TextContainer = styled.div<{
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
     transition: ${DrawerEnterTime}s;
+
+    ${({ closing }) => closing && `
+        transform: translateX(100%);
+    `}
 
     @media (max-width: 1400px) {
         min-width: 868px;
@@ -78,6 +83,7 @@ export const ProfileImage = styled.img<{
 
 export const Content = styled.div<{
     screenWidth: number;
+    screenHeight: number;
 }>`
     display: flex;
     flex-direction: column;
@@ -88,13 +94,17 @@ export const Content = styled.div<{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    transform: scale(${({ screenWidth }) => {
+    transform: scale(${({ screenWidth, screenHeight }) => {
+        const minScreenHeight = 700;
+        const referenceHeight = 832;
         const minScreenWidth = 1300;
         const referenceWidth = 1900;
-        const scaleAtMinWidth = .8;
+        const scaleAtMin = .8;
         const adjustedWidth = Math.max(screenWidth, minScreenWidth);
-        const scale = scaleAtMinWidth + (adjustedWidth - minScreenWidth) / (referenceWidth - minScreenWidth) * (1 - scaleAtMinWidth);
-        return scale;
+        const adjustedHeight = Math.max(screenHeight, minScreenHeight);
+        const scalebyWidth = scaleAtMin + (adjustedWidth - minScreenWidth) / (referenceWidth - minScreenWidth) * (1 - scaleAtMin);
+        const scalebyHeight = scaleAtMin + (adjustedHeight - minScreenHeight) / (referenceHeight - minScreenHeight) * (1 - scaleAtMin);
+        return Math.min(scalebyWidth, scalebyHeight);
     }});
     transform-origin: bottom left;
     padding-left: 2%;
@@ -102,7 +112,7 @@ export const Content = styled.div<{
 
 export const LogoForeground = styled.img`
     position: absolute;
-    bottom: 16%;
+    bottom: 130px;
     left: 0;
     width: 500px;
 `;
