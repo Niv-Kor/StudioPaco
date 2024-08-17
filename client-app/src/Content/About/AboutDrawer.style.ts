@@ -49,6 +49,10 @@ export const TextContainer = styled.div<{
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
     transition: ${DrawerEnterTime}s;
+
+    @media (max-width: 1300px) {
+        min-width: 806px;
+    }
 `;
 
 export const ProfileImage = styled.img<{
@@ -79,9 +83,9 @@ export const Content = styled.div<{
     width: 100%;
     height: 100%;
     transform: scale(${({ screenWidth }) => {
-        const minScreenWidth = 1400;
+        const minScreenWidth = 1300;
         const referenceWidth = 1900;
-        const scaleAtMinWidth = 0.8;
+        const scaleAtMinWidth = .8;
         const adjustedWidth = Math.max(screenWidth, minScreenWidth);
         const scale = scaleAtMinWidth + (adjustedWidth - minScreenWidth) / (referenceWidth - minScreenWidth) * (1 - scaleAtMinWidth);
         return scale;
