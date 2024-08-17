@@ -79,13 +79,14 @@ export const SmallLogo = styled.img<{
 }>`
     position: fixed;
     top: 20px;
-    left: 35px;
+    left: 20px;
     width: 320px;
     transition: .5s;
+    transform: translateX(-50px);
     z-index: 1000;
     
     ${({ displayed }) => displayed ? `
-        transform: translateX(50px);
+        transform: translateX(0);
         pointer-events: all;
         cursor: pointer;
         opacity: 1;
