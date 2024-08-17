@@ -73,10 +73,20 @@ export const Content = styled.div<{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: absolute;
+    left: 0;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    transform: scale(${({ screenWidth }) => screenWidth / 1900});
+    transform: scale(${({ screenWidth }) => {
+        const minScreenWidth = 1400;
+        const referenceWidth = 1900;
+        const scaleAtMinWidth = 0.8;
+        const adjustedWidth = Math.max(screenWidth, minScreenWidth);
+        const scale = scaleAtMinWidth + (adjustedWidth - minScreenWidth) / (referenceWidth - minScreenWidth) * (1 - scaleAtMinWidth);
+        return scale;
+    }});
+    transform-origin: left;
     padding: 14vh 2vw;
     gap: 20px;
 `;
