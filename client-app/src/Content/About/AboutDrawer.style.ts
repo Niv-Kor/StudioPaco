@@ -26,14 +26,6 @@ export const Paragraph = styled.p`
     z-index: 20;
     transition: font-size .2s;
 
-    @media screen and (max-width: 1400px) {
-        font-size: 19.5px;
-    }
-
-    @media screen and (max-width: 900px) {
-        font-size: 16px;
-    }
-
     & > b {
         font-weight: 500;
     }
@@ -75,13 +67,16 @@ export const ProfileImage = styled.img<{
     `}
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{
+    screenWidth: number;
+}>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+    transform: scale(${({ screenWidth }) => screenWidth / 1900});
     padding: 14vh 2vw;
     gap: 20px;
 `;

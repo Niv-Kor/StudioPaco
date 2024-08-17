@@ -17,6 +17,17 @@ const AboutDrawer: FC<IDrawer> = ({
     openDelay
 }) => {
     const [enterState, setEnterState] = useState<boolean>(false);
+    const [screenWidth, setScreenWidth] = useState<number>(0);
+
+    useEffect(() => {
+        const adjustWidth = () => setScreenWidth(document.body.clientWidth);
+        window.addEventListener("resize", adjustWidth);
+        adjustWidth();
+
+        return () => {
+            window.removeEventListener("resize", adjustWidth);
+        }
+    }, []);
 
     useEffect(() => {
         if (open && openDelay > 0) 
@@ -34,7 +45,7 @@ const AboutDrawer: FC<IDrawer> = ({
             />
             <TextContainer open={enterState}>
                 <LogoForeground src={LogoForegroundImg} alt={''} />
-                <Content>
+                <Content screenWidth={screenWidth}>
                     <Paragraph>
                         The essence of design lies in its <b>timeless quality</b> - Inspired by the beauty of natural and social phenomena.
                         Well-designed spaces should feel like <b>a natural extension</b> of their environment, as if they have always been part of the landscape.
