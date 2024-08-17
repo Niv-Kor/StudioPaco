@@ -18,8 +18,9 @@ export const Wrapper = styled.div<{
 `
 
 export const Paragraph = styled.p`
-    width: 80%;
+    width: 835px;
     margin: 0;
+    text-align: justify;
     font-size: 24px;
     font-weight: 400;
     z-index: 20;
@@ -40,7 +41,7 @@ export const Paragraph = styled.p`
 
 export const CenterParagraph = styled(Paragraph)`
     padding-left: 27%;
-    width: 60%;
+    width: 660px;
     z-index: 20;
 `;
 
@@ -63,7 +64,7 @@ export const ProfileImage = styled.img<{
 }>`
     position: fixed;
     left: 100%;
-    top: 20%;
+    bottom: 14%;
     width: 38%;
     background-color: ${NaturalColor};
     transition: ${DrawerEnterTime}s;
