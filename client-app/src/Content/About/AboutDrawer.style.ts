@@ -32,7 +32,7 @@ export const Paragraph = styled.p`
 `;
 
 export const CenterParagraph = styled(Paragraph)`
-    padding-left: 27%;
+    padding-left: 300px;
     width: 660px;
     z-index: 20;
 `;
@@ -98,5 +98,6 @@ export const Content = styled.div<{
 export const LogoForeground = styled.img`
     position: absolute;
     top: 30%;
+    left: 0;
     width: 500px;
 `;

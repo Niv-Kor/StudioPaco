@@ -44,8 +44,8 @@ const AboutDrawer: FC<IDrawer> = ({
                 open={enterState}
             />
             <TextContainer open={enterState}>
-                <LogoForeground src={LogoForegroundImg} alt={''} />
                 <Content screenWidth={screenWidth}>
+                    <LogoForeground src={LogoForegroundImg} alt={''} />
                     <Paragraph>
                         The essence of design lies in its <b>timeless quality</b> - Inspired by the beauty of natural and social phenomena.
                         Well-designed spaces should feel like <b>a natural extension</b> of their environment, as if they have always been part of the landscape.
