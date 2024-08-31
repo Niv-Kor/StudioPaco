@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AccentColor, BackgroundColor } from 'Utils/Theme';
+import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 import { SocialDrawerState } from '../types';
 
 export const Drawer = styled.div<{
@@ -23,6 +23,10 @@ export const Drawer = styled.div<{
             case SocialDrawerState.Open: return 0;
         }
     }}%);
+    
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        width: 50px;
+    `)}
 `;
 
 export const DrawerList = styled.ul`
@@ -32,6 +36,12 @@ export const DrawerList = styled.ul`
     bottom: 60px;
     left: -25px;
     gap: 10px;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        left: -53px;
+        gap: 7px;
+        bottom: 40px;
+    `)}
 `;
 
 export const DrawerNotch = styled.div`

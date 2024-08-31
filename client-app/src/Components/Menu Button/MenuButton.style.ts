@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AccentColor, BackgroundColor } from '../../Utils/Theme';
+import { AccentColor, BackgroundColor, MOBILE_BREAKPOINTS, mediaQueryMaxWidth } from 'Utils/Theme';
 
 export const Button = styled.button<{
     revertMode: boolean;
@@ -35,4 +35,12 @@ export const Button = styled.button<{
             z-index: -1;
         }
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        min-width: 80px;
+    `)}
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, `
+        font-size: 1.2rem;
+    `)}
 `;

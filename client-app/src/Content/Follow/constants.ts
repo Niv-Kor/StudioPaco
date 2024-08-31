@@ -5,6 +5,7 @@ import LinkedinIcon from 'resources/Graphics/Follow/linkedin.svg';
 import WhatsappIcon from 'resources/Graphics/Follow/whatsapp.svg';
 import TelephoneIcon from 'resources/Graphics/Follow/phone.svg';
 import EmailIcon from 'resources/Graphics/Follow/email.svg';
+import { isMobile } from 'Utils/Theme';
 
 export const SocialMethods: Array<ISocialIconConfig> = [
     {
@@ -17,7 +18,7 @@ export const SocialMethods: Array<ISocialIconConfig> = [
         key: 'Instagram',
         iconSrc: InstagramIcon,
         value: 'instagram.com/amitpaco',
-        href: `https://instagram.com/amitpaco`,
+        href: `https://instagram.com/_studio.paco`,
     },
     {
         key: 'linkedIn',
@@ -36,6 +37,7 @@ export const SocialMethods: Array<ISocialIconConfig> = [
         iconSrc: TelephoneIcon,
         value: '972.0506.7575.81',
         clipboardString: '+972506757581',
+        href: isMobile() ? 'tel:972506757581' : ''
     },
     {
         key: 'Email',

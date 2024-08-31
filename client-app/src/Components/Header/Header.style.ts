@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div`
     display: flex;
@@ -7,6 +8,14 @@ export const Container = styled.div`
     align-items: center;
     gap: 20px;
     width: 100%;
-    padding: 20px 40px 20px 0;
+    padding: 10px 20px 20px 0;
     box-sizing: border-box;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        gap: 10px;
+    `)}
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, `
+        gap: 0;
+    `)}
 `;

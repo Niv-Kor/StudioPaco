@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
+import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from "Utils/Theme";
 
 export const Container = styled.div<{
     open: boolean;
@@ -10,10 +11,17 @@ export const Container = styled.div<{
     transform: translateY(0);
     transition: opacity .1s, transform .2s;
 
-     ${({ open }) => open && `
+     ${({ open }) => open ? `
         opacity: 1;
         transform: translateY(-50%);
+        pointer-events: all;
+     ` : `
+        pointer-events: none;
      `}
+
+     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        z-index: 100;
+    `)}
 `;
 
 export const List = styled.div`
@@ -27,6 +35,11 @@ export const ListRow = styled.span<{
     white-space: nowrap;
     font-size: 1.5rem;
     letter-spacing: ${({ letterSpacing }) => letterSpacing ?? 0}px;
+
+    ${({ letterSpacing }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        font-size: 1.275rem;
+        letter-spacing: calc(${letterSpacing}px * .916);
+    `)}
 `;
 
 export const ListRowHebrew = styled(ListRow)`
@@ -53,4 +66,23 @@ export const Delimiter = styled.hr<{
         animation-delay: .2s;
         animation-fill-mode: forwards;
     `}
+`;
+
+export const MobileBackground = styled.div<{
+    displayed: boolean;
+}>`
+    position: fixed;
+    transition: .3s;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 38%;
+    opacity: 0;
+    background-color: #ffffffbf;
+    pointer-events: none;
+
+    ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+        opacity: 1;
+        z-index: 50;
+    `)}
 `;
