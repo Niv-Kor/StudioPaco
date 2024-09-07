@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div`
@@ -11,11 +11,11 @@ export const Container = styled.div`
     padding: 10px 20px 20px 0;
     box-sizing: border-box;
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         gap: 10px;
     `)}
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, css`
         gap: 0;
     `)}
 `;

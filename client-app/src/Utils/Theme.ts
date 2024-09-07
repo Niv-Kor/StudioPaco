@@ -19,11 +19,11 @@ export const MOBILE_BREAKPOINTS: Record<string, number> = {
 export const isMobile = (): boolean =>
     window.innerWidth <= MOBILE_BREAKPOINTS.MD;
 
-export const mediaQuery = (property: string, value: string, css: string | RuleSet<object>): string =>
-    `@media (${property}: ${value}) { ${cssFunc`${css}`} }`
+export const mediaQuery = (property: string, value: string, css: RuleSet<object>): RuleSet<object> =>
+    cssFunc`@media (${property}: ${value}) { ${css} }`
 
-export const mediaQueryMinWidth = (width: number, css: string | RuleSet<object>): string =>
+export const mediaQueryMinWidth = (width: number, css: RuleSet<object>): RuleSet<object> =>
     mediaQuery('min-width', `${width}px`, css);
 
-export const mediaQueryMaxWidth = (width: number, css: string | RuleSet<object>): string =>
+export const mediaQueryMaxWidth = (width: number, css: RuleSet<object>): RuleSet<object> =>
     mediaQuery('max-width', `${width}px`, css);

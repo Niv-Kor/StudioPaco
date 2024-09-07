@@ -19,7 +19,7 @@ export const Container = styled.div<{
         pointer-events: none;
      `}
 
-     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         z-index: 100;
     `)}
 `;
@@ -36,7 +36,7 @@ export const ListRow = styled.span<{
     font-size: 1.5rem;
     letter-spacing: ${({ letterSpacing }) => letterSpacing ?? 0}px;
 
-    ${({ letterSpacing }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ letterSpacing }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         font-size: 1.275rem;
         letter-spacing: calc(${letterSpacing}px * .916);
     `)}
@@ -81,7 +81,7 @@ export const MobileBackground = styled.div<{
     background-color: #ffffffbf;
     pointer-events: none;
 
-    ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         opacity: 1;
         z-index: 50;
     `)}

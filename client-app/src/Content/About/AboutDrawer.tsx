@@ -19,11 +19,26 @@ const AboutDrawer: FC<IDrawer> = ({
     openDelay
 }) => {
     const initialized = useRef<number>(0);
+    const wrapperContainer = useRef<HTMLDivElement>(null)
+    const mobile = isMobile();
     const [enterState, setEnterState] = useState<boolean>(false);
     const [isImageOpen, setImageOpen] = useState<boolean>(false);
     const [closingFlag, setClosingFlag] = useState<boolean>(false);
     const [textCloseState, setTextCloseState] = useState<boolean>(false);
     const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
+    const [textScrollOffset, setTextScrollOffset] = useState<number>(0);
+
+    useEffect(() => {
+        if (mobile) {
+            const container = wrapperContainer?.current;
+            const onScroll = (): void => setTextScrollOffset(container?.scrollTop || 0);
+            container &&  container.addEventListener('scroll', onScroll)
+
+            return () => {
+                container?.removeEventListener('scroll', onScroll);
+            }
+        }
+    }, [wrapperContainer, mobile]);
 
     const textContent = (
         <Content
@@ -92,7 +107,11 @@ const AboutDrawer: FC<IDrawer> = ({
     }, [enterState]);
 
     return (
-        <Wrapper open={enterState}>
+        <Wrapper
+            ref={wrapperContainer}
+            open={enterState}
+            scrollTop={textScrollOffset}
+        >
             {isMobile() ? (
                 <ScrollWrapper open={enterState}>
                     <HeaderBackground />

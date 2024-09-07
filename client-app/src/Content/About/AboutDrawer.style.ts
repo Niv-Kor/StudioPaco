@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { DrawerEnterTime } from "Utils/constants";
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
 import {
@@ -11,7 +11,10 @@ import {
 
 export const Wrapper = styled.div<{
     open: boolean;
+    scrollTop?: number;
 }>`
+    --scrollTop: ${({ scrollTop }) => scrollTop ?? 0}px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,8 +23,23 @@ export const Wrapper = styled.div<{
     left: 0;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
     pointer-events: ${({ open }) => open ? 'all' : 'none'};
     z-index: 50;
+    
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path .2s;
+    `)}
+
+    ${({ open }) => open && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        clip-path: inset(0 0 0 0);
+        background-image: url(${ProfileImgSrc});
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-attachment: fixed;
+    `)}
 `;
 
 export const ScrollWrapper = styled.div<{
@@ -31,12 +49,6 @@ export const ScrollWrapper = styled.div<{
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    background-image: url(${ProfileImgSrc});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: left bottom;
     box-sizing: border-box;
     transition: .2s;
 
@@ -48,11 +60,11 @@ export const ScrollWrapper = styled.div<{
 export const HeaderMask = styled.div<{
     open: boolean;
 }>`
-    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: fixed;
         top: 0;
         width: 100%;
-        height: ${open ? 120 : 0}px;
+        height: ${open ? 10 : 0}px;
         background-color: ${AccentColor};
         transition: .2s;
     `)}
@@ -85,7 +97,7 @@ export const CenterParagraph = styled(Paragraph)`
     margin: 120px 0 80px;
     z-index: 20;
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         padding-left: 45px !important;
         width: calc(100% - 45px) !important;
         margin-top: 20px;
@@ -115,7 +127,7 @@ export const TextContainer = styled.div<{
         min-width: 868px;
     }
 
-    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: absolute;
         width: 100%;
         height: 100%;
@@ -138,12 +150,12 @@ export const ProfileImage = styled.img<{
         min-width: 532px;
     }
 
-    ${({ open }) => open && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ open }) => open && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, css`
         left: 0;
         transition: left ${DrawerEnterTime * 2}s;
     `)}
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: absolute;
         bottom: 0;
         left: 0;
@@ -180,7 +192,7 @@ export const Content = styled.div<{
     transform-origin: bottom left;
     padding-left: 2%;
 
-    ${({ displayed }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${({ displayed }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: absolute;
         justify-content: flex-start;
         padding: 60px 20px 0 20px;
@@ -189,6 +201,7 @@ export const Content = styled.div<{
         top: 65px;
         transform: scale(1);
         opacity: ${displayed ? 1 : 0};
+        clip-path: inset(calc(60px + var(--scrollTop)) 0 -100vh 0);
         transition: opacity .75s;
 
         & ${Paragraph} {
@@ -197,7 +210,7 @@ export const Content = styled.div<{
         }
 
         & ${Paragraph}:nth-last-child(1) {
-            padding-bottom: 80px;
+            padding-bottom: 100%;
         }
     `)}
 `;

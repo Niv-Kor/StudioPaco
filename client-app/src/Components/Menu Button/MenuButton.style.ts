@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { AccentColor, BackgroundColor, MOBILE_BREAKPOINTS, mediaQueryMaxWidth } from 'Utils/Theme';
 
 export const Button = styled.button<{
@@ -36,11 +36,11 @@ export const Button = styled.button<{
         }
     }
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         min-width: 80px;
     `)}
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, css`
         font-size: 1.2rem;
     `)}
 `;

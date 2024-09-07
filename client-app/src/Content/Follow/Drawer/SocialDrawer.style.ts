@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 import { SocialDrawerState } from '../types';
 
@@ -24,7 +24,7 @@ export const Drawer = styled.div<{
         }
     }}%);
     
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         width: 50px;
     `)}
 `;
@@ -37,7 +37,7 @@ export const DrawerList = styled.ul`
     left: -25px;
     gap: 10px;
 
-    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, `
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         left: -53px;
         gap: 7px;
         bottom: 40px;
