@@ -1,10 +1,20 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { DrawerEnterTime } from "Utils/constants";
-import { AccentColor, NaturalColor } from "Utils/Theme";
+import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
+import {
+    AccentColor,
+    mediaQueryMinWidth,
+    mediaQueryMaxWidth,
+    MOBILE_BREAKPOINTS,
+    NaturalColor
+} from "Utils/Theme";
 
 export const Wrapper = styled.div<{
     open: boolean;
+    scrollTop?: number;
 }>`
+    --scrollTop: ${({ scrollTop }) => scrollTop ?? 0}px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -13,17 +23,68 @@ export const Wrapper = styled.div<{
     left: 0;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
     pointer-events: ${({ open }) => open ? 'all' : 'none'};
     z-index: 50;
-`
+    
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path .2s;
+    `)}
 
-export const Paragraph = styled.p`
+    ${({ open }) => open && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        clip-path: inset(0 0 0 0);
+        background-image: url(${ProfileImgSrc});
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-attachment: fixed;
+    `)}
+`;
+
+export const ScrollWrapper = styled.div<{
+    open: boolean;
+}>`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    transition: .2s;
+
+    ${({ open }) => !open && `
+        transform: translateY(-100%);
+    `}
+`;
+
+export const HeaderMask = styled.div<{
+    open: boolean;
+}>`
+    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: ${open ? 10 : 0}px;
+        background-color: ${AccentColor};
+        transition: .2s;
+    `)}
+`;
+
+export const HeaderBackground = styled.div`
+    width: 100%;
+    height: 62%;
+    background-color: ${AccentColor};
+`;
+
+export const Paragraph = styled.p<{
+    zIndex?: number;
+}>`
     width: 835px;
     margin: 0;
     text-align: justify;
     font-size: 24px;
     font-weight: 400;
-    z-index: 20;
+    z-index: ${({ zIndex }) => zIndex || 20};
     transition: font-size .2s;
 
     & > b {
@@ -34,8 +95,14 @@ export const Paragraph = styled.p`
 export const CenterParagraph = styled(Paragraph)`
     padding-left: 300px;
     margin: 120px 0 80px;
-    width: 660px;
     z-index: 20;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        padding-left: 45px !important;
+        width: calc(100% - 45px) !important;
+        margin-top: 20px;
+        margin-bottom: 100%;
+    `)}
 `;
 
 export const TextContainer = styled.div<{
@@ -59,6 +126,14 @@ export const TextContainer = styled.div<{
     @media (max-width: 1400px) {
         min-width: 868px;
     }
+
+    ${({ open }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -38%;
+        transform: translateY(${open ? 0 : -100}%);
+    `)}
 `;
 
 export const ProfileImage = styled.img<{
@@ -71,17 +146,25 @@ export const ProfileImage = styled.img<{
     background-color: ${NaturalColor};
     transition: ${DrawerEnterTime}s;
 
-    ${({ open }) => open && `
-        left: 0;
-        transition: left ${DrawerEnterTime * 2}s;
-    `}
-
     @media (max-width: 1400px) {
         min-width: 532px;
     }
+
+    ${({ open }) => open && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, css`
+        left: 0;
+        transition: left ${DrawerEnterTime * 2}s;
+    `)}
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    `)}
 `;
 
 export const Content = styled.div<{
+    displayed: boolean;
     screenWidth: number;
     screenHeight: number;
 }>`
@@ -108,11 +191,26 @@ export const Content = styled.div<{
     }});
     transform-origin: bottom left;
     padding-left: 2%;
-`;
 
-export const LogoForeground = styled.img`
-    position: absolute;
-    bottom: 130px;
-    left: 0;
-    width: 500px;
+    ${({ displayed }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: absolute;
+        justify-content: flex-start;
+        padding: 60px 20px 0 20px;
+        width: 100%;
+        height: 62%;
+        top: 65px;
+        transform: scale(1);
+        opacity: ${displayed ? 1 : 0};
+        clip-path: inset(calc(60px + var(--scrollTop)) 0 -100vh 0);
+        transition: opacity .75s;
+
+        & ${Paragraph} {
+            font-size: .9rem;
+            width: 100%;
+        }
+
+        & ${Paragraph}:nth-last-child(1) {
+            padding-bottom: 100%;
+        }
+    `)}
 `;

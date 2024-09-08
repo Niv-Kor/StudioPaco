@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components';
+import { mediaQueryMinWidth, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
-const LogoWidth = 500;
-const LogoRatio = .626;
+const LOGO_RATIO = .626;
 
 const logoTextEnterAnimation = (startOffset: number, endOffset: number) => keyframes`
     from {
@@ -105,32 +105,47 @@ export const SmallTextLogo = styled(SmallLogo)<{
 }>`
     opacity: 0;
 
-    ${({ displayed }) => displayed && css`
+    ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        clip-path: unset;
+        opacity: 1;
+    `)}
+
+    ${({ displayed }) => displayed && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, css`
         animation-name: ${() => logoTextEnterAnimation(140, 320)};
         animation-duration: 2s;
         animation-delay: 2s;
         animation-fill-mode: forwards;
         animation-timing-function: linear;
-    `}
+    `)}
 `
 
 export const LogoWrapper = styled.div<{
     displayed: boolean;
 }>`
+    --logo-width: 500px;
+
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: ${LogoWidth}px;
-    height: ${LogoWidth * LogoRatio}px;
+    width: var(--logo-width);
+    height: calc(var(--logo-width) * ${LOGO_RATIO});
     opacity: ${({ displayed }) => displayed ? 1 : 0};
     z-index: -1;
     transition: .2s;
 
     & > * {
         position: absolute;
-        width: ${LogoWidth}px;
+        width: var(--logo-width);
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        --logo-width: 350px;
+    `)}
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, css`
+        --logo-width: 250px;
+    `)}
 `;
 
 export const LogoBackground = styled.img`
@@ -146,11 +161,23 @@ export const LogoSubtextWrapper = styled.div`
     position: absolute;
     bottom: 65px;
     left: 3px;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        left: 4px;
+        bottom: 30px;
+    `)}
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.SM, css`
+        display: none;
+    `)}
 `;
 
 export const LogoSubtextContainer = styled.div<{
     displayed: boolean;
 }>`
+    --animation-start-offset: 130;
+    
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -158,13 +185,13 @@ export const LogoSubtextContainer = styled.div<{
     gap: 16px;
     opacity: 0;
 
-    ${({ displayed }) => displayed && css`
-        animation-name: ${() => logoTextEnterAnimation(130, 370)};
+    ${({ displayed }) => displayed && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, css`
+        animation-name: ${logoTextEnterAnimation(130, 370)};
         animation-duration: 2.5s;
         animation-delay: 2s;
         animation-fill-mode: forwards;
         animation-timing-function: linear;
-    `}
+    `)}
 `;
 
 export const LogoSubtext = styled.span`
@@ -186,11 +213,11 @@ export const LogoSubtextCursor = styled.div<{
     background-color: black;
     opacity: 0;
 
-    ${({ displayed, startOffset, endOffset, moveDuration }) => displayed && css`
+    ${({ displayed, startOffset, endOffset, moveDuration }) => displayed && mediaQueryMinWidth(MOBILE_BREAKPOINTS.MD, css`
         animation-name: ${logoTextCursorEnterAnimation}, ${() => logoTextCursorMoveAnimation(startOffset, endOffset)};
         animation-duration: 2s, ${moveDuration}s;
         animation-delay: 0s, 2s;
         animation-fill-mode: forwards, forwards;
         animation-timing-function: linear, linear;
-    `}
+    `)}
 `;

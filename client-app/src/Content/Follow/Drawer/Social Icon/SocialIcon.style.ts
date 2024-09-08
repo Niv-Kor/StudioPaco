@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Wrapper = styled.div<{
     enabled: boolean;
@@ -16,6 +17,10 @@ export const IconContainer = styled.div`
     display: flex;
     height: 40px;
     cursor: pointer;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        height: 25px;
+    `)}
 `;
 
 export const Icon = styled.img`
