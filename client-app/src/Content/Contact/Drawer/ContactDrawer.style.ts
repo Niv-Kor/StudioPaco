@@ -1,5 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
-import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from "Utils/Theme";
+import styled, { keyframes, css } from 'styled-components';
+import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
@@ -11,16 +11,16 @@ export const Container = styled.div<{
     transform: translateY(0);
     transition: opacity .1s, transform .2s;
 
-     ${({ open }) => open ? `
-        opacity: 1;
-        transform: translateY(-50%);
-        pointer-events: all;
-     ` : `
-        pointer-events: none;
-     `}
+    ${({ open }) => open ? `
+       opacity: 1;
+       transform: translateY(-50%);
+       pointer-events: all;
+    ` : `
+       pointer-events: none;
+    `}
 
-     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        z-index: 100;
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+       z-index: 100;
     `)}
 `;
 

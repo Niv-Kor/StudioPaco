@@ -1,13 +1,13 @@
-import styled, { css } from "styled-components";
-import { DrawerEnterTime } from "Utils/constants";
-import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
+import styled, { css } from 'styled-components';
+import { DrawerEnterTime } from 'Utils/constants';
+import MobileBackground from 'resources/Graphics/About/Amit-BW-Mobile.png'
 import {
     AccentColor,
     mediaQueryMinWidth,
     mediaQueryMaxWidth,
     MOBILE_BREAKPOINTS,
     NaturalColor
-} from "Utils/Theme";
+} from 'Utils/Theme';
 
 export const Wrapper = styled.div<{
     open: boolean;
@@ -34,7 +34,7 @@ export const Wrapper = styled.div<{
 
     ${({ open }) => open && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         clip-path: inset(0 0 0 0);
-        background-image: url(${ProfileImgSrc});
+        background-image: url(${MobileBackground});
         background-size: cover;
         background-repeat: no-repeat;
         background-position: left bottom;

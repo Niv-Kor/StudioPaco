@@ -2,13 +2,16 @@ import { FC, useRef, useMemo, useState, useEffect } from 'react';
 import { IProjectCategory, IProjectData } from '../types';
 import ProjectInfo from '../Project Info/ProjectInfo';
 import ProjectsTable from '../Table/ProjectsTable';
-import { ACTIVE_ACCENT_PAGE_CLASS } from 'Utils/Theme';
+import { ACTIVE_ACCENT_PAGE_CLASS, isMobile } from 'Utils/Theme';
+import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
 import {
     Strip,
     Container,
     ContentWrapper,
+    ContentContainer,
     Text,
-    ContentElementContainer
+    ContentElementContainer,
+    BackButtonIcon
 } from './ProjectStrip.style';
 
 export interface IProjectStrip {
@@ -19,6 +22,7 @@ export interface IProjectStrip {
     selected: boolean;
     hovered: boolean;
     openDelay?: number;
+    onCategoryClose?: () => void;
     onProjectInspection?: () => void;
     onProjectDismissal?: () => void;
 }
@@ -29,6 +33,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
         selected,
         width,
         openDelay,
+        onCategoryClose,
         onProjectInspection,
         onProjectDismissal
     } = props;
@@ -102,19 +107,28 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 rightOffset={rightOffset + width}
             >
                 <ContentWrapper offset={rightOffset + width}>
-                    <Text
-                        displayed={isTextDisplayed}
-                        fullHeight={!category.projects.length}
-                    >
-                        <span className={'category-title'}>{category.key}</span>
-                        <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
-                    </Text>
-                    <ContentElementContainer>
-                        <ProjectsTable
-                            category={category}
-                            onSelection={setInspectedProject}
+                    {isMobile() && (
+                        <BackButtonIcon
+                            src={BackButton}
+                            alt={"back"}
+                            onClick={onCategoryClose}
                         />
-                    </ContentElementContainer>
+                    )}
+                    <ContentContainer>
+                        <Text
+                            displayed={isTextDisplayed}
+                            fullHeight={!category.projects.length}
+                        >
+                            <span className={'category-title'}>{category.key}</span>
+                            <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
+                        </Text>
+                        <ContentElementContainer>
+                            <ProjectsTable
+                                category={category}
+                                onSelection={setInspectedProject}
+                            />
+                        </ContentElementContainer>
+                    </ContentContainer>
                 </ContentWrapper>
             </Container>
             <ProjectInfo

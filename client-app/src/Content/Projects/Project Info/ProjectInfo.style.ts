@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { BackgroundColor } from 'Utils/Theme';
+import styled, { css } from 'styled-components';
+import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
@@ -29,6 +29,21 @@ export const Container = styled.div<{
     &::-webkit-scrollbar { 
         display: none;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        left: unset;
+        right: 0;
+    `)}
+`;
+
+export const BackgroundLine = styled.div<{
+    open: boolean;
+}>`
+    position: absolute;
+    width: 10px;
+    height: ${({ open }) => open ? 100 : 0}%;
+    background-color: ${AccentColor};
+    transition: .2s;
 `;
 
 export const HeaderImage = styled.img<{
@@ -39,6 +54,10 @@ export const HeaderImage = styled.img<{
     margin-bottom: 100px;
     opacity: ${({ overscroll, scrollPercent }) => overscroll ? scrollPercent * .2 : 1};
     transition: .7s;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        width: 100%;
+    `)}
 `;
 
 export const ImagesWrapper = styled.div`

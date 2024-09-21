@@ -1,14 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from 'styled-components';
+import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Layout = styled.div`
+    --thumbnail-width: 140px;
+
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(auto-fit, 140px);
+    grid-template-columns: repeat(auto-fit, var(--thumbnail-width));
     grid-template-rows: 1fr;
     grid-auto-rows: 0;
     gap: 25px;
     height: 100%;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        --thumbnail-width: 100px;
+        align-content: space-evenly;
+        grid-auto-rows: auto;
+    `)}
 `;
 
 export const Item = styled.div`
@@ -22,6 +31,10 @@ export const Item = styled.div`
         --cover-opacity: .7;
         --title-opacity: 1;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        --title-opacity: 1;
+    `)}
 `;
 
 export const Title = styled.p`
@@ -34,8 +47,8 @@ export const Title = styled.p`
 
 export const ThumbnailWrapper = styled.div`
     position: relative;
-    width: 140px;
-    height: 300px;
+    width: var(--thumbnail-width);
+    height: calc(var(--thumbnail-width) * 2.14);
     cursor: pointer;
 `;
 
