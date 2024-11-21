@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { AccentColor, NaturalColor } from "Utils/Theme";
-import { IProjectStrip } from "./ProjectStrip";
-import { IProjectCategory } from "../types";
+import styled, { css } from 'styled-components';
+import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS, NaturalColor } from 'Utils/Theme';
+import { IProjectStrip } from './ProjectStrip';
+import { IProjectCategory } from '../types';
 
 export const Strip = styled.div<IProjectStrip & IProjectCategory>`
     height: 100%;
@@ -50,16 +50,32 @@ export const ContentWrapper = styled.div<{
     bottom: 75px;
     left: var(--padding);
     width: calc(100% - var(--padding));
+
+    ${({ offset }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        left: ${offset + 60}px;
+        width: calc(100% - 100px);
+    `)}
+`;
+
+export const ContentContainer = styled.div`
+    width: 100%;
+    height: 100%;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        overflow-y: auto;
+    `)}
 `;
 
 export const Text = styled.p<{
     displayed: boolean;
     fullHeight: boolean;
 }>`
+    --minimal-height: 45%;
+
     font-family: 'Futura';
     margin: 0;
     width: 80%;
-    height: ${({ fullHeight }) => fullHeight ? 100 : 45}%;
+    height: ${({ fullHeight }) => fullHeight ? 'auto' : 'var(--minimal-height)'};
     opacity: ${({ displayed }) => displayed ? 1 : 0};
     font-size: 20px;
     transition: .5s;
@@ -69,6 +85,11 @@ export const Text = styled.p<{
         font-weight: 500;
         margin-right: 15px;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        --minimal-height: 35%;
+        width: 100%;
+    `)}
 `;
 
 export const ContentElementContainer = styled.div`
@@ -77,4 +98,15 @@ export const ContentElementContainer = styled.div`
     width: 100%;
     height: 50%;
     z-index: 44100;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: static;
+    `)}
+`;
+
+export const BackButtonIcon = styled.img`
+    position: absolute;
+    top: 4px;
+    left: -40px;
+    width: 24px;
 `;

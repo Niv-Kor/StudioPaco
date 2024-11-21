@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { BackgroundColor } from 'Utils/Theme';
+import styled, { css } from 'styled-components';
+import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
@@ -29,6 +29,21 @@ export const Container = styled.div<{
     &::-webkit-scrollbar { 
         display: none;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        left: unset;
+        right: 0;
+    `)}
+`;
+
+export const BackgroundLine = styled.div<{
+    open: boolean;
+}>`
+    position: absolute;
+    width: 10px;
+    height: ${({ open }) => open ? 100 : 0}%;
+    background-color: ${AccentColor};
+    transition: .2s;
 `;
 
 export const HeaderImage = styled.img<{
@@ -39,6 +54,12 @@ export const HeaderImage = styled.img<{
     margin-bottom: 100px;
     opacity: ${({ overscroll, scrollPercent }) => overscroll ? scrollPercent * .2 : 1};
     transition: .7s;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 1;
+    `)}
 `;
 
 export const ImagesWrapper = styled.div`
@@ -53,6 +74,14 @@ export const ImagesWrapper = styled.div`
     & > img {
         width: 60%;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        gap: 10px;
+
+        & > img {
+            width: 100%;
+        }
+    `)}
 `;
 
 export const InfoParagraph = styled.div<{
@@ -74,6 +103,11 @@ export const InfoParagraph = styled.div<{
     @media (max-width: 1400px) {
         font-size: 1rem;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: static;
+        margin: 0 0 10px 10px;
+    `)}
 `;
 
 export const BackButtonWrapper = styled.div<{
@@ -107,11 +141,23 @@ export const BackButtonWrapper = styled.div<{
         font-size: 1rem;
         left: 32%;
     }
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        position: absolute;
+        right: 10px;;
+        top: 0;
+        left: unset;
+        pointer-events: all;
+    `)}
 `;
 
 export const BackButtonIcon = styled.img`
     width: 16px;
-    margin-top: 4px;
+    margin-top: 2px;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        transform: rotateY(180deg);
+    `)}
 `;
 
 export const BackButtonLabel = styled.span`
@@ -129,6 +175,7 @@ export const ProjectInfoWrapper = styled.div`
 export const ProjectInfoSection = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
 `;
 
 export const ProjectInfoRow = styled.p`

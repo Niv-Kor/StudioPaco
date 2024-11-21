@@ -44,8 +44,8 @@ const MainPage: FC = () => {
             <SmallTextLogoContainer>
                 <LogoSubtextCursor
                     displayed={openMainDrawer === MainDrawer.About}
-                    startOffset={220}
-                    endOffset={407}
+                    startOffset={155}
+                    endOffset={342}
                     moveDuration={2}
                     top={75}
                 />

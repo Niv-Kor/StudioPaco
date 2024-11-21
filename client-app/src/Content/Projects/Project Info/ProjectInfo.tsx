@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { IProjectData } from '../types';
 import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
+import { StripWidth } from '../constants';
+import { isMobile } from 'Utils/Theme';
 import {
     Container,
+    BackgroundLine,
     HeaderImage,
     ImagesWrapper,
     BackButtonWrapper,
@@ -13,7 +16,6 @@ import {
     ProjectInfoRow,
     Scrollbar
 } from './ProjectInfo.style';
-import { StripWidth } from '../constants';
 
 interface IProjectInfo {
     open: boolean;
@@ -66,52 +68,66 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
     }, [containerRef]);
 
     return (
-        <Container
-            ref={containerRef}
-            offset={offset}
-            open={open}
-        >
-            <Scrollbar
-                width={StripWidth}
-                x={offset - StripWidth}
-                y={scrollTop}
-            />
-            <BackButtonWrapper
-                onClick={onClose}
-                overscroll={overscroll}
+        <>
+            {isMobile() && <BackgroundLine open={open} />}
+            <Container
+                ref={containerRef}
+                offset={offset}
+                open={open}
             >
-                <BackButtonIcon src={BackButton} alt={"back"} />
-                <BackButtonLabel>{categoryName}</BackButtonLabel>
-            </BackButtonWrapper>
-            <HeaderImage
-                src={images?.[0]}
-                alt={name}
-                scrollPercent={scrollPercent}
-                overscroll={overscroll}
-            />
-            <ImagesWrapper>
-                {images?.toSpliced(0, 1).map(image => (
-                    <img
-                        key={image}
-                        src={image}
-                        alt={""}
-                    />
-                ))}
-            </ImagesWrapper>
-            <InfoParagraph overscroll={overscroll}>
-                <ProjectInfoSection>
-                    <ProjectInfoRow>.{name}</ProjectInfoRow>
-                </ProjectInfoSection>
-                <ProjectInfoSection>
-                    <ProjectInfoRow>Location: {location}</ProjectInfoRow>
-                    <ProjectInfoRow>Programma: {programma}</ProjectInfoRow>
-                </ProjectInfoSection>
-                <ProjectInfoSection>
-                    <ProjectInfoRow>{year}</ProjectInfoRow>
-                    <ProjectInfoRow>at {entity}</ProjectInfoRow>
-                </ProjectInfoSection>
-            </InfoParagraph>
-        </Container>
+                <Scrollbar
+                    width={StripWidth}
+                    x={offset - StripWidth}
+                    y={scrollTop}
+                />
+                {!isMobile() && (
+                    <BackButtonWrapper
+                        onClick={onClose}
+                        overscroll={overscroll}
+                    >
+                        <BackButtonIcon src={BackButton} alt={"back"} />
+                        <BackButtonLabel>{categoryName}</BackButtonLabel>
+                    </BackButtonWrapper>
+                )}
+                <HeaderImage
+                    src={images?.[0]}
+                    alt={name}
+                    scrollPercent={scrollPercent}
+                    overscroll={overscroll}
+                />
+                <InfoParagraph overscroll={overscroll}>
+                    <ProjectInfoSection>
+                        <ProjectInfoRow>.{name}</ProjectInfoRow>
+                        {isMobile() && (
+                            <BackButtonWrapper
+                                onClick={onClose}
+                                overscroll={false}
+                            >
+                                <BackButtonLabel>{categoryName}</BackButtonLabel>
+                                <BackButtonIcon src={BackButton} alt={"back"} />
+                            </BackButtonWrapper>
+                        )}
+                    </ProjectInfoSection>
+                    <ProjectInfoSection>
+                        <ProjectInfoRow>Location: {location}</ProjectInfoRow>
+                        <ProjectInfoRow>Programma: {programma}</ProjectInfoRow>
+                    </ProjectInfoSection>
+                    <ProjectInfoSection>
+                        <ProjectInfoRow>{year}</ProjectInfoRow>
+                        <ProjectInfoRow>at {entity}</ProjectInfoRow>
+                    </ProjectInfoSection>
+                </InfoParagraph>
+                <ImagesWrapper>
+                    {images?.toSpliced(0, 1).map(image => (
+                        <img
+                            key={image}
+                            src={image}
+                            alt={""}
+                        />
+                    ))}
+                </ImagesWrapper>
+            </Container>
+        </>
     );
 }
 
