@@ -61,6 +61,10 @@ export const ThumbnailCover = styled.div`
     background-color: white;
     opacity: var(--cover-opacity);
     transition: .2s;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        opacity: 0;
+    `)}
 `;
 
 export const Thumbnail = styled.img`
