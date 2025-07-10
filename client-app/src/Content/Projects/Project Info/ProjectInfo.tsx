@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { IProjectData } from '../types';
 import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
+import useBackButton from "shared/hooks/useBackButton";
 import { StripWidth } from '../constants';
 import { isMobile } from 'Utils/Theme';
 import {
@@ -25,7 +26,7 @@ interface IProjectInfo {
     onClose: () => void;
 }
 
-const ProjectInfo: React.FC<IProjectInfo> = ({
+const ProjectInfo: FC<IProjectInfo> = ({
     open,
     categoryName,
     data,
@@ -45,6 +46,7 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
     const [overscroll, setOverscroll] = useState<boolean>(false);
     const [scrollTop, setScrollTop] = useState<number>(0);
 
+    useBackButton("Project Info", onClose, open);
     useEffect(() => {
         if (!containerRef?.current) return;
 
@@ -118,7 +120,7 @@ const ProjectInfo: React.FC<IProjectInfo> = ({
                     </ProjectInfoSection>
                 </InfoParagraph>
                 <ImagesWrapper>
-                    {images?.toSpliced(0, 1).map(image => (
+                    {[...images]?.splice(0, 1).map(image => (
                         <img
                             key={image}
                             src={image}

@@ -1,8 +1,8 @@
-import { FC, useState, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import MenuButton from 'Components/Menu Button/MenuButton';
 import { SocialDrawerState } from 'Content/Follow/types';
 import SocialDrawer from 'Content/Follow/Drawer/SocialDrawer';
-import useOutsideClick from 'Utils/UseOutsideClick';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 
 const FollowButton: FC = () => {
     const drawerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,10 @@ const FollowButton: FC = () => {
                 onHover={onHover}
                 onLeave={onLeave}
             />
-            <SocialDrawer state={drawerState} />
+            <SocialDrawer
+                state={drawerState}
+                onClose={() => setDrawerState(SocialDrawerState.Closed)}
+            />
         </div>
     );
 }

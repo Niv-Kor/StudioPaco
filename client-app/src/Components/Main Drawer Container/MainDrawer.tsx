@@ -43,6 +43,7 @@ const MainDrawerContainer: FC<IMainDrawerContainer> = ({
             <Drawer
                 open={drawerOpen}
                 openDelay={openDelay}
+                onClose={() => setDrawerOpen(false)}
             />
         </>
     );

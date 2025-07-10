@@ -5,6 +5,7 @@ import { DummyProjects, Projects } from '../data';
 import { IProjectCategory } from '../types';
 import { isMobile } from 'Utils/Theme';
 import { IDrawer } from 'Utils/types';
+import useBackButton from "shared/hooks/useBackButton";
 import {
     Wrapper,
     ListWrapper,
@@ -16,7 +17,8 @@ import {
 
 const ProjectsDrawer: FC<IDrawer> = ({
     open,
-    openDelay
+    openDelay,
+    onClose
 }) => {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [hoveredCategory, setHoveredCategory] = useState<string>('');
@@ -27,6 +29,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
     const [showCategories, setCategoriesFlag] = useState<boolean>(true);
     const stripHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
 
+    useBackButton("Projects", onClose, open && showCategories && !selectedCategory);
     useEffect(() => {
         if (open) {
             if (openDelay > 0) setTimeout(() => setEnterState(true), openDelay * 1000);
@@ -37,7 +40,6 @@ const ProjectsDrawer: FC<IDrawer> = ({
             setHoveredCategory('');
             setEnterState(false);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     useEffect(() => {
@@ -116,6 +118,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
                                 )
                             }
                             openDelay={!!lastSelectedCategory ? .4 : 0}
+                            onCategoryClose={() => setSelectedCategory('')}
                             onProjectInspection={() => setCategoriesFlag(false)}
                             onProjectDismissal={() => setCategoriesFlag(true)}
                         />

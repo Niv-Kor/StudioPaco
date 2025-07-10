@@ -13,10 +13,12 @@ import {
     CenterParagraph,
     ProfileImage,
 } from './AboutDrawer.style';
+import useBackButton from "../../shared/hooks/useBackButton";
 
 const AboutDrawer: FC<IDrawer> = ({
     open,
-    openDelay
+    openDelay,
+    onClose
 }) => {
     const initialized = useRef<number>(0);
     const wrapperContainer = useRef<HTMLDivElement>(null)
@@ -28,6 +30,7 @@ const AboutDrawer: FC<IDrawer> = ({
     const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
     const [textScrollOffset, setTextScrollOffset] = useState<number>(0);
 
+    useBackButton("About", onClose, open);
     useEffect(() => {
         if (mobile) {
             const container = wrapperContainer?.current;

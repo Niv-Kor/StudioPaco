@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useBackButton from "../../../shared/hooks/useBackButton";
 import {
     Container,
     List,
@@ -10,9 +11,15 @@ import {
 
 interface IContactDrawer {
     open: boolean;
+    onClose: () => void;
 }
 
-const ContactDrawer: FC<IContactDrawer> = ({ open }) => {
+const ContactDrawer: FC<IContactDrawer> = ({
+    open,
+    onClose
+}) => {
+    useBackButton("Contact", onClose, open);
+    
     return (
         <>
             <MobileBackground displayed={open} />

@@ -1,7 +1,7 @@
 import { FC, useState, useRef } from 'react';
 import MenuButton from 'Components/Menu Button/MenuButton';
 import ContactDrawer from 'Content/Contact/Drawer/ContactDrawer';
-import useOutsideClick from 'Utils/UseOutsideClick';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 import { Container } from './ContactButton.style';
 
 const ContactButton: FC = () => {
@@ -15,7 +15,10 @@ const ContactButton: FC = () => {
                 text={"contact"}
                 onClick={() => setDrawerOpen(prevState => !prevState)}
             />
-            <ContactDrawer open={drawerOpen} />
+            <ContactDrawer
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+            />
         </Container>
     );
 }

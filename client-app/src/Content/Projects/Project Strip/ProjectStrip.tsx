@@ -13,6 +13,7 @@ import {
     ContentElementContainer,
     BackButtonIcon
 } from './ProjectStrip.style';
+import useBackButton from "../../../shared/hooks/useBackButton";
 
 export interface IProjectStrip {
     category: IProjectCategory;
@@ -51,6 +52,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stripRef, stripRef?.current]);
 
+    useBackButton("Project Category", onCategoryClose, isOpen);
     useEffect(() => {
         if (selected) {
             selectionTimeout.current = setTimeout(() => {

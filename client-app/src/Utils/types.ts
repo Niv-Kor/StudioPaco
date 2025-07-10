@@ -7,4 +7,5 @@ export enum MainDrawer {
 export interface IDrawer {
     open: boolean;
     openDelay: number;
+    onClose: () => void;
 }
