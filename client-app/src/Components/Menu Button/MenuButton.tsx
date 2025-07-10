@@ -4,10 +4,12 @@ import { isRevertMode } from 'Utils/Theme';
 
 interface IMenuButton {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
     onHover?: () => void;
     onLeave?: () => void;
     revertMode?: boolean;
+    type?: "button" | "reset" | "submit";
+    disabled?: boolean;
 }
 
 export const MenuButton: FC<IMenuButton> = ({
@@ -15,7 +17,9 @@ export const MenuButton: FC<IMenuButton> = ({
     onClick,
     onHover,
     onLeave,
-    revertMode
+    revertMode,
+    type,
+    disabled
 }) => {
     const [isThemeReverted, setThemeRevertedFlag] = useState<boolean>(isRevertMode());
 
@@ -26,6 +30,8 @@ export const MenuButton: FC<IMenuButton> = ({
 
     return (
         <Button
+            type={type || "button"}
+            disabled={disabled}
             onClick={onClick}
             revertMode={revertMode !== false && (!!revertMode || isThemeReverted)}
             onMouseEnter={onHover ?? (() => {})}

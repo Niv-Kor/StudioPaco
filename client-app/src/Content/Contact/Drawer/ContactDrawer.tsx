@@ -8,6 +8,7 @@ import {
     ListRowEnglish,
     MobileBackground
 } from './ContactDrawer.style';
+import ContactForm from "../ContactForm/ContactForm";
 
 interface IContactDrawer {
     open: boolean;
@@ -30,6 +31,8 @@ const ContactDrawer: FC<IContactDrawer> = ({
                     <ListRowEnglish letterSpacing={.9}>+972 . 0506.7575.81</ListRowEnglish>
                     <ListRowEnglish letterSpacing={1.2}>amit@studiopaco.com</ListRowEnglish>
                 </List>
+                <Delimiter open={open} />
+                <ContactForm isDrawerOpen={open} />
                 <Delimiter open={open} />
             </Container>
         </>

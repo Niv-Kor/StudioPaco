@@ -5,11 +5,12 @@ export const Container = styled.div<{
     open: boolean;
 }>`
     position: absolute;
-    top: -150%;
+    top: -250px;
     left: 20px;
     opacity: 0;
+    background-color: #ffffffee;
     transform: translateY(0);
-    transition: opacity .1s, transform .2s;
+    transition: all .2s, opacity .1s, transform .2s;
 
     ${({ open }) => open ? `
        opacity: 1;
@@ -58,7 +59,7 @@ const FadeFromLeft = keyframes`
 export const Delimiter = styled.hr<{
     open: boolean;
 }>`
-    width: 0%;
+    width: 0;
 
     ${({ open }) => open && css`
         animation-name: ${FadeFromLeft};
