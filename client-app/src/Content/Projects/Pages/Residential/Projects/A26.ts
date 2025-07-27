@@ -9,8 +9,8 @@ import Image5 from 'resources/Graphics/Projects/Residential/A26/A26.5-330.160.pn
 const data: IProjectData = {
     name: 'A26',
     location: 'Tel Aviv',
-    programma: '6 story residential building',
-    entity: 'Messer architects',
+    programma: '6 story residential building, commercial ground floor',
+    entity: 'Yoav Messer architects',
     year: 2023,
     thumbnail: Thumbnail,
     images: [

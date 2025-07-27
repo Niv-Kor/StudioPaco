@@ -9,7 +9,7 @@ const data: IProjectData = {
     name: 'SH40',
     location: 'Tel Aviv',
     programma: '8 story residential building',
-    entity: 'Messer architects',
+    entity: 'Yoav Messer architects',
     year: 2022,
     thumbnail: Thumbnail,
     images: [
