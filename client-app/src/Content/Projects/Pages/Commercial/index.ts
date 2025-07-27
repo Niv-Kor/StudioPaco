@@ -2,7 +2,7 @@ import { IProjectCategory } from 'Content/Projects/types';
 
 const data: IProjectCategory = {
     key: 'commercial',
-    text: 'Case studies to bridge conceptual vision and viability for potential projects.<br/>Concluding analytical processes, examining legal, regulatory, financial and contextual factors to thoroughly vet new developments.',
+    text: 'buildings of collaborative use. Forming architectural solutions to balance mix-use functions in complex spatial contexts.',
     stripIndex: 8,
     projects: []
 };

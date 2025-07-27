@@ -1,12 +1,17 @@
 import { IProjectCategory } from 'Content/Projects/types';
 import { StripWidth } from '../../constants';
+import DP2 from './Projects/DP2';
+import T1H from './Projects/T1H';
 
 const data: IProjectCategory = {
     key: 'hospitality',
-    text: 'Case studies to bridge conceptual vision and viability for potential projects. Concluding analytical processes, examining legal, regulatory, financial and contextual factors to thoroughly vet new developments.',
+    text: 'environments of tailored experiences. Crafting a distinct sense of place and warmth, between functions of temporary needs and local aesthetics.',
     stripIndex: 4,
     leftMargin: -StripWidth / 2,
-    projects: []
+    projects: [
+        DP2,
+        T1H
+    ]
 };
 
 export default data;

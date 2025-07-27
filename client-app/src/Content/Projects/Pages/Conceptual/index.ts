@@ -3,7 +3,7 @@ import { StripWidth } from '../../constants';
 
 const data: IProjectCategory = {
     key: 'conceptual',
-    text: 'Case studies to bridge conceptual vision and viability for potential projects. Concluding analytical processes, examining legal, regulatory, financial and contextual factors to thoroughly vet new developments.',
+    text: 'playgrounds for architectural imagination at all scales. Exporing envisioned spaces through lab-work, professionatl insights, and lenses of art.',
     stripIndex: 7,
     leftMargin: StripWidth / 3,
     projects: []

@@ -1,20 +1,20 @@
 import { IProjectCategory } from './types';
-import Commercial from './Pages/Commercial';
 import Residential from './Pages/Residential';
 import Hospitality from './Pages/Hospitality';
+import Commercial from './Pages/Commercial';
 import InteriorDesign from './Pages/Interior Design';
-import ProductDesign from './Pages/Product Design';
 import Conceptual from './Pages/Conceptual';
+import ProductDesign from './Pages/Product Design';
 import Feasibility from './Pages/Feasibility';
 import Licensing from './Pages/Licensing';
 
 export const Projects: Array<IProjectCategory> = [
-    Commercial,
     Residential,
     Hospitality,
+    Commercial,
     InteriorDesign,
-    ProductDesign,
     Conceptual,
+    ProductDesign,
     Feasibility,
     Licensing
 ];
