@@ -7,7 +7,7 @@ const data: IProjectCategory = {
     key: 'hospitality',
     text: 'environments of tailored experiences. Crafting a distinct sense of place and warmth, between functions of temporary needs and local aesthetics.',
     stripIndex: 4,
-    leftMargin: -StripWidth / 2,
+    stripLeftMargin: -StripWidth / 2,
     projects: [
         DP2,
         T1H

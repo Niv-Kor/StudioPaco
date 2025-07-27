@@ -2,8 +2,8 @@ export interface IProjectCategory {
     key: string;
     text: string;
     stripIndex: number;
-    leftMargin?: number;
-    topMargin?: number;
+    stripLeftMargin?: number;
+    keyMargin?: string;
     projects: Array<IProjectData>;
 }
 

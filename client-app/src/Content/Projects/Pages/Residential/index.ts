@@ -14,7 +14,7 @@ const data: IProjectCategory = {
     key: 'residential',
     text: 'Domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
     stripIndex: 6,
-    leftMargin: 2,
+    stripLeftMargin: 2,
     projects: [
         BHN20,
         SH40,
