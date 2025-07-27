@@ -1,7 +1,7 @@
 import { IProjectData } from "Content/Projects/types";
 import Thumbnail from 'resources/Graphics/Projects/Residential/B18/thumbnail.png';
 import Image1 from 'resources/Graphics/Projects/Residential/B18/B18.1-360.380.png';
-import Image2 from 'resources/Graphics/Projects/Residential/B18/B18.2-330.160.jpg';
+import Image2 from 'resources/Graphics/Projects/Residential/B18/B18.2-330.215.jpg';
 
 const data: IProjectData = {
     name: 'B18',
