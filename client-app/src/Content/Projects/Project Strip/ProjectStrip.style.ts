@@ -69,7 +69,6 @@ export const ContentContainer = styled.div`
 export const Text = styled.p<{
     displayed: boolean;
     fullHeight: boolean;
-    margin?: string;
 }>`
     --minimal-height: 45%;
 
@@ -86,10 +85,6 @@ export const Text = styled.p<{
         font-weight: 500;
         margin-right: 15px;
     }
-
-    ${({ margin }) => margin && `
-        margin: ${margin};
-    `};
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         --minimal-height: 35%;

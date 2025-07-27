@@ -57,6 +57,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
                     {Projects.map(cat => (
                         <Category
                             selected={isSelected(cat.key)}
+                            margin={cat.keyMargin}
                             onMouseEnter={() => {
                                 setHoveredCategory(cat.key);
                                 clearTimeout(stripHoverDebouncer.current);

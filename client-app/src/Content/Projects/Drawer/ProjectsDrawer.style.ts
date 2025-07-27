@@ -44,12 +44,17 @@ export const CategoriesList = styled.ul`
     
 export const Category = styled.span<{
     selected: boolean;
+    margin?: string;
 }>`
-    font-family: 'Futura';
+    font-family: 'Futura', sans-serif;
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 100;
     transition: transform ${DrawerEnterTime}s;
+
+    ${({ margin }) => margin && `
+        margin: ${margin};
+    `};
     
     ${({ selected }) => selected ? `
         transform: translateX(10px);
