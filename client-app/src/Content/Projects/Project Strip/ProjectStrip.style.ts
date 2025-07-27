@@ -6,8 +6,7 @@ import { IProjectCategory } from '../types';
 export const Strip = styled.div<IProjectStrip & IProjectCategory>`
     height: 100%;
     width: ${({ width }) => width}px;
-    margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;
-    margin-top: ${({ topMargin }) => topMargin ?? 0}px;
+    margin-left: ${({ stripLeftMargin }) => stripLeftMargin ?? 0}px;
     background-color: ${({ hovered }) => hovered ? AccentColor : NaturalColor};
     translate: 0 -100%;
     transition:
@@ -70,10 +69,11 @@ export const ContentContainer = styled.div`
 export const Text = styled.p<{
     displayed: boolean;
     fullHeight: boolean;
+    margin?: string;
 }>`
     --minimal-height: 45%;
 
-    font-family: 'Futura';
+    font-family: 'Futura', sans-serif;
     margin: 0;
     width: 80%;
     height: ${({ fullHeight }) => fullHeight ? 'auto' : 'var(--minimal-height)'};
@@ -86,6 +86,10 @@ export const Text = styled.p<{
         font-weight: 500;
         margin-right: 15px;
     }
+
+    ${({ margin }) => margin && `
+        margin: ${margin};
+    `};
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         --minimal-height: 35%;
