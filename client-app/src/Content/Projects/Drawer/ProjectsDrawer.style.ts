@@ -2,6 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { DrawerEnterTime } from 'Utils/constants';
 import { Projects } from '../data';
 import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { CategoryDelimiterSize } from '../constants';
 
 export const Wrapper = styled.div<{
     open: boolean;
@@ -68,7 +69,7 @@ export const Category = styled.span<{
 
 const delimiterKeyframes = keyframes`
     from { height: 0; }
-    to { height: ${Projects.length * 34}px; }
+    to { height: ${Projects.length * 34 + CategoryDelimiterSize}px; }
 `;
 
 export const ListDelimiter = styled.div<{

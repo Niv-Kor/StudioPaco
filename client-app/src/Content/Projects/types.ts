@@ -4,6 +4,7 @@ export interface IProjectCategory {
     stripIndex: number;
     stripLeftMargin?: number;
     keyMargin?: string;
+    bodyText?: string;
     projects: Array<IProjectData>;
 }
 

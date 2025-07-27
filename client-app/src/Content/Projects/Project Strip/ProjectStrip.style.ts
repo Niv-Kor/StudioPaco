@@ -66,19 +66,22 @@ export const ContentContainer = styled.div`
     `)}
 `;
 
-export const Text = styled.p<{
+const Text = styled.p`
+    font-family: 'Futura', sans-serif;
+    margin: 0;
+    width: 80%;
+    font-size: 20px;
+    transition: .5s;
+`;
+
+export const TitleText = styled(Text)<{
     displayed: boolean;
     fullHeight: boolean;
 }>`
     --minimal-height: 45%;
 
-    font-family: 'Futura', sans-serif;
-    margin: 0;
-    width: 80%;
     height: ${({ fullHeight }) => fullHeight ? 'auto' : 'var(--minimal-height)'};
     opacity: ${({ displayed }) => displayed ? 1 : 0};
-    font-size: 20px;
-    transition: .5s;
 
     & .category-title {
         font-size: 24px;
@@ -90,6 +93,10 @@ export const Text = styled.p<{
         --minimal-height: 35%;
         width: 100%;
     `)}
+`;
+
+export const BodyText = styled(Text)`
+    margin-top: 50px;
 `;
 
 export const ContentElementContainer = styled.div`

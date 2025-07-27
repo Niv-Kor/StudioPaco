@@ -9,7 +9,8 @@ import {
     Container,
     ContentWrapper,
     ContentContainer,
-    Text,
+    TitleText,
+    BodyText,
     ContentElementContainer,
     BackButtonIcon
 } from './ProjectStrip.style';
@@ -117,13 +118,18 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                         />
                     )}
                     <ContentContainer>
-                        <Text
+                        <TitleText
                             displayed={isTextDisplayed}
                             fullHeight={!category.projects.length}
                         >
                             <span className={'category-title'}>{category.key}</span>
                             <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
-                        </Text>
+                        </TitleText>
+                        {!!category.bodyText && (
+                            <BodyText>
+                                {category.bodyText}
+                            </BodyText>
+                        )}
                         <ContentElementContainer>
                             <ProjectsTable
                                 category={category}

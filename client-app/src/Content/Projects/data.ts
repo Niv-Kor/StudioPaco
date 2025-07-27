@@ -5,7 +5,6 @@ import Commercial from './Pages/Commercial';
 import InteriorDesign from './Pages/Interior Design';
 import Conceptual from './Pages/Conceptual';
 import ProductDesign from './Pages/Product Design';
-import Feasibility from './Pages/Feasibility';
 import Licensing from './Pages/Licensing';
 
 export const Projects: Array<IProjectCategory> = [
@@ -15,7 +14,6 @@ export const Projects: Array<IProjectCategory> = [
     InteriorDesign,
     Conceptual,
     ProductDesign,
-    Feasibility,
     Licensing
 ];
 
