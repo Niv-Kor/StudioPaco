@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { BottomDetailsPanelWidth } from './consts';
 
 export const Container = styled.div<{
     open: boolean;
@@ -62,7 +63,9 @@ export const HeaderImage = styled.img<{
     `)}
 `;
 
-export const ImagesWrapper = styled.div`
+export const ImagesWrapper = styled.div<{
+    rightOffset: number;
+}>`
     display: flex;
     flex-direction: column;
     align-content: flex-end;
@@ -72,7 +75,7 @@ export const ImagesWrapper = styled.div`
     transition: .7s;
 
     & > img {
-        width: 60%;
+        max-width: calc(100vw - ${({ rightOffset }) => rightOffset}px - ${BottomDetailsPanelWidth}px);
     }
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`

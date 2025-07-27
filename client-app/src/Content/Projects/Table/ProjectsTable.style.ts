@@ -7,11 +7,10 @@ export const Layout = styled.div`
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(auto-fit, var(--thumbnail-width));
+    grid-template-columns: repeat(auto-fit, minmax(var(--thumbnail-width), 1fr));
     grid-template-rows: 1fr;
     grid-auto-rows: 0;
     gap: 25px;
-    height: 100%;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         --thumbnail-width: 100px;

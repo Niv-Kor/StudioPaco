@@ -45,6 +45,7 @@ const ProjectInfo: FC<IProjectInfo> = ({
     const [scrollPercent, setScrollPercent] = useState<number>(1);
     const [overscroll, setOverscroll] = useState<boolean>(false);
     const [scrollTop, setScrollTop] = useState<number>(0);
+    const rightOffset = offset - StripWidth;
 
     useBackButton("Project Info", onClose, open);
     useEffect(() => {
@@ -79,7 +80,7 @@ const ProjectInfo: FC<IProjectInfo> = ({
             >
                 <Scrollbar
                     width={StripWidth}
-                    x={offset - StripWidth}
+                    x={rightOffset}
                     y={scrollTop}
                 />
                 {!isMobile() && (
@@ -119,8 +120,8 @@ const ProjectInfo: FC<IProjectInfo> = ({
                         <ProjectInfoRow>at {entity}</ProjectInfoRow>
                     </ProjectInfoSection>
                 </InfoParagraph>
-                <ImagesWrapper>
-                    {[...images]?.splice(0, 1).map(image => (
+                <ImagesWrapper rightOffset={rightOffset}>
+                    {[...images]?.splice(1).map(image => (
                         <img
                             key={image}
                             src={image}
