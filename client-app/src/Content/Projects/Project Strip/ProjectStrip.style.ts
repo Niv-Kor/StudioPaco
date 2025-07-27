@@ -7,6 +7,7 @@ export const Strip = styled.div<IProjectStrip & IProjectCategory>`
     height: 100%;
     width: ${({ width }) => width}px;
     margin-left: ${({ leftMargin }) => leftMargin ?? 0}px;
+    margin-top: ${({ topMargin }) => topMargin ?? 0}px;
     background-color: ${({ hovered }) => hovered ? AccentColor : NaturalColor};
     translate: 0 -100%;
     transition:

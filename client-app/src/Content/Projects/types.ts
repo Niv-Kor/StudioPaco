@@ -3,6 +3,7 @@ export interface IProjectCategory {
     text: string;
     stripIndex: number;
     leftMargin?: number;
+    topMargin?: number;
     projects: Array<IProjectData>;
 }
 
