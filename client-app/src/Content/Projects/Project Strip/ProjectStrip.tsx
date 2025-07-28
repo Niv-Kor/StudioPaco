@@ -2,8 +2,12 @@ import { FC, useRef, useMemo, useState, useEffect } from 'react';
 import { IProjectCategory, IProjectData } from '../types';
 import ProjectInfo from '../Project Info/ProjectInfo';
 import ProjectsTable from '../Table/ProjectsTable';
+import useBackButton from "../../../shared/hooks/useBackButton";
 import { ACTIVE_ACCENT_PAGE_CLASS, isMobile } from 'Utils/Theme';
 import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
+import { StripWidth } from "../constants";
+import Scrollbar from "Components/Scrollbar/Scrollbar";
+import useScrollProps from "Components/Scrollbar/useScrollProps";
 import {
     Strip,
     Container,
@@ -14,7 +18,6 @@ import {
     ContentElementContainer,
     BackButtonIcon
 } from './ProjectStrip.style';
-import useBackButton from "../../../shared/hooks/useBackButton";
 
 export interface IProjectStrip {
     category: IProjectCategory;
@@ -39,6 +42,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
         onProjectInspection,
         onProjectDismissal
     } = props;
+    const containerRef = useRef<HTMLDivElement>(null);
     const [inspectedProject, setInspectedProject] = useState<IProjectData | undefined>();
     const [isOpen, setOpen] = useState<boolean>(false);
     const [isTextDisplayed, setTextDisplayed] = useState<boolean>(false);
@@ -50,10 +54,16 @@ const ProjectStrip: FC<IProjectStrip> = props => {
 
         const rect = stripRef.current.getBoundingClientRect();
         return window.innerWidth - rect.right;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stripRef, stripRef?.current]);
 
-    useBackButton("Project Category", onCategoryClose, isOpen);
+    const { scrollbarProps } = useScrollProps(
+        containerRef,
+        StripWidth,
+        rightOffset,
+        isOpen && !inspectedProject
+    );
+    
+    useBackButton("Project Category", onCategoryClose, isOpen && !inspectedProject);
     useEffect(() => {
         if (selected) {
             selectionTimeout.current = setTimeout(() => {
@@ -70,7 +80,6 @@ const ProjectStrip: FC<IProjectStrip> = props => {
             setOpen(false);
             setInspectedProject(undefined);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selected]);
 
     useEffect(() => {
@@ -88,13 +97,11 @@ const ProjectStrip: FC<IProjectStrip> = props => {
 
             setTextDisplayed(false);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
     useEffect(() => {
         if (!!inspectedProject) onProjectInspection?.();
         else onProjectDismissal?.();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inspectedProject]);
 
     return (
@@ -109,7 +116,10 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 open={isOpen && !inspectedProject}
                 rightOffset={rightOffset + width}
             >
-                <ContentWrapper offset={rightOffset + width}>
+                <ContentWrapper
+                    ref={containerRef}
+                    offset={rightOffset + width}
+                >
                     {isMobile() && (
                         <BackButtonIcon
                             src={BackButton}
@@ -118,6 +128,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                         />
                     )}
                     <ContentContainer>
+                        <Scrollbar {...scrollbarProps} />
                         <TitleText
                             displayed={isTextDisplayed}
                             fullHeight={!category.projects.length}

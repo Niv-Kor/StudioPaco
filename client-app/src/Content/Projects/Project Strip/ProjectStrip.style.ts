@@ -25,7 +25,9 @@ export const Container = styled.div<{
 }>`
     position: fixed;
     right: ${({ rightOffset }) => rightOffset}px;
-    width: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    width: 100%;
     height: 100%;
     z-index: 10;
     opacity: 0;
@@ -34,7 +36,7 @@ export const Container = styled.div<{
     ${({ open }) => open && `
         position: fixed;
         background-color: ${AccentColor};
-        width: 100%;
+        transform: scaleX(1);
         opacity: 1;
         transition: .8s;
     `};
@@ -46,10 +48,17 @@ export const ContentWrapper = styled.div<{
     --padding: ${({ offset }) => offset + 280}px;
 
     position: absolute;
-    top: 114px;
-    bottom: 75px;
+    height: 100%;
     left: var(--padding);
     width: calc(100% - var(--padding));
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    pointer-events: all;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     ${({ offset }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         left: ${offset + 60}px;
@@ -58,8 +67,12 @@ export const ContentWrapper = styled.div<{
 `;
 
 export const ContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-    height: 100%;
+    gap: 100px;
+    padding: 115px 0;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         overflow-y: auto;
@@ -80,7 +93,7 @@ export const TitleText = styled(Text)<{
 }>`
     --minimal-height: 45%;
 
-    height: ${({ fullHeight }) => fullHeight ? 'auto' : 'var(--minimal-height)'};
+    height: auto;
     opacity: ${({ displayed }) => displayed ? 1 : 0};
 
     & .category-title {
@@ -100,10 +113,8 @@ export const BodyText = styled(Text)`
 `;
 
 export const ContentElementContainer = styled.div`
-    position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50%;
     z-index: 44100;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`

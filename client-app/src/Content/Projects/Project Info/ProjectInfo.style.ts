@@ -95,6 +95,7 @@ export const InfoParagraph = styled.div<{
     display: flex;
     flex-direction: column;
     position: fixed;
+    max-width: 30%;
     top: 30%;
     left: ${({ overscroll }) => overscroll ? `calc(var(--content-padding) * 2)` : `var(--max-offset)`};
     font-family: 'Futura';
@@ -126,7 +127,7 @@ export const BackButtonWrapper = styled.div<{
     left: calc(var(--header-image-size) + var(--padding));
     cursor: pointer;
     gap: 10px;
-    font-family: 'Futura';
+    font-family: 'Futura', sans-serif;
     font-size: 1.5rem;
     z-index: 4000;
     transition: .7s;
@@ -169,12 +170,6 @@ export const BackButtonLabel = styled.span`
     transition: .2s;
 `;
 
-export const ProjectInfoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-`;
-
 export const ProjectInfoSection = styled.div`
     display: flex;
     flex-direction: column;
@@ -183,18 +178,4 @@ export const ProjectInfoSection = styled.div`
 
 export const ProjectInfoRow = styled.p`
     margin: 0;
-`;
-
-export const Scrollbar = styled.div<{
-    width: number;
-    x: number;
-    y: number;
-}>`
-    position: fixed;
-    width: ${({ width }) => width}px;
-    height: ${({ width }) => width}px;
-    background-color: black;
-    opacity: .2;
-    right: ${({ x }) => x}px;
-    top: ${({ y }) => y}px;
 `;

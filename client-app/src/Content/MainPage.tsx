@@ -34,7 +34,14 @@ const MainPage: FC = () => {
             onMainDrawerChange={setOpenMainDrawer}
             forceCloseDrawers={forceCloseDrawers}
         >
-            <ParticlesBackground />
+            <div
+                id="scrollbar-root"
+                style={{
+                    top: 0,
+                    left: 0
+                }}
+            />
+            <ParticlesBackground/>
             <SmallLogo
                 displayed={openMainDrawer !== MainDrawer.None}
                 src={SmallLogoImg}
@@ -57,9 +64,9 @@ const MainPage: FC = () => {
                 />
             </SmallTextLogoContainer>
             <LogoWrapper displayed={openMainDrawer === MainDrawer.None}>
-                <LogoBackground src={LogoBackgroundImg} alt={''} />
-                <LogoForeground src={LogoForegroundImg} alt={''} />
-                <LogoText src={LogoTextImg} alt={''} />
+                <LogoBackground src={LogoBackgroundImg} alt={''}/>
+                <LogoForeground src={LogoForegroundImg} alt={''}/>
+                <LogoText src={LogoTextImg} alt={''}/>
                 <LogoSubtextWrapper>
                     <LogoSubtextCursor
                         displayed={openMainDrawer === MainDrawer.None}
@@ -68,7 +75,7 @@ const MainPage: FC = () => {
                         moveDuration={2.5}
                         top={2}
                     />
-                    <LogoSubtextContainer displayed={openMainDrawer === MainDrawer.None} >
+                    <LogoSubtextContainer displayed={openMainDrawer === MainDrawer.None}>
                         <LogoSubtext>design</LogoSubtext>
                         <LogoSubtext>.</LogoSubtext>
                         <LogoSubtext>architecture</LogoSubtext>

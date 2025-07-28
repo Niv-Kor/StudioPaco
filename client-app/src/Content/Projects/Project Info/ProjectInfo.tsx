@@ -1,7 +1,9 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useMemo, useRef } from 'react';
 import { IProjectData } from '../types';
 import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
 import useBackButton from "shared/hooks/useBackButton";
+import Scrollbar from "Components/Scrollbar/Scrollbar";
+import useScrollProps from "Components/Scrollbar/useScrollProps";
 import { StripWidth } from '../constants';
 import { isMobile } from 'Utils/Theme';
 import {
@@ -15,7 +17,6 @@ import {
     InfoParagraph,
     ProjectInfoSection,
     ProjectInfoRow,
-    Scrollbar
 } from './ProjectInfo.style';
 
 interface IProjectInfo {
@@ -42,33 +43,20 @@ const ProjectInfo: FC<IProjectInfo> = ({
         images = []
     } = data ?? {};
     const containerRef = useRef<HTMLDivElement>(null);
-    const [scrollPercent, setScrollPercent] = useState<number>(1);
-    const [overscroll, setOverscroll] = useState<boolean>(false);
-    const [scrollTop, setScrollTop] = useState<number>(0);
-    const rightOffset = offset - StripWidth;
-
+    const rightOffset = offset - StripWidth + 1;
+    const {
+        offsetHeight,
+        scrollHeight,
+        scrollPercent,
+        scrollbarProps
+    } = useScrollProps(containerRef, StripWidth, rightOffset, open);
+    
+    const overscroll = useMemo<boolean>(() => {
+        const scrollFromTop = (1 - scrollPercent) * (scrollHeight - offsetHeight);
+        return scrollFromTop > offsetHeight * .6
+    }, [offsetHeight, scrollPercent]);
+    
     useBackButton("Project Info", onClose, open);
-    useEffect(() => {
-        if (!containerRef?.current) return;
-
-        const container = containerRef?.current;
-        const onScroll = (ev: Event) => {
-            const target = ev.target as HTMLInputElement;
-            const { scrollTop, offsetHeight, scrollHeight } = target;
-            const percent = 1 - scrollTop / (scrollHeight - offsetHeight);
-            const pageHeight = document.body.clientHeight;
-            
-            setScrollTop((1 - percent) * (pageHeight - StripWidth));
-            setOverscroll(scrollTop > offsetHeight * .6);
-            setScrollPercent(percent);
-        }
-
-        container.addEventListener("scroll", onScroll);
-
-        return () => {
-            container.removeEventListener("scroll", onScroll);
-        }
-    }, [containerRef]);
 
     return (
         <>
@@ -78,11 +66,7 @@ const ProjectInfo: FC<IProjectInfo> = ({
                 offset={offset}
                 open={open}
             >
-                <Scrollbar
-                    width={StripWidth}
-                    x={rightOffset}
-                    y={scrollTop}
-                />
+                <Scrollbar {...scrollbarProps} />
                 {!isMobile() && (
                     <BackButtonWrapper
                         onClick={onClose}

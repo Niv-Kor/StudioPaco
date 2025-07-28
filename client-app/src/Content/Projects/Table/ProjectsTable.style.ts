@@ -3,14 +3,15 @@ import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Layout = styled.div`
     --thumbnail-width: 140px;
+    --max-row-items: 6;
+    --gap: 25px;
 
     display: grid;
-    justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(var(--thumbnail-width), 1fr));
+    grid-template-columns: repeat(auto-fill, var(--thumbnail-width));
+    max-width: calc(var(--max-row-items) * var(--thumbnail-width) + (var(--max-row-items) - 1) * var(--gap));
     grid-template-rows: 1fr;
-    grid-auto-rows: 0;
-    gap: 25px;
+    gap: var(--gap);
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         --thumbnail-width: 100px;
@@ -37,7 +38,7 @@ export const Item = styled.div`
 `;
 
 export const Title = styled.p`
-    font-family: 'Futura';
+    font-family: 'Futura', sans-serif;
     margin-bottom: 5px;
     font-size: 18px;
     opacity: var(--title-opacity);
