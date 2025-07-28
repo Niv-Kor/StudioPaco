@@ -8,11 +8,13 @@ import D206 from './Projects/D206';
 import HS4 from './Projects/HS4';
 import Y28 from './Projects/Y28';
 import P10 from './Projects/P10';
+import W27 from './Projects/W27';
 import A26 from './Projects/A26';
+import ST1 from './Projects/ST1';
 
 const data: IProjectCategory = {
     key: 'residential',
-    text: 'Domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
+    text: 'domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
     stripIndex: 6,
     stripLeftMargin: 2,
     projects: [
@@ -25,7 +27,9 @@ const data: IProjectCategory = {
         HS4,
         Y28,
         P10,
-        A26
+        W27,
+        A26,
+        ST1
     ]
 };
 
