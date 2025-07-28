@@ -114,7 +114,6 @@ const AboutDrawer: FC<IDrawer> = ({
             }
         }
         else initialized.current++;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enterState]);
 
     return (
