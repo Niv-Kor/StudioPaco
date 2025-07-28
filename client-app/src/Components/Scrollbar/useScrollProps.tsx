@@ -51,6 +51,13 @@ const useScrollProps = (
         };
     }, [containerRef, isEnabled]);
 
+    useEffect(() => {
+        containerRef?.current?.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, [isEnabled]);
+
     return {
         scrollPercent,
         scrollTop,
