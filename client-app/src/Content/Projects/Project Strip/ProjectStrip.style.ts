@@ -71,7 +71,7 @@ export const ContentContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    gap: 100px;
+    gap: 50px;
     padding: 115px 0;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
