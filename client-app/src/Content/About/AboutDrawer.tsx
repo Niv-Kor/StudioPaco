@@ -1,6 +1,7 @@
 import { FC, useState, useEffect, useRef } from 'react';
 import { IDrawer } from 'Utils/types';
 import { isMobile } from 'Utils/Theme';
+import useBackButton from "../../shared/hooks/useBackButton";
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
 import {
     Wrapper,
@@ -13,7 +14,6 @@ import {
     CenterParagraph,
     ProfileImage,
 } from './AboutDrawer.style';
-import useBackButton from "../../shared/hooks/useBackButton";
 
 const AboutDrawer: FC<IDrawer> = ({
     open,
@@ -29,20 +29,7 @@ const AboutDrawer: FC<IDrawer> = ({
     const [textCloseState, setTextCloseState] = useState<boolean>(false);
     const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
     const [textScrollOffset, setTextScrollOffset] = useState<number>(0);
-
-    useBackButton("About", onClose, open);
-    useEffect(() => {
-        if (mobile) {
-            const container = wrapperContainer?.current;
-            const onScroll = (): void => setTextScrollOffset(container?.scrollTop || 0);
-            container &&  container.addEventListener('scroll', onScroll)
-
-            return () => {
-                container?.removeEventListener('scroll', onScroll);
-            }
-        }
-    }, [wrapperContainer, mobile]);
-
+    const [profileImageTimeout, setProfileImageTimeout] = useState<NodeJS.Timeout>();
     const textContent = (
         <Content
             displayed={enterState}
@@ -67,6 +54,20 @@ const AboutDrawer: FC<IDrawer> = ({
             </Paragraph>
         </Content>
     );
+    
+    useBackButton("About", onClose, open);
+    useEffect(() => {
+        if (mobile) {
+            const container = wrapperContainer?.current;
+            const onScroll = (): void => setTextScrollOffset(container?.scrollTop || 0);
+            container &&  container.addEventListener('scroll', onScroll)
+
+            return () => {
+                container?.removeEventListener('scroll', onScroll);
+            }
+        }
+    }, [wrapperContainer, mobile]);
+
 
     useEffect(() => {
         const adjustWidth = () => setScreenSize({
@@ -83,15 +84,22 @@ const AboutDrawer: FC<IDrawer> = ({
     }, []);
 
     useEffect(() => {
-        if (open && openDelay > 0) setTimeout(() => setEnterState(true), openDelay * 1000);
+        if (open && openDelay > 0) setTimeout(() => setEnterState(open), openDelay * 1000);
         else setEnterState(open);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
-
+    
     useEffect(() => {
-        if (enterState) setTimeout(() => setImageOpen(true), 250);
-        else setImageOpen(enterState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (enterState) {
+            setProfileImageTimeout(
+                setTimeout(() => {
+                    setImageOpen(enterState)
+                }, 250)
+            );
+        }
+        else {
+            clearTimeout(profileImageTimeout);
+            setImageOpen(enterState);
+        }
     }, [enterState]);
 
     useEffect(() => {

@@ -1,0 +1,1 @@
+export const BottomDetailsPanelWidth = 730;
