@@ -2,6 +2,7 @@ export interface IProjectCategory {
     key: string;
     text: string;
     stripIndex: number;
+    icon?: string;
     stripLeftMargin?: number;
     keyMargin?: string;
     bodyText?: string;

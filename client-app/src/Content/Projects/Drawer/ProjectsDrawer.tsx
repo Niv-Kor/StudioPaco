@@ -12,7 +12,8 @@ import {
     CategoriesList,
     Category,
     StripsContainer,
-    ListDelimiter
+    ListDelimiter,
+    CategoryIcon
 } from './ProjectsDrawer.style';
 
 const ProjectsDrawer: FC<IDrawer> = ({
@@ -77,6 +78,12 @@ const ProjectsDrawer: FC<IDrawer> = ({
                                 setSelectedCategory(nextState);
                             }}
                         >
+                            {!!cat.icon && (
+                                <CategoryIcon
+                                    src={cat.icon}
+                                    alt=""
+                                />
+                            )}
                             {cat.key}
                         </Category>
                     ))}

@@ -82,9 +82,15 @@ export const ImagesWrapper = styled.div<{
         gap: 10px;
 
         & > img {
+            max-width: 100%;
             width: 100%;
         }
     `)}
+`;
+
+export const ContentContainer = styled.div`
+    position: relative;
+    width: 100%;
 `;
 
 export const InfoParagraph = styled.div<{
@@ -141,16 +147,12 @@ export const BackButtonWrapper = styled.div<{
         --label-offset: 10px;
     }
 
-    @media (max-width: 1400px) {
-        font-size: 1rem;
-        left: 32%;
-    }
-
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: absolute;
-        right: 10px;;
         top: 0;
+        right: 20px;
         left: unset;
+        font-size: 1rem;
         pointer-events: all;
     `)}
 `;
