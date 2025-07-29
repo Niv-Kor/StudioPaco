@@ -68,7 +68,6 @@ const AboutDrawer: FC<IDrawer> = ({
         }
     }, [wrapperContainer, mobile]);
 
-
     useEffect(() => {
         const adjustWidth = () => setScreenSize({
             width: document.body.clientWidth,

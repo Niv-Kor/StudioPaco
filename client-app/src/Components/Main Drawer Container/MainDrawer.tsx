@@ -26,7 +26,6 @@ const MainDrawerContainer: FC<IMainDrawerContainer> = ({
 
     useEffect(() => {
         if (drawerOpen) onDrawerChange?.(drawerOpen);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [drawerOpen])
 
     useEffect(() => {
@@ -43,7 +42,10 @@ const MainDrawerContainer: FC<IMainDrawerContainer> = ({
             <Drawer
                 open={drawerOpen}
                 openDelay={openDelay}
-                onClose={() => setDrawerOpen(false)}
+                onClose={() => {
+                    onDrawerChange(false);
+                    setDrawerOpen(false);
+                }}
             />
         </>
     );
