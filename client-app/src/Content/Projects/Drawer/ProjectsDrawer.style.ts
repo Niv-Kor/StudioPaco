@@ -47,11 +47,14 @@ export const Category = styled.span<{
     selected: boolean;
     margin?: string;
 }>`
+    display: flex;
+    align-items: center;
     font-family: 'Futura', sans-serif;
     font-size: 1.5rem;
     cursor: pointer;
+    gap: 5px;
     z-index: 100;
-    transition: transform ${DrawerEnterTime}s;
+    transition: transform ${DrawerEnterTime}s, text-shadow .2s;
 
     ${({ margin }) => margin && `
         margin: ${margin};
@@ -59,7 +62,13 @@ export const Category = styled.span<{
     
     ${({ selected }) => selected ? `
         transform: translateX(10px);
-        font-weight: 500;
+        text-shadow:
+            0.3px 0 rgba(0, 0, 0, 0.2),
+           -0.3px 0 rgba(0, 0, 0, 0.2),
+            0 0.3px rgba(0, 0, 0, 0.2),
+            0 -0.3px rgba(0, 0, 0, 0.2),
+            0.3px 0.3px rgba(0, 0, 0, 0.15),
+           -0.3px -0.3px rgba(0, 0, 0, 0.15);
     ` : `
         &:hover {
             transform: translateX(10px);
@@ -106,4 +115,8 @@ export const StripsContainer = styled.div<{
     width: ${({ width }) => width}px;
     height: 100%;
     transition: ${DrawerEnterTime}s;
+`;
+
+export const CategoryIcon = styled.img`
+    width: 24px;
 `;

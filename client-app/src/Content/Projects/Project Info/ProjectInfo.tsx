@@ -17,6 +17,7 @@ import {
     InfoParagraph,
     ProjectInfoSection,
     ProjectInfoRow,
+    ContentContainer,
 } from './ProjectInfo.style';
 
 interface IProjectInfo {
@@ -82,37 +83,39 @@ const ProjectInfo: FC<IProjectInfo> = ({
                     scrollPercent={scrollPercent}
                     overscroll={overscroll}
                 />
-                <InfoParagraph overscroll={overscroll}>
-                    <ProjectInfoSection>
-                        <ProjectInfoRow>.{name}</ProjectInfoRow>
-                        {isMobile() && (
-                            <BackButtonWrapper
-                                onClick={onClose}
-                                overscroll={false}
-                            >
-                                <BackButtonLabel>{categoryName}</BackButtonLabel>
-                                <BackButtonIcon src={BackButton} alt={"back"} />
-                            </BackButtonWrapper>
-                        )}
-                    </ProjectInfoSection>
-                    <ProjectInfoSection>
-                        <ProjectInfoRow>Location: {location}</ProjectInfoRow>
-                        <ProjectInfoRow>Programma: {programma}</ProjectInfoRow>
-                    </ProjectInfoSection>
-                    <ProjectInfoSection>
-                        <ProjectInfoRow>{year}</ProjectInfoRow>
-                        <ProjectInfoRow>at {entity}</ProjectInfoRow>
-                    </ProjectInfoSection>
-                </InfoParagraph>
-                <ImagesWrapper rightOffset={rightOffset}>
-                    {[...images]?.splice(1).map(image => (
-                        <img
-                            key={image}
-                            src={image}
-                            alt={""}
-                        />
-                    ))}
-                </ImagesWrapper>
+                <ContentContainer>
+                    {isMobile() && (
+                        <BackButtonWrapper
+                            onClick={onClose}
+                            overscroll={false}
+                        >
+                            <BackButtonLabel>{categoryName}</BackButtonLabel>
+                            <BackButtonIcon src={BackButton} alt={"back"} />
+                        </BackButtonWrapper>
+                    )}
+                    <InfoParagraph overscroll={overscroll}>
+                        <ProjectInfoSection>
+                            <ProjectInfoRow>.{name}</ProjectInfoRow>
+                        </ProjectInfoSection>
+                        <ProjectInfoSection>
+                            <ProjectInfoRow>Location: {location}</ProjectInfoRow>
+                            <ProjectInfoRow>Programma: {programma}</ProjectInfoRow>
+                        </ProjectInfoSection>
+                        <ProjectInfoSection>
+                            <ProjectInfoRow>{year}</ProjectInfoRow>
+                            <ProjectInfoRow>at {entity}</ProjectInfoRow>
+                        </ProjectInfoSection>
+                    </InfoParagraph>
+                    <ImagesWrapper rightOffset={rightOffset}>
+                        {[...images]?.splice(1).map(image => (
+                            <img
+                                key={image}
+                                src={image}
+                                alt={""}
+                            />
+                        ))}
+                    </ImagesWrapper>
+                </ContentContainer>
             </Container>
         </>
     );

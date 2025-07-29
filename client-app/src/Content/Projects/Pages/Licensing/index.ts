@@ -7,7 +7,7 @@ const data: IProjectCategory = {
     bodyText: '',
     stripIndex: 5,
     keyMargin: `${CategoryDelimiterSize}px 0 0 0`,
-    projects: []
+    projects: [],
 };
 
 export default data;
