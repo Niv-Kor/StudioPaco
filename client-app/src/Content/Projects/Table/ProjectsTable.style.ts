@@ -14,9 +14,12 @@ export const Layout = styled.div`
     gap: var(--gap);
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        --thumbnail-width: 100px;
+        --max-row-items: 1;
+        --thumbnail-width: 100%;
         align-content: space-evenly;
         grid-auto-rows: auto;
+        overflow: hidden;
+        gap: 5px;
     `)}
 `;
 
@@ -34,6 +37,7 @@ export const Item = styled.div`
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         --title-opacity: 1;
+        align-items: flex-end;
     `)}
 `;
 
@@ -43,6 +47,10 @@ export const Title = styled.p`
     font-size: 18px;
     opacity: var(--title-opacity);
     transition: .2s;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        margin-right: 10px;
+    `)}
 `;
 
 export const ThumbnailWrapper = styled.div`
@@ -68,9 +76,10 @@ export const ThumbnailCover = styled.div`
 `;
 
 export const Thumbnail = styled.img`
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        border-radius: 5px;
+    `)}
 `;

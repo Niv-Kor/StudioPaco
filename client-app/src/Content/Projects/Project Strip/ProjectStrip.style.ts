@@ -40,6 +40,11 @@ export const Container = styled.div<{
         opacity: 1;
         transition: .8s;
     `};
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        display: flex;
+        flex-direction: column;
+    `)}
 `;
 
 export const ContentWrapper = styled.div<{
@@ -60,9 +65,13 @@ export const ContentWrapper = styled.div<{
         display: none;
     }
 
-    ${({ offset }) => mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        left: ${offset + 60}px;
-        width: calc(100% - 100px);
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        --padding: 20px;
+        position: static;
+        width: 100%;
+        margin-top: 30px;
+        padding-left: 20px;
+        box-sizing: border-box;
     `)}
 `;
 
@@ -76,6 +85,7 @@ export const ContentContainer = styled.div`
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         overflow-y: auto;
+        padding: 0;
     `)}
 `;
 
@@ -87,12 +97,19 @@ const Text = styled.p`
     transition: .5s;
 `;
 
+export const Title = styled.span`
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        display: flex;
+        gap: 10px;
+        position: fixed;
+        top: 120px;
+    `)}
+`;
+
 export const TitleText = styled(Text)<{
     displayed: boolean;
     fullHeight: boolean;
 }>`
-    --minimal-height: 45%;
-
     height: auto;
     opacity: ${({ displayed }) => displayed ? 1 : 0};
 
@@ -103,7 +120,9 @@ export const TitleText = styled(Text)<{
     }
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        --minimal-height: 35%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         width: 100%;
     `)}
 `;
@@ -123,8 +142,15 @@ export const ContentElementContainer = styled.div`
 `;
 
 export const BackButtonIcon = styled.img`
-    position: absolute;
-    top: 4px;
-    left: -40px;
-    width: 24px;
+    width: 16px;
+`;
+
+export const MobileMask = styled.div<{
+    open: boolean;
+    height: number;
+}>`
+    width: 100%;
+    height: ${({ height }) => height}px;
+    z-index: 15;
+    background-color: ${AccentColor};
 `;

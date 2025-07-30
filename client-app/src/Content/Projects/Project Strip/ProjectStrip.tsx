@@ -16,7 +16,9 @@ import {
     TitleText,
     BodyText,
     ContentElementContainer,
-    BackButtonIcon
+    BackButtonIcon,
+    Title,
+    MobileMask
 } from './ProjectStrip.style';
 
 export interface IProjectStrip {
@@ -116,24 +118,31 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 open={isOpen && !inspectedProject}
                 rightOffset={rightOffset + width}
             >
+                {isMobile() && (
+                    <MobileMask
+                        open={isOpen && !inspectedProject}
+                        height={170}
+                    />
+                )}
                 <ContentWrapper
                     ref={containerRef}
                     offset={rightOffset + width}
                 >
-                    {isMobile() && (
-                        <BackButtonIcon
-                            src={BackButton}
-                            alt={"back"}
-                            onClick={onCategoryClose}
-                        />
-                    )}
                     <ContentContainer>
                         <Scrollbar {...scrollbarProps} />
                         <TitleText
                             displayed={isTextDisplayed}
                             fullHeight={!category.projects.length}
                         >
-                            <span className={'category-title'}>{category.key}</span>
+                            <Title onClick={() => isMobile() && onCategoryClose?.()}>
+                                {isMobile() && (
+                                    <BackButtonIcon
+                                        src={BackButton}
+                                        alt={"back"}
+                                    />
+                                )}
+                                <span className={'category-title'}>{category.key}</span>
+                            </Title>
                             <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
                         </TitleText>
                         {!!category.bodyText && (
@@ -149,6 +158,12 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                         </ContentElementContainer>
                     </ContentContainer>
                 </ContentWrapper>
+                {isMobile() && (
+                    <MobileMask
+                        open={isOpen && !inspectedProject}
+                        height={70}
+                    />
+                )}
             </Container>
             <ProjectInfo
                 open={!!inspectedProject}

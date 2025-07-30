@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IScrollbar } from "./types";
-import { AccentColor } from "../../Utils/Theme";
+import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from "Utils/Theme";
 
 export const Bar = styled.div<IScrollbar>`
     position: fixed;
@@ -10,4 +10,9 @@ export const Bar = styled.div<IScrollbar>`
     top: ${({ y }) => y}px;
     background-color: color-mix(in srgb, ${AccentColor} 85%, black);;
     transition: height .5s ease;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        width: 10px;
+        right: 0;
+    `)}
 `;
