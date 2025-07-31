@@ -1,30 +1,36 @@
-import { FC } from 'react';
-import useBackButton from "../../../shared/hooks/useBackButton";
+import { forwardRef } from 'react';
+import useBackButton from "shared/hooks/useBackButton";
+import ContactForm from "../ContactForm/ContactForm";
 import {
     Container,
     List,
     Delimiter,
     ListRowHebrew,
     ListRowEnglish,
-    MobileBackground
+    MobileBackground,
+    HeaderBackground
 } from './ContactDrawer.style';
-import ContactForm from "../ContactForm/ContactForm";
+import { OUTSIDE_CLICKABLE } from "../../../shared/hooks/useOutsideClick";
 
 interface IContactDrawer {
     open: boolean;
     onClose: () => void;
 }
 
-const ContactDrawer: FC<IContactDrawer> = ({
+const ContactDrawer = forwardRef<HTMLDivElement, IContactDrawer>(({
     open,
     onClose
-}) => {
+}, ref) => {
     useBackButton("Contact", onClose, open);
     
     return (
         <>
             <MobileBackground displayed={open} />
-            <Container open={open}>
+            <Container
+                ref={ref}
+                open={open}
+            >
+                <HeaderBackground className={OUTSIDE_CLICKABLE} />
                 <List>
                     <ListRowHebrew letterSpacing={2.2}>.אדריכל . עמית קורח</ListRowHebrew>
                     <ListRowEnglish letterSpacing={3.6}>arch . Amit Korach</ListRowEnglish>
@@ -37,6 +43,6 @@ const ContactDrawer: FC<IContactDrawer> = ({
             </Container>
         </>
     );
-}
+});
 
 export default ContactDrawer;

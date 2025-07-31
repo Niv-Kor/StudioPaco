@@ -7,7 +7,7 @@ import useOutsideClick from 'shared/hooks/useOutsideClick';
 const FollowButton: FC = () => {
     const drawerRef = useRef<HTMLDivElement>(null);
     const [drawerState, setDrawerState] = useState<SocialDrawerState>(SocialDrawerState.Closed);
-    useOutsideClick(drawerRef, () => setDrawerState(SocialDrawerState.Closed));
+    useOutsideClick([drawerRef], () => setDrawerState(SocialDrawerState.Closed));
 
     const onHover = (): void => {
         if (drawerState === SocialDrawerState.Closed)

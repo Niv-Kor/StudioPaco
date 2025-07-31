@@ -1,33 +1,52 @@
 import styled, { keyframes, css } from 'styled-components';
-import { mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 
 export const Container = styled.div<{
     open: boolean;
 }>`
     position: absolute;
-    top: -250px;
-    left: 20px;
+    bottom: 45px;
+    left: 15px;
     opacity: 0;
     background-color: #ffffffee;
-    transform: translateY(0);
+    transform: translateY(50%);
     transition: all .2s, opacity .1s, transform .2s;
 
     ${({ open }) => open ? `
        opacity: 1;
-       transform: translateY(-50%);
+       transform: translateY(0);
        pointer-events: all;
     ` : `
        pointer-events: none;
     `}
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-       z-index: 100;
+        position: fixed;
+        top: unset;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 0 15px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        z-index: 100;
     `)}
+`;
+
+export const HeaderBackground = styled.div`
+    width: 100%;
+    height: 100vh;
+    background-color: ${AccentColor};
+    margin-bottom: 15px;
 `;
 
 export const List = styled.div`
     display: flex;
     flex-direction: column;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        align-items: center;
+    `)}
 `;
 
 export const ListRow = styled.span<{
@@ -52,7 +71,7 @@ export const ListRowEnglish = styled(ListRow)`
 `;
 
 const FadeFromLeft = keyframes`
-    from { width: 0% }
+    from { width: 0 }
     to { width: 100% }
 `;
 

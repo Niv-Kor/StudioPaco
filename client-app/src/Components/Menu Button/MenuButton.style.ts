@@ -9,7 +9,7 @@ export const Button = styled.button<{
     height: 40px;
     outline: none;
     border:  none;
-    font-family: 'Futura';
+    font-family: 'Futura', sans-serif;
     font-weight: 400;
     cursor: pointer;
     font-size: 1.5rem;

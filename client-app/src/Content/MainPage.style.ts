@@ -83,7 +83,7 @@ export const SmallLogo = styled.img<{
     width: 320px;
     transition: .5s;
     transform: translateX(-50px);
-    z-index: 1000;
+    z-index: 90;
     
     ${({ displayed }) => displayed ? `
         transform: translateX(0);
