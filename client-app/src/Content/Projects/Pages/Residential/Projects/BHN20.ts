@@ -6,7 +6,7 @@ import Image3 from 'resources/Graphics/Projects/Residential/BHN20/BHN20.3-330.38
 import Image4 from 'resources/Graphics/Projects/Residential/BHN20/BHN20.4-380.380.jpg';
 
 const data: IProjectData = {
-    name: 'BNH20',
+    name: 'BHN20',
     location: 'Ramat Gan',
     programma: '8 story residential building, commercial ground floor',
     entity: 'Studio Paco',
