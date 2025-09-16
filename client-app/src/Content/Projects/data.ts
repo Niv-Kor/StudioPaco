@@ -17,9 +17,20 @@ export const Projects: Array<IProjectCategory> = [
     Licensing
 ];
 
-export const DummyProjects = [...Projects].toSpliced(1, 0, {
-    key: 'dummy',
-    text: '',
-    stripIndex: 1,
-    projects: []
-});
+export const DummyProjects: Array<IProjectCategory> = [
+    ...Projects.slice(0, 1),
+    {
+        id: 'dummy',
+        title: {
+            en: '',
+            he: ''
+        },
+        text: {
+            en: '',
+            he: ''
+        },
+        stripIndex: 1,
+        projects: []
+    },
+    ...Projects.slice(1)
+];

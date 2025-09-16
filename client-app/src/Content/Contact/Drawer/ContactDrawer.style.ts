@@ -9,8 +9,10 @@ export const Container = styled.div<{
     left: 15px;
     opacity: 0;
     background-color: #ffffffee;
+    padding: 16px;
     transform: translateY(50%);
     transition: all .2s, opacity .1s, transform .2s;
+    z-index: 1000;
 
     ${({ open }) => open ? `
        opacity: 1;
@@ -33,10 +35,29 @@ export const Container = styled.div<{
     `)}
 `;
 
+export const BackgroundMask = styled.div<{
+    displayed: boolean;
+}>`
+    --blur: ${({ displayed }) => displayed ? 10 : 0}px;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    pointer-events: none;
+    z-index: 99;
+    transition: .2s;
+`;
+
 export const HeaderBackground = styled.div`
     width: 100%;
     height: 100vh;
     background-color: ${AccentColor};
+    padding: 16px;
+    transform: translateX(-16px);
     margin-bottom: 15px;
 `;
 
@@ -62,14 +83,6 @@ export const ListRow = styled.span<{
     `)}
 `;
 
-export const ListRowHebrew = styled(ListRow)`
-    font-family: 'ArbelHagildaMenukad', 'Futura';
-`;
-
-export const ListRowEnglish = styled(ListRow)`
-    font-family: 'Futura';
-`;
-
 const FadeFromLeft = keyframes`
     from { width: 0 }
     to { width: 100% }
@@ -92,7 +105,6 @@ export const MobileBackground = styled.div<{
     displayed: boolean;
 }>`
     position: fixed;
-    transition: .3s;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -100,6 +112,7 @@ export const MobileBackground = styled.div<{
     opacity: 0;
     background-color: #ffffffbf;
     pointer-events: none;
+    transition: .3s;
 
     ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         opacity: 1;

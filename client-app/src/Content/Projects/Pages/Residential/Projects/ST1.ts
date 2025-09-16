@@ -8,9 +8,18 @@ import Image5 from 'resources/Graphics/Projects/Residential/ST1/ST1.5-380.330.pn
 
 const data: IProjectData = {
     name: 'ST1',
-    location: 'Statos, Cyprus',
-    programma: '2 story Private Home',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Statos, Cyprus',
+        he: 'סטטוס, קפריסין',
+    },
+    programma: {
+        en: '2 story Private Home',
+        he: 'בית פרטי בן 2 קומות',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2025,
     thumbnail: Thumbnail,
     images: [

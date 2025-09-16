@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import MenuButton from 'Components/Menu Button/MenuButton';
 import { IDrawer } from 'Utils/types';
+import useTranslation from "../../shared/hooks/useTranslation";
 
 interface IMainDrawerContainer {
     buttonText: string;

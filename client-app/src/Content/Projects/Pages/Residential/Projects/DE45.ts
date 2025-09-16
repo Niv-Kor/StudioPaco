@@ -10,9 +10,18 @@ import Image6 from 'resources/Graphics/Projects/Residential/DE45/DE45.6-380.260.
 
 const data: IProjectData = {
     name: 'DE45',
-    location: 'Holon',
-    programma: '10 story residential building',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Holon',
+        he: 'חולון',
+    },
+    programma: {
+        en: '10 story residential building',
+        he: 'בניין מגורים בן 10 קומות',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2025,
     thumbnail: Thumbnail,
     images: [

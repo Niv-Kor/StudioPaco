@@ -6,9 +6,18 @@ import Image3 from 'resources/Graphics/Projects/Residential/D206/D206.3-380.380.
 
 const data: IProjectData = {
     name: 'D206',
-    location: 'Tel Aviv',
-    programma: '6 story residential building',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '6 story residential building',
+        he: 'בניין מגורים בן 6 קומות',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2024,
     thumbnail: Thumbnail,
     images: [

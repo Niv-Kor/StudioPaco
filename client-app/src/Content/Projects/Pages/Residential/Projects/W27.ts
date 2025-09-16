@@ -6,9 +6,18 @@ import Image3 from 'resources/Graphics/Projects/Residential/W27/W27.3-280.380.gi
 
 const data: IProjectData = {
     name: 'W27',
-    location: 'Haifa',
-    programma: '11 story residential building and student dorms complex. Zoning plan and permits',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Haifa',
+        he: 'חיפה',
+    },
+    programma: {
+        en: '11 story residential building and student dorms complex. Zoning plan and permits',
+        he: 'בניין מגורים בן 11 קומות ומתחם מגורי סטודנטים. תכנון סטטוטורי והיתרים',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2025,
     thumbnail: Thumbnail,
     images: [

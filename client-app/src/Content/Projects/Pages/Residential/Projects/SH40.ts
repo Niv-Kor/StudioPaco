@@ -7,9 +7,18 @@ import Image4 from 'resources/Graphics/Projects/Residential/SH40/SH40.4-330.380.
 
 const data: IProjectData = {
     name: 'SH40',
-    location: 'Tel Aviv',
-    programma: '8 story residential building',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '8 story residential building',
+        he: 'בניין מגורים בן 8 קומות',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2022,
     thumbnail: Thumbnail,
     images: [

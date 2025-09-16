@@ -1,15 +1,15 @@
 import { FC, useRef, useState } from 'react';
 import MenuButton from 'Components/Menu Button/MenuButton';
 import { SocialDrawerState } from 'Content/Follow/types';
-import SocialDrawer from 'Content/Follow/Drawer/SocialDrawer';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
-import useTranslation from "shared/hooks/useTranslation";
-import { ButtonText } from "./consts";
+import LanguageDrawer from "../Drawer/LanguageDrawer";
+import useTranslation from "../../../shared/hooks/useTranslation";
+import { LanguageData } from "../../../Utils/constants";
 
-const FollowButton: FC = () => {
+const LanguageButton: FC = () => {
     const drawerRef = useRef<HTMLDivElement>(null);
     const [drawerState, setDrawerState] = useState<SocialDrawerState>(SocialDrawerState.Closed);
-    const { translate } = useTranslation();
+    const { language } = useTranslation();
     
     useOutsideClick([drawerRef], () => setDrawerState(SocialDrawerState.Closed));
 
@@ -36,12 +36,12 @@ const FollowButton: FC = () => {
     return (
         <div ref={drawerRef}>
             <MenuButton
-                text={translate(ButtonText)}
+                text={LanguageData[language].displayName}
                 onClick={onClick}
                 onHover={onHover}
                 onLeave={onLeave}
             />
-            <SocialDrawer
+            <LanguageDrawer
                 state={drawerState}
                 onClose={() => setDrawerState(SocialDrawerState.Closed)}
             />
@@ -49,4 +49,4 @@ const FollowButton: FC = () => {
     );
 }
 
-export default FollowButton;
+export default LanguageButton;

@@ -13,8 +13,15 @@ import A26 from './Projects/A26';
 import ST1 from './Projects/ST1';
 
 const data: IProjectCategory = {
-    key: 'residential',
-    text: 'domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
+    id: 'residential',
+    title: {
+        en: 'residential',
+        he: 'מגורים',
+    },
+    text: {
+        en: 'domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
+        he: 'תחומי מגורים. עיצוב סביבות חיים המארחות סיפורים אישיים ומשתלבות בהקשר הסביבתי.',
+    },
     stripIndex: 6,
     stripLeftMargin: 2,
     projects: [

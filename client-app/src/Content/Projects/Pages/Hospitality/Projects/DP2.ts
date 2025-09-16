@@ -8,9 +8,18 @@ import Image5 from 'resources/Graphics/Projects/Hospitality/DP2/DP2.5-380.380.pn
 
 const data: IProjectData = {
     name: 'DP2',
-    location: 'Ramon crater, Negev',
-    programma: 'Desert hotel. Architectural competition',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Ramon crater, Negev',
+        he: 'מצפה רמון, נגב',
+    },
+    programma: {
+        en: 'Desert hotel. Architectural competition',
+        he: 'מלון במדבר. תחרות אדריכלית',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2024,
     thumbnail: Thumbnail,
     images: [

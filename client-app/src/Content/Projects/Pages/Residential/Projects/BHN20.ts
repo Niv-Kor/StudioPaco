@@ -7,9 +7,18 @@ import Image4 from 'resources/Graphics/Projects/Residential/BHN20/BHN20.4-380.38
 
 const data: IProjectData = {
     name: 'BHN20',
-    location: 'Ramat Gan',
-    programma: '8 story residential building, commercial ground floor',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Ramat Gan',
+        he: 'רמת גן',
+    },
+    programma: {
+        en: '8 story residential building, commercial ground floor',
+        he: 'בניין מגורים בן 8 קומות, קומת קרקע מסחרית',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2025,
     thumbnail: Thumbnail,
     images: [

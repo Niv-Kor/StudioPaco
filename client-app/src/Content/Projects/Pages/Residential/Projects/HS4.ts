@@ -9,9 +9,18 @@ import Image6 from 'resources/Graphics/Projects/Residential/HS4/HS4.6-380.380.pn
 
 const data: IProjectData = {
     name: 'HS4',
-    location: 'Tel Aviv',
-    programma: '7 story residential building, commercial ground floor',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '7 story residential building, commercial ground floor',
+        he: 'בניין מגורים בן 7 קומות, קומת קרקע מסחרית',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2024,
     thumbnail: Thumbnail,
     images: [

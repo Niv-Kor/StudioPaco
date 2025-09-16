@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { Button } from './MenuButton.style';
 import { isRevertMode } from 'Utils/Theme';
+import useTranslation from "shared/hooks/useTranslation";
+import { noop } from "lodash";
 
 interface IMenuButton {
     text: string;
@@ -22,10 +24,10 @@ export const MenuButton: FC<IMenuButton> = ({
     disabled
 }) => {
     const [isThemeReverted, setThemeRevertedFlag] = useState<boolean>(isRevertMode());
+    const { textDir } = useTranslation();
 
     useEffect(() => {
         setThemeRevertedFlag(isRevertMode());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isRevertMode()])
 
     return (
@@ -34,8 +36,9 @@ export const MenuButton: FC<IMenuButton> = ({
             disabled={disabled}
             onClick={onClick}
             revertMode={revertMode !== false && (!!revertMode || isThemeReverted)}
-            onMouseEnter={onHover ?? (() => {})}
-            onMouseLeave={onLeave ?? (() => {})}
+            onMouseEnter={onHover ?? noop}
+            onMouseLeave={onLeave ?? noop}
+            dir={textDir}
         >
             .{text}
         </Button>

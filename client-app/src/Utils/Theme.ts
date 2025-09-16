@@ -2,7 +2,7 @@ import { RuleSet } from "styled-components";
 import { css as cssFunc } from 'styled-components';
 
 export const AccentColor = '#ffdd00';
-export const NaturalColor = '#ddd';
+export const NaturalColor = '#dddddd';
 export const BackgroundColor = '#f1f1f1';
 
 export const ACTIVE_ACCENT_PAGE_CLASS = 'active-accent-page';

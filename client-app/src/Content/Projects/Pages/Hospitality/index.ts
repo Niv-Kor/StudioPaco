@@ -5,8 +5,15 @@ import T1H from './Projects/T1H';
 import ZMO from './Projects/ZMO';
 
 const data: IProjectCategory = {
-    key: 'hospitality',
-    text: 'environments of tailored experiences. Crafting a distinct sense of place and warmth, between functions of temporary needs and local aesthetics.',
+    id: 'hospitality',
+    title: {
+        en: 'hospitality',
+        he: 'אירוח',
+    },
+    text: {
+        en: 'environments of tailored experiences. Crafting a distinct sense of place and warmth, between functions of temporary needs and local aesthetics.',
+        he: 'סביבות של חוויה מותאמת אישית. יצירת תחושת מקום וחום ייחודית, בין צרכים זמניים לאסתטיקה מקומית.',
+    },
     stripIndex: 4,
     stripLeftMargin: -StripWidth / 2,
     projects: [

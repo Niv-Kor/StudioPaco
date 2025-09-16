@@ -19,7 +19,7 @@ const SocialDrawer: FC<ISocialDrawer> = ({
     state,
     onClose
 }) => {
-    const isAvailable = useMemo<boolean>(() => state === SocialDrawerState.Open, [state]);
+    const isAvailable = state === SocialDrawerState.Open;
 
     useBackButton("Follow", onClose, isAvailable);
     

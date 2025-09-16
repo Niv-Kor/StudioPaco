@@ -1,16 +1,14 @@
 import { forwardRef } from 'react';
 import useBackButton from "shared/hooks/useBackButton";
 import ContactForm from "../ContactForm/ContactForm";
+import { OUTSIDE_CLICKABLE } from "shared/hooks/useOutsideClick";
 import {
     Container,
     List,
     Delimiter,
-    ListRowHebrew,
-    ListRowEnglish,
     MobileBackground,
-    HeaderBackground
+    HeaderBackground, ListRow, BackgroundMask
 } from './ContactDrawer.style';
-import { OUTSIDE_CLICKABLE } from "../../../shared/hooks/useOutsideClick";
 
 interface IContactDrawer {
     open: boolean;
@@ -26,16 +24,17 @@ const ContactDrawer = forwardRef<HTMLDivElement, IContactDrawer>(({
     return (
         <>
             <MobileBackground displayed={open} />
+            <BackgroundMask displayed={open} />
             <Container
                 ref={ref}
                 open={open}
             >
                 <HeaderBackground className={OUTSIDE_CLICKABLE} />
                 <List>
-                    <ListRowHebrew letterSpacing={2.2}>.אדריכל . עמית קורח</ListRowHebrew>
-                    <ListRowEnglish letterSpacing={3.6}>arch . Amit Korach</ListRowEnglish>
-                    <ListRowEnglish letterSpacing={.9}>+972 . 0506.7575.81</ListRowEnglish>
-                    <ListRowEnglish letterSpacing={1.2}>amit@studiopaco.com</ListRowEnglish>
+                    <ListRow letterSpacing={2.2}>.אדריכל . עמית קורח</ListRow>
+                    <ListRow letterSpacing={3.6}>arch . Amit Korach</ListRow>
+                    <ListRow letterSpacing={.9}>+972 . 0506.7575.81</ListRow>
+                    <ListRow letterSpacing={1.2}>amit@studiopaco.com</ListRow>
                 </List>
                 <Delimiter open={open} />
                 <ContactForm isDrawerOpen={open} />

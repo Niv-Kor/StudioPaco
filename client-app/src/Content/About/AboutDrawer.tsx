@@ -1,8 +1,11 @@
 import { FC, useState, useEffect, useRef } from 'react';
 import { IDrawer } from 'Utils/types';
 import { isMobile } from 'Utils/Theme';
-import useBackButton from "../../shared/hooks/useBackButton";
+import useBackButton from "shared/hooks/useBackButton";
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
+import useTranslation from "shared/hooks/useTranslation";
+import { RTLTextAlignClassName } from "Utils/constants";
+import { Paragraphs } from "./consts";
 import {
     Wrapper,
     ScrollWrapper,
@@ -30,28 +33,28 @@ const AboutDrawer: FC<IDrawer> = ({
     const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
     const [textScrollOffset, setTextScrollOffset] = useState<number>(0);
     const [profileImageTimeout, setProfileImageTimeout] = useState<NodeJS.Timeout>();
+    const { translate, textDir } = useTranslation();
     const textContent = (
         <Content
             displayed={enterState}
             screenWidth={screenSize.width}
             screenHeight={screenSize.height}
         >
-            <Paragraph>
-                The essence of design lies in its <b>timeless quality</b> - Inspired by the beauty of natural and social phenomena.
-                Well-designed spaces should feel like <b>a natural extension</b> of their environment, as if they have always been part of the landscape.
-            </Paragraph>
-            <CenterParagraph>
-                Based in Tel-Aviv, <b>Studio Paco</b> is led by architect Amit Korach,{isMobile() ? " " :  <br />}
-                a graduate of Tel Aviv University in 2018.
-                With expertise spanning residential and commercial architecture, public installations, and product design,
-                the studio shapes how the spaces we inhabit make us feel, dream, and perceive our own essence.
-            </CenterParagraph>
-            <Paragraph>
-                Through a closely collaborative process, the client's vision is woven into every aspect of the
-                design with dedicated attention to details - ensuring a profound sense of <b>personal connection</b>.
-                From material choices to choreographed spatial flow, the sensory experience of each creation
-                is composed to inspire an experience of <b>continual discovery</b>.
-            </Paragraph>
+            <Paragraph
+                className={RTLTextAlignClassName}
+                dangerouslySetInnerHTML={{ __html: translate(Paragraphs?.[0]) }}
+                dir={textDir}
+            />
+            <CenterParagraph
+                className={RTLTextAlignClassName}
+                dangerouslySetInnerHTML={{ __html: translate(Paragraphs?.[1]) }}
+                dir={textDir}
+            />
+            <Paragraph
+                className={RTLTextAlignClassName}
+                dangerouslySetInnerHTML={{ __html: translate(Paragraphs?.[2]) }}
+                dir={textDir}
+            />
         </Content>
     );
     

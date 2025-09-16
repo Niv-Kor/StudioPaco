@@ -75,8 +75,11 @@ export const ContentWrapper = styled.div<{
     `)}
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.div<{
+    rtl: boolean;
+}>`
     display: flex;
+    align-items: ${({ rtl }) => rtl ? "flex-end" : "flex-start"};
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
@@ -90,7 +93,6 @@ export const ContentContainer = styled.div`
 `;
 
 const Text = styled.p`
-    font-family: 'Futura', sans-serif;
     margin: 0;
     width: 80%;
     font-size: 20px;
@@ -109,6 +111,7 @@ export const Title = styled.span`
 export const TitleText = styled(Text)<{
     displayed: boolean;
     fullHeight: boolean;
+    rtl?: boolean;
 }>`
     height: auto;
     opacity: ${({ displayed }) => displayed ? 1 : 0};
@@ -116,8 +119,12 @@ export const TitleText = styled(Text)<{
     & .category-title {
         font-size: 24px;
         font-weight: 500;
-        margin-right: 15px;
     }
+
+    ${({ rtl }) => rtl && `
+        padding-right: 20px;
+        direction: rtl;
+    `};
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         display: flex;

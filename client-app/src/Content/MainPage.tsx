@@ -17,7 +17,6 @@ import {
     SmallTextLogo,
     LogoSubtextWrapper,
     LogoSubtextContainer,
-    LogoSubtext,
     LogoSubtextCursor
 } from './MainPage.style';
 
@@ -76,9 +75,9 @@ const MainPage: FC = () => {
                         top={2}
                     />
                     <LogoSubtextContainer displayed={openMainDrawer === MainDrawer.None}>
-                        <LogoSubtext>design</LogoSubtext>
-                        <LogoSubtext>.</LogoSubtext>
-                        <LogoSubtext>architecture</LogoSubtext>
+                        <span>design</span>
+                        <span>.</span>
+                        <span>architecture</span>
                     </LogoSubtextContainer>
                 </LogoSubtextWrapper>
             </LogoWrapper>

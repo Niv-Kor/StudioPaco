@@ -7,9 +7,18 @@ import Image4 from 'resources/Graphics/Projects/Hospitality/DP2/DP2.4-380.360.pn
 
 const data: IProjectData = {
     name: 'ZMO',
-    location: 'Western Galilee',
-    programma: 'Zimmer complex with 5 units and shared swimming pool',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Western Galilee',
+        he: 'הגליל המערבי',
+    },
+    programma: {
+        en: 'Zimmer complex with 5 units and shared swimming pool',
+        he: 'מתחם צימרים עם 5 יחידות ובריכת שחייה משותפת',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2023,
     thumbnail: Thumbnail,
     images: [

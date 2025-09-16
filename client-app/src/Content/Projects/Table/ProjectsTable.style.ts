@@ -8,9 +8,11 @@ export const Layout = styled.div`
 
     display: grid;
     align-content: center;
-    grid-template-columns: repeat(auto-fill, var(--thumbnail-width));
+    margin: auto;
+    grid-template-columns: repeat(auto-fit, var(--thumbnail-width));
     max-width: calc(var(--max-row-items) * var(--thumbnail-width) + (var(--max-row-items) - 1) * var(--gap));
     grid-template-rows: 1fr;
+    place-content: center;
     gap: var(--gap);
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
@@ -42,7 +44,6 @@ export const Item = styled.div`
 `;
 
 export const Title = styled.p`
-    font-family: 'Futura', sans-serif;
     margin-bottom: 5px;
     font-size: 18px;
     opacity: var(--title-opacity);

@@ -7,9 +7,18 @@ import Image4 from 'resources/Graphics/Projects/Hospitality/T1H/T1H.4-380.380.pn
 
 const data: IProjectData = {
     name: 'T1H',
-    location: 'Eilat',
-    programma: 'Hidden Hotel over the Red Sea reefs',
-    entity: 'Studio Paco',
+    location: {
+        en: 'Eilat',
+        he: 'אילת',
+    },
+    programma: {
+        en: 'Hidden Hotel over the Red Sea reefs',
+        he: 'מלון נסתר מעל שוניות הים האדום',
+    },
+    entity: {
+        en: 'Studio Paco',
+        he: 'סטודיו פאקו',
+    },
     year: 2024,
     thumbnail: Thumbnail,
     images: [

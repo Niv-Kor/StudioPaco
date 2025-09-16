@@ -9,9 +9,18 @@ import Image6 from 'resources/Graphics/Projects/Residential/Y28/Y28.6-330.380.pn
 
 const data: IProjectData = {
     name: 'Y28',
-    location: 'Tel Aviv',
-    programma: '6 story residential building',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '6 story residential building',
+        he: 'בניין מגורים בן 6 קומות',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2022,
     thumbnail: Thumbnail,
     images: [

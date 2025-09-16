@@ -194,10 +194,6 @@ export const LogoSubtextContainer = styled.div<{
     `)}
 `;
 
-export const LogoSubtext = styled.span`
-    font-family: 'Futura';
-`;
-
 export const LogoSubtextCursor = styled.div<{
     displayed: boolean;
     startOffset: number;

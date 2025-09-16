@@ -32,7 +32,6 @@ export const FieldContainer = styled.div`
 export const Label = styled.label`
     font-size: .75rem;
     color: #555;
-    font-family: 'Futura';
 `;
 
 export const InputField = styled.input`
@@ -45,5 +44,4 @@ export const TextArea = styled.textarea`
     height: 100px;
     resize: none;
     padding-top: 10px;
-    font-family: 'Futura', sans-serif;
 `;

@@ -8,9 +8,18 @@ import Image5 from 'resources/Graphics/Projects/Residential/A26/A26.5-330.160.pn
 
 const data: IProjectData = {
     name: 'A26',
-    location: 'Tel Aviv',
-    programma: '6 story residential building, commercial ground floor',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '6 story residential building, commercial ground floor',
+        he: 'בניין מגורים בן 6 קומות, קומת קרקע מסחרית',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2023,
     thumbnail: Thumbnail,
     images: [

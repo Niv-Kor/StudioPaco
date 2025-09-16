@@ -114,7 +114,6 @@ export const TextContainer = styled.div<{
     right: 0;
     width: 62%;
     height: 100%;
-    font-family: 'Futura';
     background-color: ${AccentColor};
     transform: translateX(${({ open }) => open ? 0 : 100}%);
     transition: ${DrawerEnterTime}s;

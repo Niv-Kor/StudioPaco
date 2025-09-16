@@ -1,9 +1,12 @@
 import MainPage from './Content/MainPage';
+import { TranslationProvider } from "./shared/context/TranslationContext";
 
 function App() {
   return (
       <div className="App">
-          <MainPage/>
+          <TranslationProvider>
+            <MainPage/>
+          </TranslationProvider>
       </div>
   );
 }

@@ -5,9 +5,18 @@ import Image2 from 'resources/Graphics/Projects/Residential/B18/B18.2-330.215.jp
 
 const data: IProjectData = {
     name: 'B18',
-    location: 'Tel Aviv',
-    programma: '7 story residential building',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '7 story residential building',
+        he: 'בניין מגורים בן 7 קומות',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2024,
     thumbnail: Thumbnail,
     images: [

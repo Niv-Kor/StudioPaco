@@ -6,6 +6,8 @@ import { IProjectCategory } from '../types';
 import { isMobile } from 'Utils/Theme';
 import { IDrawer } from 'Utils/types';
 import useBackButton from "shared/hooks/useBackButton";
+import useTranslation from "shared/hooks/useTranslation";
+import { RTLTextAlignClassName } from "Utils/constants";
 import {
     Wrapper,
     ListWrapper,
@@ -29,6 +31,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
     const [stripHoverCooldown, setStripHoverCooldown] = useState<boolean>(false);
     const [showCategories, setCategoriesFlag] = useState<boolean>(true);
     const stripHoverDebouncer = useRef<NodeJS.Timeout | undefined>();
+    const { translate, isRtl } = useTranslation();
 
     useBackButton("Projects", onClose, open && showCategories && !selectedCategory);
     useEffect(() => {
@@ -54,13 +57,16 @@ const ProjectsDrawer: FC<IDrawer> = ({
     return (
         <Wrapper open={enterState}>
             <ListWrapper open={enterState && showCategories && (!isMobile() || !selectedCategory)}>
-                <CategoriesList>
+                <CategoriesList rtl={isRtl}>
                     {Projects.map(cat => (
                         <Category
-                            selected={isSelected(cat.key)}
+                            className={RTLTextAlignClassName}
+                            key={cat.id}
+                            rtl={isRtl}
+                            selected={isSelected(cat.id)}
                             margin={cat.keyMargin}
                             onMouseEnter={() => {
-                                setHoveredCategory(cat.key);
+                                setHoveredCategory(cat.id);
                                 clearTimeout(stripHoverDebouncer.current);
                                 stripHoverDebouncer.current = undefined;
                             }}
@@ -74,7 +80,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
                                 }, 200);
                             }}
                             onClick={() => {
-                                const nextState = isSelected(cat.key) ? '' : cat.key;
+                                const nextState = isSelected(cat.id) ? '' : cat.id;
                                 setSelectedCategory(nextState);
                             }}
                         >
@@ -84,7 +90,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
                                     alt=""
                                 />
                             )}
-                            {cat.key}
+                            {translate(cat.title)}
                         </Category>
                     ))}
                 </CategoriesList>
@@ -92,7 +98,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
             </ListWrapper>
             {isMobile() ? (
                 <ProjectStrip
-                    category={Projects.find(x => x.key === lastValidCategory) || Projects[0]}
+                    category={Projects.find(x => x.id === lastValidCategory) || Projects[0]}
                     enabled={enterState}
                     index={0}
                     width={10}
@@ -106,7 +112,7 @@ const ProjectsDrawer: FC<IDrawer> = ({
             ) : (
                 <StripsContainer width={Projects.length * DefaultStripSpace}>
                     {DummyProjects
-                        .toReversed()
+                        .reverse()
                         .sort((a: IProjectCategory, b: IProjectCategory) => a.stripIndex - b.stripIndex)
                         .map((project: IProjectCategory, index: number) => (
                         <ProjectStrip
@@ -114,10 +120,10 @@ const ProjectsDrawer: FC<IDrawer> = ({
                             enabled={enterState}
                             index={index}
                             width={StripWidth}
-                            selected={isSelected(project.key)}
+                            selected={isSelected(project.id)}
                             hovered={
-                                isHovered(project.key) ||
-                                isSelected(project.key) ||
+                                isHovered(project.id) ||
+                                isSelected(project.id) ||
                                 (
                                     index === 1 &&
                                     !hoveredCategory &&

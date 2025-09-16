@@ -7,9 +7,18 @@ import Image4 from 'resources/Graphics/Projects/Residential/HZ28/HZ28.4-330.380.
 
 const data: IProjectData = {
     name: 'HZ28',
-    location: 'Tel Aviv',
-    programma: '5 story residential building, commercial ground floor',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '5 story residential building, commercial ground floor',
+        he: 'בניין מגורים בן 5 קומות, קומת קרקע מסחרית',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2021,
     thumbnail: Thumbnail,
     images: [

@@ -8,9 +8,18 @@ import Image5 from 'resources/Graphics/Projects/Residential/P10/P10.5-330.160.pn
 
 const data: IProjectData = {
     name: 'P10',
-    location: 'Tel Aviv',
-    programma: '9 story residential building',
-    entity: 'Yoav Messer architects',
+    location: {
+        en: 'Tel Aviv',
+        he: 'תל אביב',
+    },
+    programma: {
+        en: '9 story residential building',
+        he: 'בניין מגורים בן 9 קומות',
+    },
+    entity: {
+        en: 'Yoav Messer architects',
+        he: 'יואב מסר אדריכלים',
+    },
     year: 2023,
     thumbnail: Thumbnail,
     images: [

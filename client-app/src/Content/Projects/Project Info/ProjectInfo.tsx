@@ -2,6 +2,7 @@ import { FC, useMemo, useRef } from 'react';
 import { IProjectData } from '../types';
 import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
 import useBackButton from "shared/hooks/useBackButton";
+import useTranslation from "shared/hooks/useTranslation";
 import Scrollbar from "Components/Scrollbar/Scrollbar";
 import useScrollProps from "Components/Scrollbar/useScrollProps";
 import { StripWidth } from '../constants';
@@ -19,6 +20,7 @@ import {
     ProjectInfoRow,
     ContentContainer,
 } from './ProjectInfo.style';
+import { Titles } from "./consts";
 
 interface IProjectInfo {
     open: boolean;
@@ -37,9 +39,9 @@ const ProjectInfo: FC<IProjectInfo> = ({
 }) => {
     const {
         name = "",
-        location = "",
-        programma = "",
-        entity = "",
+        location,
+        programma,
+        entity,
         year = 0,
         images = []
     } = data ?? {};
@@ -52,6 +54,7 @@ const ProjectInfo: FC<IProjectInfo> = ({
         scrollbarProps
     } = useScrollProps(containerRef, StripWidth, rightOffset, open);
     
+    const { translate, isRtl } = useTranslation();
     const overscroll = useMemo<boolean>(() => {
         const scrollFromTop = (1 - scrollPercent) * (scrollHeight - offsetHeight);
         return scrollFromTop > offsetHeight * .6
@@ -94,16 +97,16 @@ const ProjectInfo: FC<IProjectInfo> = ({
                         </BackButtonWrapper>
                     )}
                     <InfoParagraph overscroll={overscroll}>
-                        <ProjectInfoSection>
+                        <ProjectInfoSection rtl={isRtl}>
                             <ProjectInfoRow>.{name}</ProjectInfoRow>
                         </ProjectInfoSection>
-                        <ProjectInfoSection>
-                            <ProjectInfoRow>Location: {location}</ProjectInfoRow>
-                            <ProjectInfoRow>Programma: {programma}</ProjectInfoRow>
+                        <ProjectInfoSection rtl={isRtl}>
+                            <ProjectInfoRow>{translate(Titles.location)}: {translate(location)}</ProjectInfoRow>
+                            <ProjectInfoRow>{translate(Titles.programma)}: {translate(programma)}</ProjectInfoRow>
                         </ProjectInfoSection>
-                        <ProjectInfoSection>
+                        <ProjectInfoSection rtl={isRtl}>
                             <ProjectInfoRow>{year}</ProjectInfoRow>
-                            <ProjectInfoRow>at {entity}</ProjectInfoRow>
+                            <ProjectInfoRow>{translate(Titles.at)} {translate(entity)}</ProjectInfoRow>
                         </ProjectInfoSection>
                     </InfoParagraph>
                     <ImagesWrapper rightOffset={rightOffset}>

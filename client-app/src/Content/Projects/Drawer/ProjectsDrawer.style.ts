@@ -36,20 +36,27 @@ export const ListWrapper = styled.div<{
     `}
 `;
 
-export const CategoriesList = styled.ul`
+export const CategoriesList = styled.ul<{
+    rtl?: boolean;
+}>`
     display: flex;
     flex-direction: column;
     width: fit-content;
     gap: 6px;
+
+    ${({ rtl }) => rtl && `
+        margin-left: 60px;
+    `};
 `;
     
 export const Category = styled.span<{
     selected: boolean;
     margin?: string;
+    rtl?: boolean;
 }>`
     display: flex;
     align-items: center;
-    font-family: 'Futura', sans-serif;
+    justify-content: ${({ rtl }) => rtl ? "flex-end" : "flex-start"};
     font-size: 1.5rem;
     cursor: pointer;
     gap: 5px;
@@ -60,8 +67,8 @@ export const Category = styled.span<{
         margin: ${margin};
     `};
     
-    ${({ selected }) => selected ? `
-        transform: translateX(10px);
+    ${({ selected, rtl }) => selected ? `
+        transform: translateX(${10 * (rtl ? -1 : 1)}px);
         text-shadow:
             0.3px 0 rgba(0, 0, 0, 0.2),
            -0.3px 0 rgba(0, 0, 0, 0.2),

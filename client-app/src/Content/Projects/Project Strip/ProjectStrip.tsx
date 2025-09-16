@@ -8,6 +8,8 @@ import BackButton from 'resources/Graphics/Projects/Back-Button.svg';
 import { StripWidth } from "../constants";
 import Scrollbar from "Components/Scrollbar/Scrollbar";
 import useScrollProps from "Components/Scrollbar/useScrollProps";
+import useTranslation from "shared/hooks/useTranslation";
+import { RTLTextAlignClassName } from "Utils/constants";
 import {
     Strip,
     Container,
@@ -51,6 +53,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
     const selectionTimeout = useRef<NodeJS.Timeout | undefined>();
     const textDisplayTimeout = useRef<NodeJS.Timeout | undefined>();
     const stripRef = useRef<HTMLDivElement>(null);
+    const { translate, isRtl, textDir } = useTranslation();
     const rightOffset = useMemo<number>(() => {
         if (!stripRef?.current) return 0;
 
@@ -128,11 +131,13 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                     ref={containerRef}
                     offset={rightOffset + width}
                 >
-                    <ContentContainer>
+                    <ContentContainer rtl={isRtl}>
                         <Scrollbar {...scrollbarProps} />
                         <TitleText
+                            className={RTLTextAlignClassName}
                             displayed={isTextDisplayed}
                             fullHeight={!category.projects.length}
+                            rtl={isRtl}
                         >
                             <Title onClick={() => isMobile() && onCategoryClose?.()}>
                                 {isMobile() && (
@@ -141,13 +146,17 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                                         alt={"back"}
                                     />
                                 )}
-                                <span className={'category-title'}>{category.key}</span>
+                                <span className={'category-title'}>{translate(category.title)}</span>
                             </Title>
-                            <span dangerouslySetInnerHTML={{ __html: category.text }}></span>
+                            &nbsp;
+                            <span
+                                dangerouslySetInnerHTML={{ __html: translate(category.text) }}
+                                dir={textDir}
+                            />
                         </TitleText>
                         {!!category.bodyText && (
                             <BodyText>
-                                {category.bodyText}
+                                {translate(category.bodyText)}
                             </BodyText>
                         )}
                         <ContentElementContainer>
@@ -167,7 +176,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
             </Container>
             <ProjectInfo
                 open={!!inspectedProject}
-                categoryName={category.key}
+                categoryName={translate(category.title)}
                 data={inspectedProject}
                 onClose={() => setInspectedProject(undefined)}
                 offset={rightOffset + width - 1}
