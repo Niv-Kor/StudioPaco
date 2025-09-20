@@ -94,7 +94,10 @@ const ProjectsDrawer: FC<IDrawer> = ({
                         </Category>
                     ))}
                 </CategoriesList>
-                <ListDelimiter displayed={enterState} />
+                <ListDelimiter
+                    displayed={enterState}
+                    rtl={isRtl}
+                />
             </ListWrapper>
             {isMobile() ? (
                 <ProjectStrip

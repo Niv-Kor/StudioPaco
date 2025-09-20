@@ -10,8 +10,7 @@ export enum MainDrawer {
 }
 
 export interface IDrawer {
-    open: boolean;
-    openDelay: number;
+    state: DrawerState;
     onClose: () => void;
 }
 
@@ -29,7 +28,13 @@ export interface ILanguageData {
 export interface ITranslation {
     language: SupportedLanguages;
     changeLanguage: (language: SupportedLanguages) => void;
-    translate: (i18nObj: I18n | undefined) => string;
+    translate: (i18nObj: I18n | string | undefined) => string;
     textDir: LanguageDirection;
     isRtl: boolean;
+}
+
+export enum DrawerState {
+    Closed,
+    SemiOpen,
+    Open
 }

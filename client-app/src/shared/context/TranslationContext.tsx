@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { ITranslation, SupportedLanguages } from "Utils/types";
+import { I18n, ITranslation, SupportedLanguages } from "Utils/types";
 import { noop } from "lodash";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { LanguageData } from "../../Utils/constants";
@@ -24,12 +24,17 @@ export const TranslationProvider = ({ children }: { children: ReactNode }) => {
         cacheValue(lang);
     }
     
+    const translate = (obj: I18n | string | undefined): string => {
+        if (typeof obj === "object") return obj?.[language] ?? "[UNSUPPORTED_LANGUAGE]";
+        else return obj?.toString() ?? "";
+    }
+    
     return (
         <TranslationContext.Provider
             value={{
                 language,
                 changeLanguage,
-                translate: i18nObj => i18nObj?.[language] ?? "",
+                translate,
                 isRtl: direction === "rtl",
                 textDir: direction,
             }}

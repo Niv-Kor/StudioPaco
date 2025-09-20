@@ -14,7 +14,7 @@ export const Strip = styled.div<IProjectStrip & IProjectCategory>`
         transform .2s,
         background .2s;
 
-    ${({ enabled }) => enabled && `
+    ${({ enabled }) => enabled && css`
         translate: 0 0;
     `}
 `;
@@ -33,7 +33,7 @@ export const Container = styled.div<{
     opacity: 0;
     transition: .4s;
 
-    ${({ open }) => open && `
+    ${({ open }) => open && css`
         position: fixed;
         background-color: ${AccentColor};
         transform: scaleX(1);
@@ -121,9 +121,10 @@ export const TitleText = styled(Text)<{
         font-weight: 500;
     }
 
-    ${({ rtl }) => rtl && `
+    ${({ rtl }) => rtl && css`
         padding-right: 20px;
         direction: rtl;
+        transition: padding-right 0s;
     `};
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`

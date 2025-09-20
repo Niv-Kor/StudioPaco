@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 import { BottomDetailsPanelWidth } from './consts';
+import { RTLTextAlignClassName } from "../../../Utils/constants";
 
 export const Container = styled.div<{
     open: boolean;
@@ -179,6 +180,8 @@ export const ProjectInfoSection = styled.div<{
     position: relative;
 `;
 
-export const ProjectInfoRow = styled.p`
+export const ProjectInfoRow = styled.p.attrs({
+    className: RTLTextAlignClassName
+})`
     margin: 0;
 `;

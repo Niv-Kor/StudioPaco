@@ -37,11 +37,12 @@ export const Label = styled.label`
 export const InputField = styled.input`
     ${fieldStyle};
     height: 30px;
+    padding: 10px;
 `;
 
 export const TextArea = styled.textarea`
     ${fieldStyle};
     height: 100px;
     resize: none;
-    padding-top: 10px;
+    padding: 10px;
 `;

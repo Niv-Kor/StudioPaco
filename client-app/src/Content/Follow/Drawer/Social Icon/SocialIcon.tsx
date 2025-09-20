@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { ISocialIconConfig } from '../../types';
 import CopyIcon from 'resources/Graphics/Follow/copy.svg';
+import useTranslation from "shared/hooks/useTranslation";
+import { COPY_LABEL } from "./consts";
 import {
     Wrapper,
     IconContainer,
@@ -26,6 +28,7 @@ const SocialIcon: FC<ISocialIcon> = ({ config, enabled }) => {
     } = config;
     const [hovered, setHoverState] = useState<boolean>(false);
     const [clipboardAck, setClipboardAck] = useState<boolean>(false);
+    const { translate, textDir } = useTranslation();
 
     useEffect(() => {
         if ((!enabled || !hovered) && clipboardAck) setClipboardAck(false);
@@ -64,7 +67,9 @@ const SocialIcon: FC<ISocialIcon> = ({ config, enabled }) => {
                             alt={'Copy to clipboard'}
                         />
                         {clipboardAck && (
-                            <ClipboardAck>Copied!</ClipboardAck>
+                            <ClipboardAck dir={textDir}>
+                                {translate(COPY_LABEL)}
+                            </ClipboardAck>
                         )}
                     </>
                 )}

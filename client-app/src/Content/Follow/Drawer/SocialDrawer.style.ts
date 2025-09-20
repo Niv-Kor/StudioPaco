@@ -1,28 +1,15 @@
 import styled, { css } from 'styled-components';
 import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
-import { SocialDrawerState } from '../types';
+import { DrawerState } from 'Utils/types';
 
 export const Drawer = styled.div<{
-    state: SocialDrawerState;
+    state: DrawerState;
     available: boolean;
     revertMode: boolean;
 }>`
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 80px;
     height: 100%;
     background-color: ${({ revertMode }) => revertMode ? BackgroundColor : AccentColor};
-    transition: .2s;
-    z-index: 50;
-    pointer-events: ${({ available }) => available ? 'all' : 'none'};
-    transform: translateX(-${({ state }) => {
-        switch (state) {
-            case SocialDrawerState.Closed: return 100;
-            case SocialDrawerState.SemiOpen: return 80;
-            case SocialDrawerState.Open: return 0;
-        }
-    }}%);
     
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         width: 50px;

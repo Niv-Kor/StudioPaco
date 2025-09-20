@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { SocialDrawerState } from "../../Follow/types";
+import { DrawerState } from "Utils/types";
 import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS, NaturalColor } from "Utils/Theme";
 
 export const Container = styled.div`
@@ -7,26 +7,12 @@ export const Container = styled.div`
 `;
 
 export const Drawer = styled.div<{
-    state: SocialDrawerState;
+    state: DrawerState;
     available: boolean;
 }>`
     display: flex;
     flex-direction: column;
-    position: absolute;
-    bottom: 0;
-    left: 8px;
     width: 140px;
-    z-index: 50;
-    transition: .2s;
-    opacity: ${({ available, state }) => (available || state === SocialDrawerState.SemiOpen) ? 1 : 0};
-    pointer-events: ${({ available }) => available ? 'all' : 'none'};
-    transform: translateY(${({ state }) => {
-        switch (state) {
-            case SocialDrawerState.Closed: return "calc(100% + 10px)";
-            case SocialDrawerState.SemiOpen: return "100%";
-            case SocialDrawerState.Open: return "-54px";
-        }
-    }});
     
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         width: 50px;

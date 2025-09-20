@@ -18,7 +18,11 @@ import {
     ProfileImage,
 } from './AboutDrawer.style';
 
-const AboutDrawer: FC<IDrawer> = ({
+interface IAboutDrawer extends IDrawer {
+    openDelay: number;
+}
+
+const AboutDrawer: FC<IAboutDrawer> = ({
     open,
     openDelay,
     onClose

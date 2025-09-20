@@ -1,26 +1,14 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { DrawerState } from "Utils/types";
 
 export const Container = styled.div<{
-    open: boolean;
+    state: DrawerState;
 }>`
-    position: absolute;
-    bottom: 45px;
-    left: 15px;
-    opacity: 0;
+    display: flex;
+    flex-direction: column;
     background-color: #ffffffee;
     padding: 16px;
-    transform: translateY(50%);
-    transition: all .2s, opacity .1s, transform .2s;
-    z-index: 1000;
-
-    ${({ open }) => open ? `
-       opacity: 1;
-       transform: translateY(0);
-       pointer-events: all;
-    ` : `
-       pointer-events: none;
-    `}
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: fixed;
@@ -33,23 +21,6 @@ export const Container = styled.div<{
         box-sizing: border-box;
         z-index: 100;
     `)}
-`;
-
-export const BackgroundMask = styled.div<{
-    displayed: boolean;
-}>`
-    --blur: ${({ displayed }) => displayed ? 10 : 0}px;
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(var(--blur));
-    -webkit-backdrop-filter: blur(var(--blur));
-    pointer-events: none;
-    z-index: 99;
-    transition: .2s;
 `;
 
 export const HeaderBackground = styled.div`
@@ -99,23 +70,4 @@ export const Delimiter = styled.hr<{
         animation-delay: .2s;
         animation-fill-mode: forwards;
     `}
-`;
-
-export const MobileBackground = styled.div<{
-    displayed: boolean;
-}>`
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 38%;
-    opacity: 0;
-    background-color: #ffffffbf;
-    pointer-events: none;
-    transition: .3s;
-
-    ${({ displayed }) => displayed && mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        opacity: 1;
-        z-index: 50;
-    `)}
 `;

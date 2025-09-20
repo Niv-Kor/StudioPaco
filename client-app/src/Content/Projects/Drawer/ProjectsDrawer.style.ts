@@ -30,7 +30,7 @@ export const ListWrapper = styled.div<{
     transition: ${DrawerEnterTime * 2}s;
     z-index: 20;
 
-    ${({ open }) => open && `
+    ${({ open }) => open && css`
         opacity: 1;
         transform: translateX(0);
     `}
@@ -44,8 +44,8 @@ export const CategoriesList = styled.ul<{
     width: fit-content;
     gap: 6px;
 
-    ${({ rtl }) => rtl && `
-        margin-left: 60px;
+    ${({ rtl }) => rtl && css`
+        margin-left: 30px;
     `};
 `;
     
@@ -63,22 +63,22 @@ export const Category = styled.span<{
     z-index: 100;
     transition: transform ${DrawerEnterTime}s, text-shadow .2s;
 
-    ${({ margin }) => margin && `
+    ${({ margin }) => margin && css`
         margin: ${margin};
     `};
     
-    ${({ selected, rtl }) => selected ? `
+    ${({ selected, rtl }) => selected ? css`
         transform: translateX(${10 * (rtl ? -1 : 1)}px);
         text-shadow:
-            0.3px 0 rgba(0, 0, 0, 0.2),
-           -0.3px 0 rgba(0, 0, 0, 0.2),
-            0 0.3px rgba(0, 0, 0, 0.2),
-            0 -0.3px rgba(0, 0, 0, 0.2),
-            0.3px 0.3px rgba(0, 0, 0, 0.15),
-           -0.3px -0.3px rgba(0, 0, 0, 0.15);
-    ` : `
+           .3px 0 rgba(0, 0, 0, .2),
+           -.3px 0 rgba(0, 0, 0, .2),
+           0 .3px rgba(0, 0, 0, .2),
+           0 -.3px rgba(0, 0, 0, .2),
+           .3px .3px rgba(0, 0, 0, .15),
+           -.3px -.3px rgba(0, 0, 0, .15);
+    ` : css`
         &:hover {
-            transform: translateX(10px);
+            transform: translateX(${10 * (rtl ? -1 : 1)}px);
         }
     `}
 `;
@@ -90,6 +90,7 @@ const delimiterKeyframes = keyframes`
 
 export const ListDelimiter = styled.div<{
     displayed: boolean;
+    rtl?: boolean;
 }>`
     position: absolute;
     top: 125px;
@@ -97,6 +98,10 @@ export const ListDelimiter = styled.div<{
     width: 1px;
     background-color: #00000066;
     height: 0;
+
+    ${({ rtl }) => rtl && css`
+        left: 220px;
+    `};
     
     ${({ displayed }) => displayed ? css`
         animation-name: ${delimiterKeyframes};

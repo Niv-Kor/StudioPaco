@@ -1,5 +1,5 @@
-import { FC, useMemo } from 'react';
-import { SocialDrawerState } from '../types';
+import { FC } from 'react';
+import { DrawerState, IDrawer } from 'Utils/types';
 import { SocialMethods } from '../constants';
 import SocialIcon from './Social Icon/SocialIcon';
 import useBackButton from "shared/hooks/useBackButton";
@@ -10,16 +10,11 @@ import {
     DrawerList
 } from './SocialDrawer.style';
 
-interface ISocialDrawer {
-    state: SocialDrawerState;
-    onClose: () => void;
-}
-
-const SocialDrawer: FC<ISocialDrawer> = ({
+const SocialDrawer: FC<IDrawer> = ({
     state,
     onClose
 }) => {
-    const isAvailable = state === SocialDrawerState.Open;
+    const isAvailable = state === DrawerState.Open;
 
     useBackButton("Follow", onClose, isAvailable);
     
