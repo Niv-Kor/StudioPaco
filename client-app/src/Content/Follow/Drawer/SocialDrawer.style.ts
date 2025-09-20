@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components';
-import { AccentColor, BackgroundColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { AccentColor, BackgroundColor, isRevertMode, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 import { DrawerState } from 'Utils/types';
 
 export const Drawer = styled.div<{
     state: DrawerState;
     available: boolean;
-    revertMode: boolean;
 }>`
     width: 80px;
     height: 100%;
-    background-color: ${({ revertMode }) => revertMode ? BackgroundColor : AccentColor};
+    background-color: ${() => isRevertMode() ? BackgroundColor : AccentColor};
     
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         width: 50px;

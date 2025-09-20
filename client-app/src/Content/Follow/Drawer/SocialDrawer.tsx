@@ -21,7 +21,6 @@ const SocialDrawer: FC<IDrawer> = ({
     return (
         <Drawer
             available={isAvailable}
-            revertMode={isRevertMode()}
             state={state}
         >
             <DrawerList>

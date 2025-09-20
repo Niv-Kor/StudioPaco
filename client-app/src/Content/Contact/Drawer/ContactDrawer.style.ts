@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { AccentColor, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
+import { AccentColor, BackgroundColor, isRevertMode, mediaQueryMaxWidth, MOBILE_BREAKPOINTS } from 'Utils/Theme';
 import { DrawerState } from "Utils/types";
 
 export const Container = styled.div<{
@@ -8,7 +8,7 @@ export const Container = styled.div<{
     display: flex;
     flex-direction: column;
     background-color: #ffffffee;
-    padding: 16px;
+    padding: 0 16px;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
         position: fixed;
@@ -23,10 +23,12 @@ export const Container = styled.div<{
     `)}
 `;
 
-export const HeaderBackground = styled.div`
+export const HeaderBackground = styled.div<{
+    state: DrawerState;
+}>`
     width: 100%;
     height: 100vh;
-    background-color: ${AccentColor};
+    background-color: ${({ state }) => (isRevertMode() && state === DrawerState.SemiOpen) ? BackgroundColor : AccentColor};
     padding: 16px;
     transform: translateX(-16px);
     margin-bottom: 15px;

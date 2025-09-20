@@ -21,7 +21,10 @@ const ContactDrawer: FC<IDrawer> = ({
     
     return (
         <Container state={state}>
-            <HeaderBackground className={OUTSIDE_CLICKABLE} />
+            <HeaderBackground
+                className={OUTSIDE_CLICKABLE}
+                state={state}
+            />
             <List>
                 <ListRow letterSpacing={2.2}>.אדריכל . עמית קורח</ListRow>
                 <ListRow letterSpacing={3.6}>arch . Amit Korach</ListRow>

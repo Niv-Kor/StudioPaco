@@ -39,8 +39,8 @@ export const getDrawersConfig = ({ translate, language, changeLanguage }: ITrans
             left: 15,
             translateY: {
                 [DrawerState.Open]: "0",
-                [DrawerState.SemiOpen]: "calc(100% + 30px)",
-                [DrawerState.Closed]: "calc(100% + 45px)",
+                [DrawerState.SemiOpen]: "calc(100% + 45px)",
+                [DrawerState.Closed]: "calc(100% + 55px)",
             },
         },
     },
