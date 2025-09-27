@@ -11,9 +11,9 @@ export const Projects: Array<IProjectCategory> = [
     Residential,
     Hospitality,
     Commercial,
-    InteriorDesign,
+//    InteriorDesign,
     Conceptual,
-    ProductDesign,
+//    ProductDesign,
     Licensing
 ];
 
