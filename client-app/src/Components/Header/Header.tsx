@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Container } from './Header.style';
 import { DrawerEnterTime } from 'Utils/constants';
 import { MainDrawer } from 'Utils/types';
-import MainDrawerContainer from 'Components/Main Drawer Container/MainDrawer';
+import MainDrawerContainer from "Components/MainDrawerContainer/MainDrawer";
 import AboutDrawer from 'Content/About/AboutDrawer';
 import ProjectsDrawer from 'Content/Projects/Drawer/ProjectsDrawer';
 import useTranslation from "shared/hooks/useTranslation";

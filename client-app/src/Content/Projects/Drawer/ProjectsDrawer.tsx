@@ -8,6 +8,7 @@ import { IDrawer } from 'Utils/types';
 import useBackButton from "shared/hooks/useBackButton";
 import useTranslation from "shared/hooks/useTranslation";
 import { RTLTextAlignClassName } from "Utils/constants";
+import ProjectsCollage from "Components/ProjectsCollage/ProjectsCollage";
 import {
     Wrapper,
     ListWrapper,

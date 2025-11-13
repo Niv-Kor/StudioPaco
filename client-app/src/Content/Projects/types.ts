@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { I18n } from "Utils/types";
 
 export interface IProjectCategory {
@@ -9,6 +10,7 @@ export interface IProjectCategory {
     stripLeftMargin?: number;
     keyMargin?: string;
     bodyText?: I18n;
+    bodyElement?: ReactNode;
     projects: Array<IProjectData>;
 }
 
