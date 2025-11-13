@@ -82,7 +82,9 @@ export const ContentContainer = styled.div<{
     align-items: ${({ rtl }) => rtl ? "flex-end" : "flex-start"};
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    box-sizing: border-box;
+    width: 97%;
+    height: 100%;
     gap: 50px;
     padding: 115px 0;
 
@@ -122,7 +124,6 @@ export const TitleText = styled(Text)<{
     }
 
     ${({ rtl }) => rtl && css`
-        padding-right: 20px;
         direction: rtl;
         transition: padding-right 0s;
     `};
@@ -137,6 +138,13 @@ export const TitleText = styled(Text)<{
 
 export const BodyText = styled(Text)`
     margin-top: 50px;
+`;
+
+export const BodyElementContainer = styled.div`
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    min-height: 700px;
 `;
 
 export const ContentElementContainer = styled.div`

@@ -20,7 +20,7 @@ import {
     ContentElementContainer,
     BackButtonIcon,
     Title,
-    MobileMask
+    MobileMask, BodyElementContainer
 } from './ProjectStrip.style';
 
 export interface IProjectStrip {
@@ -155,9 +155,17 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                             />
                         </TitleText>
                         {!!category.bodyText && (
-                            <BodyText>
+                            <BodyText
+                                className={RTLTextAlignClassName}
+                                dir={textDir}
+                            >
                                 {translate(category.bodyText)}
                             </BodyText>
+                        )}
+                        {category.bodyElement && (
+                            <BodyElementContainer>
+                                {category.bodyElement}
+                            </BodyElementContainer>
                         )}
                         <ContentElementContainer>
                             <ProjectsTable
