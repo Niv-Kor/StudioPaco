@@ -4,6 +4,7 @@ import { isMobile } from 'Utils/Theme';
 import useBackButton from "shared/hooks/useBackButton";
 import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
 import useTranslation from "shared/hooks/useTranslation";
+import useScreenSize from "shared/hooks/useScreenSize";
 import { RTLTextAlignClassName } from "Utils/constants";
 import { Paragraphs } from "./consts";
 import {
@@ -34,15 +35,15 @@ const AboutDrawer: FC<IAboutDrawer> = ({
     const [isImageOpen, setImageOpen] = useState<boolean>(false);
     const [closingFlag, setClosingFlag] = useState<boolean>(false);
     const [textCloseState, setTextCloseState] = useState<boolean>(false);
-    const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
     const [textScrollOffset, setTextScrollOffset] = useState<number>(0);
     const [profileImageTimeout, setProfileImageTimeout] = useState<NodeJS.Timeout>();
     const { translate, textDir } = useTranslation();
+    const { width, height } = useScreenSize();
     const textContent = (
         <Content
             displayed={enterState}
-            screenWidth={screenSize.width}
-            screenHeight={screenSize.height}
+            screenWidth={width}
+            screenHeight={height}
         >
             <Paragraph
                 className={RTLTextAlignClassName}
@@ -74,20 +75,6 @@ const AboutDrawer: FC<IAboutDrawer> = ({
             }
         }
     }, [wrapperContainer, mobile]);
-
-    useEffect(() => {
-        const adjustWidth = () => setScreenSize({
-            width: document.body.clientWidth,
-            height: document.body.clientHeight
-        });
-
-        window.addEventListener("resize", adjustWidth);
-        adjustWidth();
-
-        return () => {
-            window.removeEventListener("resize", adjustWidth);
-        }
-    }, []);
 
     useEffect(() => {
         if (open && openDelay > 0) setTimeout(() => setEnterState(open), openDelay * 1000);

@@ -9,12 +9,16 @@ import {
     PageNumber,
     Button, Loader,
 } from "./PresentationViewer.style";
+import { isMobile } from "../../Utils/Theme";
+import useScreenSize from "../../shared/hooks/useScreenSize";
 
 const PresentationViewer: FC = () => {
     const [totalPages, setTotalPages] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [isHovered, setHovered] = useState<boolean>(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const { width: screenWidth } = useScreenSize();
+    const width = isMobile() ? screenWidth * .9 : 900;
 
     useEffect(() => {
         const element = wrapperRef.current;
@@ -50,6 +54,7 @@ const PresentationViewer: FC = () => {
     return (
         <Wrapper
             ref={wrapperRef}
+            width={width}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
@@ -60,14 +65,14 @@ const PresentationViewer: FC = () => {
                 >
                     <Page
                         pageIndex={currentPage}
-                        width={900}
+                        width={width}
                         renderTextLayer={false}
                         renderAnnotationLayer={false}
                         error={<Loader />}
                         loading={<Loader />}
                     />
                 </Document>
-                {isHovered && (
+                {isMobile() ? (
                     <>
                         <PageNumber>
                             {currentPage + 1}
@@ -87,7 +92,28 @@ const PresentationViewer: FC = () => {
                             </Button>
                         </ButtonsLayout>
                     </>
-                )}
+                ) : (
+                    isHovered && (
+                        <>
+                            <PageNumber>
+                                {currentPage + 1}
+                            </PageNumber>
+                            <ButtonsLayout>
+                                <Button
+                                    onClick={onPreviousPage}
+                                    disabled={currentPage <= 0}
+                                >
+                                    🠈
+                                </Button>
+                                <Button
+                                    onClick={onNextPage}
+                                    disabled={currentPage >= totalPages - 1}
+                                >
+                                    🠊
+                                </Button>
+                            </ButtonsLayout>
+                        </>
+                    ))}
             </DocumentContainer>
         </Wrapper>
     );

@@ -145,6 +145,10 @@ export const BodyElementContainer = styled.div`
     display: flex;
     width: 100%;
     min-height: 700px;
+
+    ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
+        min-height: 500px;
+    `)}
 `;
 
 export const ContentElementContainer = styled.div`

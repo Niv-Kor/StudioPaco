@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+const ratio = 1.6;
+
+export const Wrapper = styled.div<{
+    width: number;
+}>`
     position: relative;
-    width: 900px;
-    height: 562px;
+    width: ${({ width }) => width}px;
+    height: ${({ width }) => width / ratio}px;
     outline: 1px solid #00000066;
     margin-left: 1px;
     background-color: white;
