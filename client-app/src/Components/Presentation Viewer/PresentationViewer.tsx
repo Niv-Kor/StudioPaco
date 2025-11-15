@@ -103,13 +103,13 @@ const PresentationViewer: FC = () => {
                                     onClick={onPreviousPage}
                                     disabled={currentPage <= 0}
                                 >
-                                    🠈
+                                    🠉
                                 </Button>
                                 <Button
                                     onClick={onNextPage}
                                     disabled={currentPage >= totalPages - 1}
                                 >
-                                    🠊
+                                    🠋
                                 </Button>
                             </ButtonsLayout>
                         </>

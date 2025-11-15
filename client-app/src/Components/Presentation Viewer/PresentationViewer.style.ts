@@ -25,14 +25,13 @@ export const DocumentContainer = styled.div`
 
 export const ButtonsLayout = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
     position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 30px;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    height: 100%;
     gap: 20px;
     padding-bottom: 1px;
 `;
