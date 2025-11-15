@@ -11,6 +11,10 @@ import {
 } from "./PresentationViewer.style";
 import { isMobile } from "../../Utils/Theme";
 import useScreenSize from "../../shared/hooks/useScreenSize";
+import { pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
+
 
 const PresentationViewer: FC = () => {
     const [totalPages, setTotalPages] = useState<number>(0);

@@ -1,12 +1,6 @@
 import { IProjectCategory } from 'Content/Projects/types';
 import { CategoryDelimiterSize } from '../../constants';
-import { pdfjs } from 'react-pdf';
 import PresentationViewer from "../../../../Components/Presentation Viewer/PresentationViewer";
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url,
-).toString();
 
 const data: IProjectCategory = {
     id: 'licensing',
