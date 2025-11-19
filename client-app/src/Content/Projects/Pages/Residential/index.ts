@@ -20,7 +20,7 @@ const data: IProjectCategory = {
     },
     text: {
         en: 'domains of inhabitation. Shaping of living environments to host individual stories while complementing their surrounding context.',
-        he: 'תחומי מגורים. עיצוב סביבות חיים המארחות סיפורים אישיים ומשתלבות בהקשר הסביבתי.',
+        he: 'חיים כמרחבי יצירה של בית. פיסול מרחבים המעניקים מקום לסיפורי אדם ומשתלבים בטבעיות במרקם המקומי.',
     },
     stripIndex: 6,
     stripLeftMargin: 2,

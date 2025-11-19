@@ -8,7 +8,7 @@ const data: IProjectCategory = {
     id: 'hospitality',
     title: {
         en: 'hospitality',
-        he: 'אירוח',
+        he: 'מלונאות',
     },
     text: {
         en: 'environments of tailored experiences. Crafting a distinct sense of place and warmth, between functions of temporary needs and local aesthetics.',

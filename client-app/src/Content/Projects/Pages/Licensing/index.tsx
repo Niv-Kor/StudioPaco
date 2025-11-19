@@ -5,17 +5,17 @@ import PresentationViewer from "../../../../Components/Presentation Viewer/Prese
 const data: IProjectCategory = {
     id: 'licensing',
     title: {
-        en: 'licensing',
-        he: 'רישוי',
+        en: 'self licensing',
+        he: 'רישוי עצמי',
     },
     text: {
         en: 'protocols for statutory navigation. Steering projects through bureaucratic procedures to elevate the priority of the architectural vision.',
-        he: 'פרוטוקולים לניווט סטטוטורי. הובלת פרויקטים דרך תהליכים בירוקרטיים כדי להציב את חזון האדריכלות בעדיפות.',
+        he: '. ניווט פרויקטים במערכות ובתהליכים סטטוטוריים, כדי לפנות את הקרקע לתכנון, לעיצוב ולחזון האדריכלי.',
     },
-    bodyText: {
-        en: 'This category focuses on the legal and regulatory aspects of architectural projects.',
-        he: 'קטגוריה זו מתמקדת בהיבטים המשפטיים והרגולטוריים של פרויקטים אדריכליים.',
-    },
+    //bodyText: {
+    //    en: 'This category focuses on the legal and regulatory aspects of architectural projects.',
+    //    he: 'קטגוריה זו מתמקדת בהיבטים המשפטיים והרגולטוריים של פרויקטים אדריכליים.',
+    //},
     bodyElement: (
         <PresentationViewer />
     ),
