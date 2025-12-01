@@ -13,41 +13,29 @@ export const Wrapper = styled.div<{
     background-color: white;
 `;
 
-export const Loader = styled.div`
-    width: 100%;
+export const Container = styled.div`
+    position: relative;
     height: 100%;
-    background-color: white;
+    direction: rtl;
 `;
 
-export const DocumentContainer = styled.div`
-    width: 100%;
-`;
-
-export const ButtonsLayout = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+export const ButtonsContainer = styled.div`
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 20px;
-    height: 100%;
-    gap: 20px;
-    padding-bottom: 1px;
+    bottom: 10px;
+    right: 10px;
+    z-index: 20;
 `;
 
-export const PageNumber = styled.span`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+export const PageLabelContainer = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
-    color: black;
-    background: #ffffff66;
+    bottom: 10px;
+    left: 10px;
+    background: #000000aa;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 20;
 `;
 
 export const Button = styled.button`

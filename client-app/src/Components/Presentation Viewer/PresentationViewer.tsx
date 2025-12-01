@@ -1,124 +1,49 @@
-import { FC, useState, useRef, useEffect } from "react";
-import { Document, Page } from "react-pdf";
+import { FC } from "react";
+import { ScrollMode, SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
+import { fullScreenPlugin } from '@react-pdf-viewer/full-screen';
+import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
 import Presentation from "./presentation.pdf";
-import { DocumentCallback } from "react-pdf/dist/shared/types";
-import {
-    Wrapper,
-    ButtonsLayout,
-    DocumentContainer,
-    PageNumber,
-    Button, Loader,
-} from "./PresentationViewer.style";
-import { isMobile } from "../../Utils/Theme";
+import { Container, ButtonsContainer, Wrapper, PageLabelContainer } from "./PresentationViewer.style";
 import useScreenSize from "../../shared/hooks/useScreenSize";
-import { pdfjs } from "react-pdf";
+import { isMobile } from "../../Utils/Theme";
+import { WORKER_URL } from "./consts";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
-
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/full-screen/lib/styles/index.css';
+import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 
 const PresentationViewer: FC = () => {
-    const [totalPages, setTotalPages] = useState<number>(0);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [isHovered, setHovered] = useState<boolean>(false);
-    const wrapperRef = useRef<HTMLDivElement>(null);
     const { width: screenWidth } = useScreenSize();
     const width = isMobile() ? screenWidth * .9 : 900;
+    const fullScreenPluginInstance = fullScreenPlugin();
+    const pageNavigationPluginInstance = pageNavigationPlugin();
+    const { EnterFullScreenButton } = fullScreenPluginInstance;
+    const { GoToFirstPageButton, CurrentPageLabel } = pageNavigationPluginInstance;
 
-    useEffect(() => {
-        const element = wrapperRef.current;
-        if (!element) return;
-
-        const handleWheel = (ev: WheelEvent) => {
-            ev.preventDefault();
-            ev.stopPropagation();
-
-            if (ev.deltaY > 0) onNextPage();
-            else if (ev.deltaY < 0) onPreviousPage();
-        };
-
-        element.addEventListener('wheel', handleWheel, { passive: false });
-
-        return () => {
-            element.removeEventListener('wheel', handleWheel);
-        };
-    }, [totalPages]);
-
-    const onDocumentLoadSuccess = (ev: DocumentCallback): void => {
-        setTotalPages(ev.numPages);
-    }
-
-    const onPreviousPage = (): void => {
-        setCurrentPage(prev => prev > 0 ? prev - 1 : prev);
-    }
-
-    const onNextPage = (): void => {
-        setCurrentPage(prev => prev < totalPages - 1 ? prev + 1 : prev);
-    }
-    
     return (
-        <Wrapper
-            ref={wrapperRef}
-            width={width}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            <DocumentContainer>
-                <Document
-                    file={Presentation}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                >
-                    <Page
-                        pageIndex={currentPage}
-                        width={width}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                        error={<Loader />}
-                        loading={<Loader />}
+        <Wrapper width={width}>
+            <Worker workerUrl={WORKER_URL}>
+                <Container>
+                    <PageLabelContainer>
+                        <CurrentPageLabel>
+                            {(props) => <>{props.currentPage + 1}</>}
+                        </CurrentPageLabel>
+                    </PageLabelContainer>
+                    <ButtonsContainer>
+                        <GoToFirstPageButton />
+                        <EnterFullScreenButton />
+                    </ButtonsContainer>
+                    <Viewer
+                        fileUrl={Presentation}
+                        plugins={[
+                            fullScreenPluginInstance,
+                            pageNavigationPluginInstance
+                        ]}
+                        scrollMode={ScrollMode.Vertical}
+                        defaultScale={SpecialZoomLevel.PageWidth}
                     />
-                </Document>
-                {isMobile() ? (
-                    <>
-                        <PageNumber>
-                            {currentPage + 1}
-                        </PageNumber>
-                        <ButtonsLayout>
-                            <Button
-                                onClick={onPreviousPage}
-                                disabled={currentPage <= 0}
-                            >
-                                🠈
-                            </Button>
-                            <Button
-                                onClick={onNextPage}
-                                disabled={currentPage >= totalPages - 1}
-                            >
-                                🠊
-                            </Button>
-                        </ButtonsLayout>
-                    </>
-                ) : (
-                    isHovered && (
-                        <>
-                            <PageNumber>
-                                {currentPage + 1}
-                            </PageNumber>
-                            <ButtonsLayout>
-                                <Button
-                                    onClick={onPreviousPage}
-                                    disabled={currentPage <= 0}
-                                >
-                                    🠉
-                                </Button>
-                                <Button
-                                    onClick={onNextPage}
-                                    disabled={currentPage >= totalPages - 1}
-                                >
-                                    🠋
-                                </Button>
-                            </ButtonsLayout>
-                        </>
-                    ))}
-            </DocumentContainer>
+                </Container>
+            </Worker>
         </Wrapper>
     );
 }
