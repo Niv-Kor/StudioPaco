@@ -147,7 +147,7 @@ export const BodyElementContainer = styled.div`
     min-height: 700px;
 
     ${mediaQueryMaxWidth(MOBILE_BREAKPOINTS.MD, css`
-        min-height: 500px;
+        min-height: 200px;
     `)}
 `;
 
