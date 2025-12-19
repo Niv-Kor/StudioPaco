@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "./Components/Background/Background";
 import Layout from "./Components/Layout/Layout";
@@ -17,7 +17,7 @@ const CardPage: FC = () => {
     const { width } = useScreenSize();
 
     //redirect to the main webpage if the current device is not a phone
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!isPhone()) navigate("/", { replace: true });
     }, [width, navigate]);
 
