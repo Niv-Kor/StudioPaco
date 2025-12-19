@@ -6,43 +6,44 @@ import WhatsappIcon from 'resources/Graphics/Follow/whatsapp.svg';
 import TelephoneIcon from 'resources/Graphics/Follow/phone.svg';
 import EmailIcon from 'resources/Graphics/Follow/email.svg';
 import { isMobile } from 'Utils/Theme';
+import { SOCIAL_LINKS } from "../../shared/consts";
 
 export const SocialMethods: Array<ISocialIconConfig> = [
     {
         key: 'Facebook',
         iconSrc: FacebookIcon,
-        value: 'facebook.com/Amit.Paco',
-        href: 'https://facebook.com/Amit.Paco',
+        value: SOCIAL_LINKS.facebook,
+        href: `https://${SOCIAL_LINKS.facebook}`,
     },
     {
         key: 'Instagram',
         iconSrc: InstagramIcon,
-        value: 'instagram.com/amitpaco',
-        href: `https://instagram.com/_studio.paco`,
+        value: SOCIAL_LINKS.instagram,
+        href: `https://${SOCIAL_LINKS.instagram}`,
     },
     {
         key: 'linkedIn',
         iconSrc: LinkedinIcon,
-        value: 'linkedin.com/company/studiopaco',
-        href: 'https://linkedin.com/company/studiopaco',
+        value: SOCIAL_LINKS.linkedin,
+        href: `https://${SOCIAL_LINKS.linkedin}`,
     },
     {
         key: 'Whatsapp',
         iconSrc: WhatsappIcon,
         value: '972.0506.7575.81',
-        href: `https://wa.me/972506757581`,
+        href: `https://wa.me/${SOCIAL_LINKS.phone.substring(1)}`,
     },
     {
         key: 'Telephone',
         iconSrc: TelephoneIcon,
         value: '972.0506.7575.81',
-        clipboardString: '+972506757581',
-        href: isMobile() ? 'tel:972506757581' : ''
+        clipboardString: SOCIAL_LINKS.phone,
+        href: isMobile() ? `tel:${SOCIAL_LINKS.phone.substring(1)}` : ''
     },
     {
         key: 'Email',
         iconSrc: EmailIcon,
-        value: 'amit@studiopaco.com',
-        clipboardString: 'amit@studiopaco.com',
+        value: SOCIAL_LINKS.email,
+        clipboardString: SOCIAL_LINKS.email,
     }
 ];

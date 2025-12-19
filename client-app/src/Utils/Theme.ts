@@ -12,12 +12,16 @@ export const isRevertMode = (): boolean => {
 
 export const MOBILE_BREAKPOINTS: Record<string, number> = {
     SM: 400,
+    COMPACT: 500,
     MD: 880,
     LG: 1200
 }
 
 export const isMobile = (): boolean =>
     window.innerWidth <= MOBILE_BREAKPOINTS.MD;
+
+export const isPhone = (): boolean =>
+    window.innerWidth <= MOBILE_BREAKPOINTS.COMPACT;
 
 export const mediaQuery = (property: string, value: string, css: RuleSet<object>): RuleSet<object> =>
     cssFunc`@media (${property}: ${value}) { ${css} }`

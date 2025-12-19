@@ -1,0 +1,1 @@
+export type AutographLabel = "name" | "role" | "studioName" | "studioSlogan";

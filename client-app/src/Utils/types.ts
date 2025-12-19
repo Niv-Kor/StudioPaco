@@ -22,6 +22,7 @@ export type LanguageDirection = "ltr" | "rtl";
 
 export interface ILanguageData {
     displayName: string;
+    idPageDisplayName: string;
     direction:LanguageDirection
 }
 
