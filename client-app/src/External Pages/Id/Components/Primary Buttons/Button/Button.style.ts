@@ -10,8 +10,8 @@ export const Container = styled.div`
 `;
 
 export const Icon = styled.img`
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
 `;
 
 export const Label = styled.span`

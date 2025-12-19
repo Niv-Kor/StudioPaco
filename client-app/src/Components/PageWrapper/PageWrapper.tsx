@@ -1,9 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 import Footer from 'Components/Footer/Footer';
 import Header from 'Components/Header/Header';
-import { MainDrawer } from '../../Utils/types';
+import { MainDrawer } from 'Utils/types';
 import { ContentWrapper, Wrapper } from './PageWrapper.style';
-import useTranslation from "../../shared/hooks/useTranslation";
+import useTranslation from "shared/hooks/useTranslation";
 
 interface IPageWrapper {
     onMainDrawerChange: (drawer: MainDrawer) => void;

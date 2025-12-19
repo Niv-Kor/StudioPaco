@@ -6,7 +6,7 @@ interface IContactButton extends IPrimaryButtonConfig {
     onClick: VoidFunction;
 }
 
-const PrimaryButton: FC<IContactButton> = ({ icon, href, onClick }) => {
+const PrimaryButton: FC<IContactButton> = ({ icon, onClick }) => {
     return (
         <Container onClick={onClick}>
             <Icon src={icon} alt="" />

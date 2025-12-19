@@ -5,12 +5,24 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 40px 0;
+    gap: 40px;
     width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     height: 40px;
+`;
+
+export const WebsiteLink = styled.a`
+    & > img {
+        width: 40px;
+    }
 `;
 
 export const GridMap = styled.div`
@@ -22,10 +34,4 @@ export const GridMap = styled.div`
     padding: 0 8px;
     margin-bottom: 8px;
     width: 100%;
-`
-
-export const Grid = styled.div`
-    width: 100%;
-    height: 180px;
-    background-color: aquamarine;
 `;

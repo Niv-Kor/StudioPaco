@@ -4,4 +4,5 @@ export const SOCIAL_LINKS = {
     linkedin: "linkedin.com/company/studiopaco",
     email: "amit@studiopaco.com",
     phone: "+972506757581",
-}
+    website: "https://studiopaco.com",
+};

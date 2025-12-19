@@ -6,5 +6,4 @@ export enum PrimaryButtonType {
 
 export interface IPrimaryButtonConfig {
     icon: string;
-    href: string;
 }

@@ -1,18 +1,18 @@
 import { IPrimaryButtonConfig, PrimaryButtonType } from "./types";
-import { SOCIAL_LINKS } from "../../../../shared/consts";
+import ShareIcon from "resources/Graphics/Card/share.svg";
+import PhoneIcon from "resources/Graphics/Card/phone.svg";
+import ContactIcon from "resources/Graphics/Card/contact.svg";
+import { SOCIAL_LINKS } from "shared/consts";
 
 export const PRIMARY_BUTTONS_CONFIG: Record<PrimaryButtonType, IPrimaryButtonConfig> = {
     [PrimaryButtonType.Share]: {
-        icon: "",
-        href: "",
+        icon: ShareIcon,
     },
     [PrimaryButtonType.Phone]: {
-        icon: "",
-        href: "",
+        icon: PhoneIcon,
     },
     [PrimaryButtonType.Contacts]: {
-        icon: "",
-        href: "",
+        icon: ContactIcon,
     },
 };
 

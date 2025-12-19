@@ -15,6 +15,8 @@ function App() {
                   <Routes>
                       <Route path="/" element={<MainPage />} />
                       <Route path="/card" element={<CardPage />} />
+                      <Route path="/projects" element={<MainPage />} />
+                      <Route path="/projects/:projectId" element={<MainPage />} />
                   </Routes>
               </Router>
           </TranslationProvider>

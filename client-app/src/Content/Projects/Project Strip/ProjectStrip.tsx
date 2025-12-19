@@ -1,4 +1,5 @@
 import { FC, useRef, useMemo, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IProjectCategory, IProjectData } from '../types';
 import ProjectInfo from '../Project Info/ProjectInfo';
 import ProjectsTable from '../Table/ProjectsTable';
@@ -25,11 +26,13 @@ import {
 
 export interface IProjectStrip {
     category: IProjectCategory;
+    isDrawerOpen: boolean;
     enabled: boolean;
     index: number;
     width: number;
     selected: boolean;
     hovered: boolean;
+    initialProject?: IProjectData;
     openDelay?: number;
     onCategoryClose?: () => void;
     onProjectInspection?: () => void;
@@ -39,13 +42,17 @@ export interface IProjectStrip {
 const ProjectStrip: FC<IProjectStrip> = props => {
     const {
         category,
+        isDrawerOpen,
         selected,
         width,
         openDelay,
+        initialProject,
         onCategoryClose,
         onProjectInspection,
         onProjectDismissal
     } = props;
+    
+    const navigate = useNavigate();
     const containerRef = useRef<HTMLDivElement>(null);
     const [inspectedProject, setInspectedProject] = useState<IProjectData | undefined>();
     const [isOpen, setOpen] = useState<boolean>(false);
@@ -65,10 +72,26 @@ const ProjectStrip: FC<IProjectStrip> = props => {
         containerRef,
         StripWidth,
         rightOffset,
-        isOpen && !inspectedProject
+        isOpen && !inspectedProject && isDrawerOpen
     );
     
     useBackButton("Project Category", onCategoryClose, isOpen && !inspectedProject);
+
+    useEffect(() => {
+        if (!isDrawerOpen) {
+            onCategoryClose?.();
+            setInspectedProject(undefined);
+            navigate("/", { replace: true });
+        }
+    }, [isDrawerOpen]);
+    
+    useEffect(() => {
+        if (!inspectedProject && initialProject && category.projects.includes(initialProject)) {
+            setInspectedProject(initialProject);
+            setOpen(true);
+        }
+    }, [initialProject]);
+    
     useEffect(() => {
         if (selected) {
             selectionTimeout.current = setTimeout(() => {
@@ -105,8 +128,16 @@ const ProjectStrip: FC<IProjectStrip> = props => {
     }, [isOpen]);
 
     useEffect(() => {
-        if (!!inspectedProject) onProjectInspection?.();
-        else onProjectDismissal?.();
+        if (!!inspectedProject) {
+            onProjectInspection?.();
+            
+            const projectName = inspectedProject.name.toLowerCase();
+            navigate(`/projects/${projectName}`, { replace: true });
+        }
+        else {
+            onProjectDismissal?.();
+            if (isOpen && isDrawerOpen) navigate("/projects", { replace: true });
+        }
     }, [inspectedProject]);
 
     return (
@@ -118,7 +149,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
             />
             <Container
                 className={(selected && !inspectedProject) ? ACTIVE_ACCENT_PAGE_CLASS : ''}
-                open={isOpen && !inspectedProject}
+                open={isOpen && !inspectedProject && isDrawerOpen}
                 rightOffset={rightOffset + width}
             >
                 {isMobile() && (
@@ -183,7 +214,7 @@ const ProjectStrip: FC<IProjectStrip> = props => {
                 )}
             </Container>
             <ProjectInfo
-                open={!!inspectedProject}
+                open={!!inspectedProject && isDrawerOpen}
                 categoryName={translate(category.title)}
                 data={inspectedProject}
                 onClose={() => setInspectedProject(undefined)}

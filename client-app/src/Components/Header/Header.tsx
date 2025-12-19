@@ -7,6 +7,7 @@ import AboutDrawer from 'Content/About/AboutDrawer';
 import ProjectsDrawer from 'Content/Projects/Drawer/ProjectsDrawer';
 import useTranslation from "shared/hooks/useTranslation";
 import { Buttons } from "./consts";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface IHeader {
     onDrawerChange: (drawer: MainDrawer) => void;
@@ -15,17 +16,26 @@ interface IHeader {
 
 const Header: FC<IHeader> = ({
     onDrawerChange,
-    forceCloseDrawers
+    forceCloseDrawers,
 }) => {
-    const [currentOpenDrawer, setCurrentOpenDrawer] = useState<MainDrawer>(MainDrawer.None);
+    const location = useLocation();
+    const [currentOpenDrawer, setCurrentOpenDrawer] = useState<MainDrawer>(
+        location.pathname.startsWith('/projects') ? MainDrawer.Projects : MainDrawer.None
+    );
+    
     const { translate } = useTranslation();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (forceCloseDrawers) setCurrentOpenDrawer(MainDrawer.None);
+        if (forceCloseDrawers) {
+            setCurrentOpenDrawer(MainDrawer.None);
+            navigate("/", { replace: true });
+        }
     }, [forceCloseDrawers])
 
     useEffect(() => {
         onDrawerChange?.(currentOpenDrawer);
+        if (currentOpenDrawer === MainDrawer.None) navigate("/", { replace: true });
     }, [currentOpenDrawer]);
 
     return (
@@ -34,14 +44,14 @@ const Header: FC<IHeader> = ({
                 buttonText={translate(Buttons.about)}
                 openDelay={(currentOpenDrawer !== MainDrawer.About && currentOpenDrawer !== MainDrawer.None) ? DrawerEnterTime : 0}
                 onDrawerChange={flag => setCurrentOpenDrawer(flag ? MainDrawer.About : MainDrawer.None)}
-                shouldClose={currentOpenDrawer !== MainDrawer.About}
+                shouldOpen={currentOpenDrawer === MainDrawer.About}
                 Drawer={AboutDrawer}
             />
             <MainDrawerContainer
                 buttonText={translate(Buttons.projects)}
                 openDelay={(currentOpenDrawer !== MainDrawer.Projects && currentOpenDrawer !== MainDrawer.None) ? DrawerEnterTime : 0}
                 onDrawerChange={flag => setCurrentOpenDrawer(flag ? MainDrawer.Projects : MainDrawer.None)}
-                shouldClose={currentOpenDrawer !== MainDrawer.Projects}
+                shouldOpen={currentOpenDrawer === MainDrawer.Projects}
                 Drawer={ProjectsDrawer}
             />
         </Container>

@@ -5,7 +5,7 @@ import { IDrawer } from 'Utils/types';
 interface IMainDrawerContainer {
     buttonText: string;
     openDelay: number;
-    shouldClose: boolean;
+    shouldOpen: boolean;
     onDrawerChange: (flag: boolean) => void;
     Drawer: FC<IDrawer>
 }
@@ -14,7 +14,7 @@ const MainDrawerContainer: FC<IMainDrawerContainer> = ({
     buttonText,
     openDelay,
     onDrawerChange,
-    shouldClose,
+    shouldOpen,
     Drawer
 }) => {
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
@@ -25,12 +25,12 @@ const MainDrawerContainer: FC<IMainDrawerContainer> = ({
     }
 
     useEffect(() => {
-        if (drawerOpen) onDrawerChange?.(drawerOpen);
-    }, [drawerOpen])
+        setDrawerOpen(shouldOpen);
+    }, [shouldOpen]);
 
     useEffect(() => {
-        if (shouldClose) setDrawerOpen(false);
-    }, [shouldClose]);
+        if (drawerOpen) onDrawerChange?.(drawerOpen);
+    }, [drawerOpen])
 
     return (
         <>

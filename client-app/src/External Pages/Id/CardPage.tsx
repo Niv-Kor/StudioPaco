@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Background from "./Components/Background/Background";
 import Layout from "./Components/Layout/Layout";
 import Autograph from "./Components/Autograph/Autograph";
-import ProfileImgSrc from 'resources/Graphics/About/Amit-BW.png';
+import ProfileImgSrc from 'resources/Graphics/Card/profile.png';
 import { ContentWrapper, ProfileImage } from "./CardPage.style";
 import ContactButtons from "./Components/Contact Buttons/ContactButtons";
 import LanguageButton from "./Components/Language Button/LanguageButton";

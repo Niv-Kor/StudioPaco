@@ -45,6 +45,7 @@ const ProjectInfo: FC<IProjectInfo> = ({
         year = 0,
         images = []
     } = data ?? {};
+    
     const containerRef = useRef<HTMLDivElement>(null);
     const rightOffset = offset - StripWidth + 1;
     const {

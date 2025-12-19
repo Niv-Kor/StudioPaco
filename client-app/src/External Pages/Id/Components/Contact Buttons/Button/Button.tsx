@@ -10,8 +10,14 @@ const ContactButton: FC<IContactButton> = ({ label, icon, href }) => {
     const labelText = translate(label);
     
     return (
-        <Container href={href}>
-            <Icon src={icon} alt={translate(labelText)} />
+        <Container
+            href={href}
+            target="_blank"
+        >
+            <Icon
+                src={icon}
+                alt={translate(labelText)}
+            />
             <Label dir={textDir}>.{labelText}</Label>
         </Container>
     )

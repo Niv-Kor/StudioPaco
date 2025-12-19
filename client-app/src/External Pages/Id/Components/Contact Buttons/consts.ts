@@ -1,4 +1,8 @@
 import { SOCIAL_LINKS } from "shared/consts";
+import WebsiteIcon from "resources/Graphics/Card/website.svg";
+import CallIcon from "resources/Graphics/Card/call.svg";
+import EmailIcon from "resources/Graphics/Card/email.svg";
+import WhatsappIcon from "resources/Graphics/Card/whatsapp.svg";
 import { IContactButtonConfig } from "./types";
 
 export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
@@ -8,8 +12,8 @@ export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
             en: "website",
             he: "אתר",
         },
-        icon: "",
-        href: "https://studiopaco.com",
+        icon: WebsiteIcon,
+        href: SOCIAL_LINKS.website,
     },
     {
         id: "office",
@@ -17,7 +21,7 @@ export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
             en: "office",
             he: "משרד",
         },
-        icon: "",
+        icon: CallIcon,
         href: `tel:${SOCIAL_LINKS.phone.substring(1)}`,
     },
     {
@@ -26,7 +30,7 @@ export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
             en: "email",
             he: "דוא\"ל",
         },
-        icon: "",
+        icon: EmailIcon,
         href: `mailto:${SOCIAL_LINKS.email}`,
     },
     {
@@ -35,7 +39,7 @@ export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
             en: "whatsapp",
             he: "וואטסאפ",
         },
-        icon: "",
+        icon: WhatsappIcon,
         href: `https://wa.me/${SOCIAL_LINKS.phone.substring(1)}`,
     },
 ];
