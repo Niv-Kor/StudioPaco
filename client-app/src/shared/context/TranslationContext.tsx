@@ -7,7 +7,7 @@ import { LanguageData } from "../../Utils/constants";
 const LANGUAGE_LOCAL_STORAGE_KEY = "language";
 
 export const TranslationContext = createContext<ITranslation>({
-    language: SupportedLanguages.ENG,
+    language: SupportedLanguages.HEB,
     changeLanguage: noop,
     translate: () => "",
     isRtl: false,
@@ -15,7 +15,7 @@ export const TranslationContext = createContext<ITranslation>({
 });
 
 export const TranslationProvider = ({ children }: { children: ReactNode }) => {
-    const [value, cacheValue] = useLocalStorage(LANGUAGE_LOCAL_STORAGE_KEY, SupportedLanguages.ENG);
+    const [value, cacheValue] = useLocalStorage(LANGUAGE_LOCAL_STORAGE_KEY, SupportedLanguages.HEB);
     const [language, setLanguage] = useState<SupportedLanguages>(value as SupportedLanguages);
     const direction = LanguageData?.[language]?.direction ?? "ltr";
     
