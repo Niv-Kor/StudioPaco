@@ -18,7 +18,7 @@ export const PRIMARY_BUTTONS_CONFIG: Record<PrimaryButtonType, IPrimaryButtonCon
 
 export const VCARD = [
     'BEGIN:VCARD',
-    'VERSION=3.0',
+    'VERSION:3.0',
     'N:Korach;Amit;;;',
     'FN:Amit Korach',
     `TEL;TYPE=CELL:${SOCIAL_LINKS.phone}`,

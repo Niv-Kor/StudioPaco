@@ -35,22 +35,7 @@ const PrimaryButtons: FC = () => {
 
     const handleAddToContacts = () => {
         const vcard = VCARD.join('\r\n');
-        const blob = new Blob([vcard], {
-            type: "text/vcard;charset=utf-8"
-        });
-        
-        const url = URL.createObjectURL(blob);
-        const tempElement = document.createElement("a");
-        
-        tempElement.href = url;
-        tempElement.target = '_blank';
-        document.body.appendChild(tempElement);
-        tempElement.click();
-
-        setTimeout(() => {
-            document.body.removeChild(tempElement);
-            URL.revokeObjectURL(url);
-        }, 100);
+        window.location.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(vcard)}`;
     }
     
     const getButtonAction = (id: PrimaryButtonType): VoidFunction | undefined => {
