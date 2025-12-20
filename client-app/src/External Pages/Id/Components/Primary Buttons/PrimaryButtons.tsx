@@ -3,6 +3,7 @@ import { PRIMARY_BUTTONS_CONFIG, VCARD } from "./consts";
 import { Container } from "./PrimaryButtons.style";
 import PrimaryButton from "./Button/Button";
 import { PrimaryButtonType } from "./types";
+import { SOCIAL_LINKS } from "shared/consts";
 import { noop } from "lodash";
 
 const PrimaryButtons: FC = () => {
@@ -29,21 +30,27 @@ const PrimaryButtons: FC = () => {
     }
 
     const handleCall = (): void => {
-        window.location.href = 'tel:+15551234567';
+        window.location.href = `tel:${SOCIAL_LINKS.phone}`;
     }
 
     const handleAddToContacts = () => {
-        const vcard = VCARD.join('\n');
-        const blob = new Blob([vcard], { type: "text/vcard" });
+        const vcard = VCARD.join('\r\n');
+        const blob = new Blob([vcard], {
+            type: "text/vcard;charset=utf-8"
+        });
+        
         const url = URL.createObjectURL(blob);
         const tempElement = document.createElement("a");
         
         tempElement.href = url;
-        tempElement.download = "StudioPaco.vcf";
+        tempElement.target = '_blank';
         document.body.appendChild(tempElement);
         tempElement.click();
-        document.body.removeChild(tempElement);
-        URL.revokeObjectURL(url);
+
+        setTimeout(() => {
+            document.body.removeChild(tempElement);
+            URL.revokeObjectURL(url);
+        }, 100);
     }
     
     const getButtonAction = (id: PrimaryButtonType): VoidFunction | undefined => {

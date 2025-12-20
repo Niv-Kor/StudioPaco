@@ -22,7 +22,7 @@ export const CONTACT_BUTTONS_CONFIG: IContactButtonConfig[] = [
             he: "משרד",
         },
         icon: CallIcon,
-        href: `tel:${SOCIAL_LINKS.phone.substring(1)}`,
+        href: `tel:${SOCIAL_LINKS.phone}`,
     },
     {
         id: "email",
