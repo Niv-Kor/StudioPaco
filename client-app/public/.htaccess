@@ -1,0 +1,8 @@
+Options -MultiViews
+RewriteEngine On
+
+# If the requested path is not an existing file or directory,
+# serve index.html so React Router can handle the route.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
