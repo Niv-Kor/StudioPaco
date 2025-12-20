@@ -7,8 +7,8 @@ export const TEXTS: Record<AutographLabel, I18n> = {
         he: "עמית קורח",
     },
     role: {
-        en: "Chief Architect . Owner",
-        he: "אדריכל ראשי . בעלים",
+        en: "Chief Architect . CEO",
+        he: "אדריכל ראשי . מנכ\"ל",
     },
     studioName: {
         en: "Studio Paco",
