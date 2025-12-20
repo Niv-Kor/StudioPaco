@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect } from "react";
+import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "./Components/Background/Background";
 import Layout from "./Components/Layout/Layout";
@@ -8,20 +8,19 @@ import { ContentWrapper, ProfileImage } from "./CardPage.style";
 import ContactButtons from "./Components/Contact Buttons/ContactButtons";
 import LanguageButton from "./Components/Language Button/LanguageButton";
 import ProjectsFooter from "./Components/Projects Footer/ProjectsFooter";
-import useScreenSize from "../../shared/hooks/useScreenSize";
-import { isPhone } from "../../Utils/Theme";
+import { isPhone } from "Utils/Theme";
 import About from "./Components/About/About";
 
 const CardPage: FC = () => {
     const navigate = useNavigate();
-    const { width } = useScreenSize();
+    const shouldRender = isPhone();
 
     //redirect to the main webpage if the current device is not a phone
-    useLayoutEffect(() => {
-        if (!isPhone()) navigate("/", { replace: true });
-    }, [width, navigate]);
+    useEffect(() => {
+        if (!shouldRender) navigate("/", { replace: true });
+    }, [navigate, shouldRender]);
 
-    return (
+    return shouldRender ? (
         <>
             <Layout>
                 <ContentWrapper>
@@ -37,7 +36,7 @@ const CardPage: FC = () => {
                 </ContentWrapper>
             </Layout>
         </>
-    )
+    ) : null;
 }
 
 export default CardPage;
